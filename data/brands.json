@@ -1,0 +1,79 @@
+{
+  "_schema_version": "2.0",
+  "_description": "Drug → Company → Brand mapping for Paeon DMR frontend display. All values are human-configured. Do not auto-generate.",
+
+  "companies": {
+    "cipla": {
+      "name": "Cipla",
+      "background_gradient": "light_blue",
+      "overview": "Cipla Limited is one of India's leading pharmaceutical companies with a global presence across 80+ countries. Founded in 1935 by Dr. K.A. Hamied, Cipla has pioneered affordable healthcare access for millions worldwide.",
+      "specialties": "Respiratory Care • HIV/AIDS Treatment • Oncology • Cardiology • Anti-infectives",
+      "stats": {
+        "founded": "1935",
+        "headquarters": "Mumbai, India",
+        "employees": "24,000+",
+        "revenue": "₹23,456 Cr (FY23)"
+      },
+      "mission": "Making healthcare accessible and affordable globally through innovative drug development and sustainable business practices."
+    },
+    "pfizer": {
+      "name": "Pfizer",
+      "background_gradient": "deep_blue",
+      "overview": "",
+      "specialties": "",
+      "stats": {},
+      "mission": ""
+    },
+    "jnj": {
+      "name": "Johnson & Johnson",
+      "background_gradient": "orange",
+      "overview": "",
+      "specialties": "",
+      "stats": {},
+      "mission": ""
+    }
+  },
+
+  "drugs": {
+    "Ciplactin": {
+      "company_key": "cipla",
+      "brand": {
+        "color": "#00AEEF",
+        "accent": "#F58220",
+        "tagline": "Caring for Life",
+        "logo_url": "/assets/cipla-logo.png",
+        "division": "Allergy & Dermatology Division"
+      }
+    },
+    "Ciplar": {
+      "company_key": "cipla",
+      "brand": {
+        "color": "#00AEEF",
+        "accent": "#F58220",
+        "tagline": "Caring for Life",
+        "logo_url": "/assets/cipla-logo.png",
+        "division": "Cardiovascular Division"
+      }
+    },
+    "Actin": {
+      "company_key": "cipla",
+      "brand": {
+        "color": "#00AEEF",
+        "accent": "#F58220",
+        "tagline": "Caring for Life",
+        "logo_url": "/assets/cipla-logo.png",
+        "division": "Gastroenterology Division"
+      }
+    },
+    "Tremfya": {
+      "company_key": "jnj",
+      "brand": {
+        "color": "#D51900",
+        "accent": "#FFFFFF",
+        "tagline": "Innovation for Good Health",
+        "logo_url": "/assets/jnj-logo.png",
+        "division": "Immunology Division"
+      }
+    }
+  }
+}

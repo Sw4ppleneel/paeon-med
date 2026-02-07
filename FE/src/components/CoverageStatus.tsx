@@ -1,22 +1,57 @@
 import { motion } from 'motion/react';
 import { CheckCircle, Clock, Shield, XCircle, AlertCircle } from 'lucide-react';
 
+interface CoverageScheme {
+  status: string;
+  color: string;
+  label: string;
+}
+
 interface CoverageStatusProps {
   coverageData?: {
-    ayushman: { status: string; color: string; label: string };
-    cghs: { status: string; color: string; label: string };
-    private: { status: string; color: string; label: string };
-  };
-  pricing?: {
-    estimatedCopay: string;
-    mrp: string;
+    government: CoverageScheme | null;
+    corporate: CoverageScheme | null;
+    private: CoverageScheme | null;
   };
 }
 
-export function CoverageStatus({ coverageData, pricing }: CoverageStatusProps) {
+/** Scheme display names matching the backend locked mapping */
+const SCHEME_TITLES: Record<string, { title: string; scheme: string }> = {
+  government: { title: 'Government Schemes', scheme: 'Ayushman Bharat' },
+  corporate: { title: 'Corporate', scheme: 'CGHS' },
+  private: { title: 'Private TPA', scheme: 'Private Insurance' },
+};
+
+export function CoverageStatus({ coverageData }: CoverageStatusProps) {
   if (!coverageData) return null;
 
-  const getIconAndStyle = (status: string, baseColor: string) => {
+  const getIconAndStyle = (baseColor: string) => {
+=======
+interface CoverageScheme {
+  status: string;
+  color: string;
+  label: string;
+}
+
+interface CoverageStatusProps {
+  coverageData?: {
+    government: CoverageScheme | null;
+    corporate: CoverageScheme | null;
+    private: CoverageScheme | null;
+  };
+}
+
+/** Scheme display names matching the backend locked mapping */
+const SCHEME_TITLES: Record<string, { title: string; scheme: string }> = {
+  government: { title: 'Government Schemes', scheme: 'Ayushman Bharat' },
+  corporate: { title: 'Corporate', scheme: 'CGHS' },
+  private: { title: 'Private TPA', scheme: 'Private Insurance' },
+};
+
+export function CoverageStatus({ coverageData }: CoverageStatusProps) {
+  if (!coverageData) return null;
+
+  const getIconAndStyle = (baseColor: string) => {
     const colorMap: Record<string, { bg: string; text: string; glow: string; icon: any }> = {
       'green': {
         bg: 'rgba(46, 125, 50, 0.15)',
@@ -36,6 +71,12 @@ export function CoverageStatus({ coverageData, pricing }: CoverageStatusProps) {
         glow: 'rgba(245, 127, 23, 0.2)',
         icon: Clock,
       },
+      'red': {
+        bg: 'rgba(211, 47, 47, 0.15)',
+        text: '#D32F2F',
+        glow: 'rgba(211, 47, 47, 0.2)',
+        icon: XCircle,
+      },
       'grey': {
         bg: 'rgba(97, 97, 97, 0.15)',
         text: '#616161',
@@ -47,23 +88,23 @@ export function CoverageStatus({ coverageData, pricing }: CoverageStatusProps) {
     return colorMap[baseColor] || colorMap.blue;
   };
 
-  const coverageItems = [
-    {
-      title: 'Government Schemes',
-      scheme: 'Ayushman Bharat',
-      ...coverageData.ayushman,
-    },
-    {
-      title: 'Corporate',
-      scheme: 'CGHS',
-      ...coverageData.cghs,
-    },
-    {
-      title: 'Private TPA',
-      scheme: coverageData.private.label,
-      ...coverageData.private,
-    },
-  ];
+  // Build items from non-null slots
+  const slotKeys = ['government', 'corporate', 'private'] as const;
+  const coverageItems = slotKeys
+    .filter((key) => coverageData[key] !== null && coverageData[key] !== undefined)
+    .map((key) => {
+      const slot = coverageData[key]!;
+      const info = SCHEME_TITLES[key];
+      return {
+        title: info.title,
+        scheme: info.scheme,
+        status: slot.status,
+        color: slot.color,
+        label: slot.label,
+      };
+    });
+
+  if (coverageItems.length === 0) return null;
 
   return (
     <div id="access" className="scroll-mt-32">
@@ -86,7 +127,7 @@ export function CoverageStatus({ coverageData, pricing }: CoverageStatusProps) {
       {/* Three Horizontal Glass Badges */}
       <div className="grid grid-cols-3 gap-4">
         {coverageItems.map((item, index) => {
-          const styling = getIconAndStyle(item.status, item.color);
+          const styling = getIconAndStyle(item.color);
           const Icon = styling.icon;
           
           return (
@@ -144,51 +185,6 @@ export function CoverageStatus({ coverageData, pricing }: CoverageStatusProps) {
           );
         })}
       </div>
-
-      {/* Estimated Co-pay Banner */}
-      {pricing && (
-        <motion.div
-          className="mt-6 rounded-[24px] p-6"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0, 122, 255, 0.1) 0%, rgba(0, 122, 255, 0.05) 100%)',
-            border: '1px solid rgba(0, 122, 255, 0.2)',
-          }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <p 
-                className="text-sm font-normal uppercase tracking-wider text-black/60"
-                style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-              >
-                Estimated Patient Co-pay
-              </p>
-              <p 
-                className="mt-1 text-4xl font-bold text-black/90"
-                style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-              >
-                {pricing.estimatedCopay}
-              </p>
-            </div>
-            <div className="text-right">
-              <p 
-                className="text-sm font-semibold text-black/50"
-                style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-              >
-                MRP
-              </p>
-              <p 
-                className="text-xl font-semibold text-black/60"
-                style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-              >
-                {pricing.mrp}
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      )}
     </div>
   );
 }

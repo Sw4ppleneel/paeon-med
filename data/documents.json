@@ -1,0 +1,32 @@
+[
+  {
+    "text": "Ciplactin (Cyproheptadine Hydrochloride 4mg) is manufactured by Cipla Ltd. It is indicated for allergic rhinitis, urticaria, and appetite stimulation. Available as tablets. Contraindicated in glaucoma, urinary retention, neonates, and concurrent MAO inhibitor use. Common side effects include drowsiness, dry mouth, and weight gain. Approved for adults and children above 2 years.",
+    "drug_name": "Ciplactin",
+    "section": "product_overview",
+    "source_id": "CPC-001"
+  },
+  {
+    "text": "Ciplactin contains Cyproheptadine Hydrochloride 4mg. Safety profile: drowsiness is the most common adverse effect. Weight gain has been reported with prolonged use. Not recommended during pregnancy or for neonates. Should not be used with MAO inhibitors due to risk of hypertensive crisis.",
+    "drug_name": "Ciplactin",
+    "section": "safety_profile",
+    "source_id": "CPC-002"
+  },
+  {
+    "text": "Ciplar (Propranolol Hydrochloride 40mg) is manufactured by Cipla Ltd. It is indicated for hypertension, angina pectoris, migraine prophylaxis, and essential tremor. Available as tablets. Contraindicated in asthma, severe bradycardia, cardiogenic shock, and uncontrolled heart failure. Common side effects include fatigue, cold extremities, bradycardia, and bronchospasm. Approved for adults only.",
+    "drug_name": "Ciplar",
+    "section": "product_overview",
+    "source_id": "CPL-001"
+  },
+  {
+    "text": "Ciplar contains Propranolol Hydrochloride 40mg. Prescribing information: dose titration required. Monitor heart rate and blood pressure. Contraindicated in patients with asthma or severe bradycardia. Abrupt withdrawal may exacerbate angina.",
+    "drug_name": "Ciplar",
+    "section": "prescribing_info",
+    "source_id": "CPL-002"
+  },
+  {
+    "text": "Actin (Ranitidine Hydrochloride 150mg) is manufactured by Cipla Ltd. It is indicated for gastric and duodenal ulcers, GERD, and Zollinger-Ellison syndrome. Available as tablets. Contraindicated in known hypersensitivity to ranitidine. Common side effects include headache, dizziness, constipation, and diarrhea. Approved for adults and children above 12 years.",
+    "drug_name": "Actin",
+    "section": "product_overview",
+    "source_id": "ACT-001"
+  }
+]

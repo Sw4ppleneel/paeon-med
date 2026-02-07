@@ -3,44 +3,25 @@ import { IntelligentHeader } from './components/IntelligentHeader';
 import { ChapterNavigation } from './components/ChapterNavigation';
 import { DrugIdentity } from './components/DrugIdentity';
 import { MechanismCard } from './components/MechanismCard';
-import { ComparisonTable } from './components/ComparisonTable';
 import { CoverageStatus } from './components/CoverageStatus';
-import { ComplianceCard } from './components/ComplianceCard';
 import { CommandCenter } from './components/CommandCenter';
 import { Footer } from './components/Footer';
 import { FloatingCallButton } from './components/FloatingCallButton';
-import { DRUG_DATABASE, DrugData } from './data/drugDatabase';
+import { useDrugProfile } from './hooks/useDrugProfile';
 
 export default function App() {
-  const [hasGeneratedContent, setHasGeneratedContent] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [currentDrug, setCurrentDrug] = useState<DrugData | null>(null);
   const [activeChapter, setActiveChapter] = useState('identity');
   const [isNearBottom, setIsNearBottom] = useState(false);
+
+  const { data: profile, loading, error, fetch: fetchProfile } = useDrugProfile();
+
+  const hasGeneratedContent = profile !== null;
 
   const handleSearch = (query: string) => {
     if (query.trim()) {
       setSearchQuery(query);
-      
-      // Find drug in database (case-insensitive)
-      const drugKey = query.toLowerCase().trim();
-      const drugData = DRUG_DATABASE[drugKey as keyof typeof DRUG_DATABASE];
-      
-      if (drugData) {
-        setCurrentDrug(drugData);
-        setHasGeneratedContent(true);
-      } else {
-        // Fallback - use Jardiance template with custom name
-        setCurrentDrug({
-          ...DRUG_DATABASE.jardiance,
-          drug: {
-            ...DRUG_DATABASE.jardiance.drug,
-            name: query,
-            subtitle: 'Generic Medication',
-          }
-        });
-        setHasGeneratedContent(true);
-      }
+      fetchProfile({ drug_name: query.trim() });
     }
   };
 
@@ -122,10 +103,88 @@ export default function App() {
         }
       `}</style>
 
-      {hasGeneratedContent ? (
+      {/* Loading State */}
+      {loading && (
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="text-center">
+            <div
+              className="mx-auto mb-6 h-12 w-12 animate-spin rounded-full border-4 border-black/10 border-t-[#1976D2]"
+            />
+            <h2
+              className="mb-2 text-2xl font-bold tracking-tight text-black/50"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              Generating Insights
+            </h2>
+            <p
+              className="text-base font-semibold text-black/30"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              Fetching profile for <span className="text-black/50">{searchQuery}</span>…
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !loading && (
+        <div className="flex min-h-screen items-center justify-center">
+          <div className="mx-auto max-w-md text-center">
+            <div
+              className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full"
+              style={{ background: 'rgba(211, 47, 47, 0.1)' }}
+            >
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#D32F2F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="15" y1="9" x2="9" y2="15" />
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
+            </div>
+            <h2
+              className="mb-2 text-2xl font-bold tracking-tight text-black/60"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              Something went wrong
+            </h2>
+            <p
+              className="mb-6 text-sm font-semibold text-black/40"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              {error}
+            </p>
+            <button
+              onClick={() => handleSearch(searchQuery)}
+              className="rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all hover:scale-105"
+              style={{
+                background: 'linear-gradient(135deg, #1976D2 0%, #42A5F5 100%)',
+                boxShadow: '0 8px 24px rgba(25, 118, 210, 0.3)',
+              }}
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      )}
+
+      {hasGeneratedContent && !loading && (
         <>
           {/* Intelligent Header with Brand Detection */}
-          <IntelligentHeader brand={currentDrug?.brand} company={currentDrug?.company} drugName={currentDrug?.drug.name || ''} />
+          <IntelligentHeader
+            brand={profile?.brand ? {
+              name: profile.brand.name || '',
+              color: profile.brand.color || '#007AFF',
+              tagline: profile.brand.tagline || '',
+              division: profile.brand.division || undefined,
+              background_gradient: profile.brand.background_gradient || undefined,
+            } : undefined}
+            company={profile?.company ? {
+              overview: profile.company.overview || '',
+              specialties: profile.company.specialties || '',
+              stats: (profile.company.stats || {}) as Record<string, string>,
+              mission: profile.company.mission || '',
+            } : undefined}
+            drugName={profile?.drug_display?.name || searchQuery}
+          />
 
           {/* Chapter Navigation (Sticky) */}
           <ChapterNavigation activeChapter={activeChapter} onChapterClick={handleChapterClick} />
@@ -135,24 +194,23 @@ export default function App() {
             <div className="flex flex-col gap-16">
               {/* CHAPTER 1: IDENTITY */}
               <div id="identity" className="scroll-mt-32 flex flex-col gap-12">
-                <DrugIdentity drugData={currentDrug} />
-                <MechanismCard mechanismData={currentDrug?.mechanism} />
+                <DrugIdentity
+                  drugDisplay={profile?.drug_display || undefined}
+                  brandColor={profile?.brand?.color || '#007AFF'}
+                  brandName={profile?.brand?.name || ''}
+                />
+                {profile?.mechanism?.title && profile?.mechanism?.text && (
+                  <MechanismCard mechanismData={{
+                    title: profile.mechanism.title,
+                    text: profile.mechanism.text,
+                  }} />
+                )}
               </div>
 
-              {/* CHAPTER 2: COMPARISON */}
-              <ComparisonTable 
-                comparisonData={currentDrug?.comparison} 
-                brandColor={currentDrug?.brand.color || '#007AFF'} 
-              />
-
-              {/* CHAPTER 3: ACCESS */}
-              <CoverageStatus 
-                coverageData={currentDrug?.coverage} 
-                pricing={currentDrug?.pricing}
-              />
-
-              {/* CHAPTER 4: COMPLIANCE */}
-              <ComplianceCard complianceData={currentDrug?.compliance} />
+              {/* CHAPTER 3: ACCESS — coverage only (comparison/pricing/compliance ignored) */}
+              {profile?.coverage_display && (
+                <CoverageStatus coverageData={profile.coverage_display} />
+              )}
             </div>
           </div>
 
@@ -169,8 +227,9 @@ export default function App() {
           {/* Footer */}
           <Footer />
         </>
-      ) : (
-        /* Empty State Message */
+      )}
+      {/* Empty State Message */}
+      {!hasGeneratedContent && !loading && !error && (
         <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
             <h2 
@@ -194,7 +253,7 @@ export default function App() {
               >
                 Try:
               </span>
-              {['Foracort', 'Eliquis', 'Tremfya', 'Jardiance'].map((drug) => (
+              {['Ciplactin', 'Ciplar', 'Tremfya', 'Dolo 650', 'Xeljanz'].map((drug) => (
                 <button
                   key={drug}
                   onClick={() => handleSearch(drug)}

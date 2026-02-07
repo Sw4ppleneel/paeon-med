@@ -1,0 +1,57 @@
+{
+  "trial_policies": {
+    "Ciplactin": {
+      "eligible_diagnoses": ["allergic_rhinitis", "urticaria", "appetite_loss"],
+      "min_age": 18,
+      "max_age": 65,
+      "required_prior_treatments": ["antihistamines"],
+      "required_documents": ["informed_consent", "medical_history", "lab_report"],
+      "exclusion_criteria": ["pregnancy", "glaucoma", "mao_inhibitor_use"]
+    },
+    "Ciplar": {
+      "eligible_diagnoses": ["hypertension", "angina", "migraine_prophylaxis", "essential_tremor"],
+      "min_age": 18,
+      "max_age": 70,
+      "required_prior_treatments": [],
+      "required_documents": ["informed_consent", "ecg_report", "blood_pressure_log"],
+      "exclusion_criteria": ["asthma", "severe_bradycardia", "cardiogenic_shock"]
+    },
+    "Actin": {
+      "eligible_diagnoses": ["gastric_ulcer", "duodenal_ulcer", "gerd"],
+      "min_age": 18,
+      "max_age": 70,
+      "required_prior_treatments": [],
+      "required_documents": ["informed_consent", "endoscopy_report"],
+      "exclusion_criteria": ["ranitidine_allergy"]
+    }
+  },
+  "reimbursement_policies": {
+    "Ciplactin": {
+      "eligible_diagnoses": ["allergic_rhinitis", "urticaria"],
+      "insurance_coverage": {
+        "corporate": {"coverage_percent": 80, "max_amount": 10000},
+        "government": {"coverage_percent": 100, "max_amount": 15000},
+        "private": {"coverage_percent": 60, "max_amount": 8000},
+        "none": {"coverage_percent": 0, "max_amount": 0}
+      }
+    },
+    "Ciplar": {
+      "eligible_diagnoses": ["hypertension", "angina", "migraine_prophylaxis", "essential_tremor"],
+      "insurance_coverage": {
+        "corporate": {"coverage_percent": 85, "max_amount": 20000},
+        "government": {"coverage_percent": 100, "max_amount": 25000},
+        "private": {"coverage_percent": 70, "max_amount": 15000},
+        "none": {"coverage_percent": 0, "max_amount": 0}
+      }
+    },
+    "Actin": {
+      "eligible_diagnoses": ["gastric_ulcer", "duodenal_ulcer", "gerd"],
+      "insurance_coverage": {
+        "corporate": {"coverage_percent": 75, "max_amount": 12000},
+        "government": {"coverage_percent": 100, "max_amount": 15000},
+        "private": {"coverage_percent": 50, "max_amount": 10000},
+        "none": {"coverage_percent": 0, "max_amount": 0}
+      }
+    }
+  }
+}

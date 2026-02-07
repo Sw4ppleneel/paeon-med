@@ -1,36 +1,98 @@
 import { motion } from 'motion/react';
 import { Sparkles, Building2 } from 'lucide-react';
-import ciplaLogo from 'figma:asset/e6519bfeea8e0f2991ce530847669f858333e59c.png';
-import jjLogo from 'figma:asset/23f5fad8089a2d8b409639c2aa8b25d858ea53b1.png';
-import pfizerLogo from 'figma:asset/9551ab1874fc37dea2b9079bbd99480f69268947.png';
+import ciplaLogo from '../assets/Cipla.png';
+import jjLogo from '../assets/jnj.png';
+import pfizerLogo from '../assets/pfizer.png';
+
+/** Map company name → local logo asset */
+const LOGO_MAP: Record<string, string> = {
+  'Cipla': ciplaLogo,
+  'Pfizer': pfizerLogo,
+  'Johnson & Johnson': jjLogo,
+};
+
+/** Map backend background_gradient token → CSS gradient color */
+const GRADIENT_COLOR_MAP: Record<string, string> = {
+  'light_blue': '#00AEEF',
+  'deep_blue': '#0033A0',
+  'orange': '#D51900',
+};
+=======
+import ciplaLogo from '../assets/Cipla.png';
+import jjLogo from '../assets/jnj.png';
+import pfizerLogo from '../assets/pfizer.png';
+
+/** Map company name → local logo asset */
+const LOGO_MAP: Record<string, string> = {
+  'Cipla': ciplaLogo,
+  'Pfizer': pfizerLogo,
+  'Johnson & Johnson': jjLogo,
+};
+
+/** Map backend background_gradient token → CSS gradient color */
+const GRADIENT_COLOR_MAP: Record<string, string> = {
+  'light_blue': '#00AEEF',
+  'deep_blue': '#0033A0',
+  'orange': '#D51900',
+};
 
 interface IntelligentHeaderProps {
   brand?: {
     name: string;
     color: string;
     tagline: string;
-    logoType: string;
     division?: string;
+    background_gradient?: string;
   };
   company?: {
     overview: string;
     specialties: string;
-    stats: {
-      founded: string;
-      headquarters: string;
-      employees: string;
-      revenue: string;
-    };
+    stats: Record<string, string>;
     mission: string;
   };
   drugName: string;
 }
 
 export function IntelligentHeader({ brand, company, drugName }: IntelligentHeaderProps) {
-  if (!brand) return null;
+  // Provide defaults for unknown drugs (no brand in brands.json)
+  const effectiveBrand = brand || {
+    name: '',
+    color: '#1976D2',
+    tagline: '',
+    division: undefined,
+    background_gradient: undefined,
+  };
+
+  // Use background_gradient token if available, else fall back to brand.color
+  const gradientBase = effectiveBrand.background_gradient
+    ? (GRADIENT_COLOR_MAP[effectiveBrand.background_gradient] || effectiveBrand.color)
+    : effectiveBrand.color;
+
+  // Resolve logo from company name
+  const logoSrc = LOGO_MAP[effectiveBrand.name] || null;
 
   // Darker gradient for Cipla
-  const isCipla = brand.name === 'Cipla';
+  const isCipla = effectiveBrand.name === 'Cipla';
+=======
+  // Provide defaults for unknown drugs (no brand in brands.json)
+  const effectiveBrand = brand || {
+    name: '',
+    color: '#1976D2',
+    tagline: '',
+    division: undefined,
+    background_gradient: undefined,
+  };
+
+  // Use background_gradient token if available, else fall back to brand.color
+  const gradientBase = effectiveBrand.background_gradient
+    ? (GRADIENT_COLOR_MAP[effectiveBrand.background_gradient] || effectiveBrand.color)
+    : effectiveBrand.color;
+
+  // Resolve logo from company name
+  const logoSrc = LOGO_MAP[effectiveBrand.name] || null;
+
+  // Darker gradient for Cipla
+  const isCipla = effectiveBrand.name === 'Cipla';
   const gradientOpacity = isCipla 
     ? { start: '', mid1: 'dd', mid2: '88', end: '40' } 
     : { start: 'ee', mid1: '99', mid2: '70', end: '40' };
@@ -39,7 +101,7 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
     <motion.div 
       className="relative w-full overflow-hidden"
       style={{
-        background: `linear-gradient(180deg, ${brand.color}${gradientOpacity.start} 0%, ${brand.color}${gradientOpacity.mid1} 40%, ${brand.color}${gradientOpacity.mid2} 70%, ${brand.color}${gradientOpacity.end} 90%, #F5F5F7 100%)`,
+        background: `linear-gradient(180deg, ${gradientBase}${gradientOpacity.start} 0%, ${gradientBase}${gradientOpacity.mid1} 40%, ${gradientBase}${gradientOpacity.mid2} 70%, ${gradientBase}${gradientOpacity.end} 90%, #F5F5F7 100%)`
         minHeight: '1000px',
       }}
       initial={{ opacity: 0 }}
@@ -63,39 +125,15 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
-          {brand.logoType === 'image' && brand.name === 'Cipla' ? (
+          {logoSrc ? (
             <img 
-              src={ciplaLogo} 
-              alt="Cipla Logo" 
+              src={logoSrc} 
+              alt={`${effectiveBrand.name} Logo`} 
               className="mb-6"
               style={{
                 height: '100px',
                 width: 'auto',
-                filter: 'brightness(0) invert(1)', // Make it white
-                opacity: 1,
-              }}
-            />
-          ) : brand.logoType === 'image' && brand.name === 'Johnson & Johnson' ? (
-            <img 
-              src={jjLogo} 
-              alt="Johnson & Johnson Logo" 
-              className="mb-6"
-              style={{
-                height: '100px',
-                width: 'auto',
-                filter: 'brightness(0) invert(1)', // Make it white
-                opacity: 1,
-              }}
-            />
-          ) : brand.logoType === 'image' && brand.name === 'Pfizer' ? (
-            <img 
-              src={pfizerLogo} 
-              alt="Pfizer Logo" 
-              className="mb-6"
-              style={{
-                height: '100px',
-                width: 'auto',
-                filter: 'brightness(0) invert(1)', // Make it white
+                filter: 'brightness(0) invert(1)',
                 opacity: 1,
               }}
             />
@@ -107,7 +145,7 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
                 textShadow: '0 4px 24px rgba(0, 0, 0, 0.2)',
               }}
             >
-              {brand.name}
+              {effectiveBrand.name || drugName}
             </h1>
           )}
         </motion.div>
@@ -127,7 +165,7 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
               fontWeight: 400
             }}
           >
-            {brand.name} • {brand.tagline}
+            {effectiveBrand.name ? `${effectiveBrand.name} • ${effectiveBrand.tagline}` : drugName}
           </span>
         </motion.div>
 
@@ -151,7 +189,7 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
                 className="text-2xl font-bold text-black"
                 style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
               >
-                About {brand.name}
+                About {effectiveBrand.name || drugName}
               </h2>
             </div>
 

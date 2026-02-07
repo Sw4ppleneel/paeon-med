@@ -1,12 +1,31 @@
 import { motion } from 'motion/react';
-import { DrugData } from '../data/drugDatabase';
 
 interface DrugIdentityProps {
-  drugData: DrugData | null;
+  drugDisplay?: {
+    name: string;
+    subtitle?: string | null;
+    description?: string | null;
+  };
+  brandColor: string;
+  brandName: string;
 }
 
-export function DrugIdentity({ drugData }: DrugIdentityProps) {
-  if (!drugData) return null;
+export function DrugIdentity({ drugDisplay, brandColor, brandName }: DrugIdentityProps) {
+  if (!drugDisplay) return null;
+=======
+
+interface DrugIdentityProps {
+  drugDisplay?: {
+    name: string;
+    subtitle?: string | null;
+    description?: string | null;
+  };
+  brandColor: string;
+  brandName: string;
+}
+
+export function DrugIdentity({ drugDisplay, brandColor, brandName }: DrugIdentityProps) {
+  if (!drugDisplay) return null;
 
   return (
     <motion.div 
@@ -32,36 +51,42 @@ export function DrugIdentity({ drugData }: DrugIdentityProps) {
               fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' 
             }}
           >
-            {drugData.drug.name}
+            {drugDisplay.name}
           </h2>
-          <p 
-            className="mb-6 text-2xl font-semibold text-black/60"
-            style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-          >
-            {drugData.drug.subtitle}
-          </p>
+          {drugDisplay.subtitle && (
+            <p 
+              className="mb-6 text-2xl font-semibold text-black/60"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              {drugDisplay.subtitle}
+            </p>
+          )}
           
           {/* Description */}
-          <p 
-            className="mb-8 text-lg leading-relaxed font-semibold text-black/70"
-            style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
-          >
-            {drugData.drug.description}
-          </p>
+          {drugDisplay.description && (
+            <p 
+              className="mb-8 text-lg leading-relaxed font-semibold text-black/70"
+              style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
+            >
+              {drugDisplay.description}
+            </p>
+          )}
 
           {/* Classification Badge */}
-          <div className="flex flex-wrap items-center gap-3">
-            <span 
-              className="rounded-full px-5 py-2 text-sm font-normal"
-              style={{
-                background: `${drugData.brand.color}20`,
-                color: drugData.brand.color,
-                fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif'
-              }}
-            >
-              {drugData.brand.name} Product
-            </span>
-          </div>
+          {brandName && (
+            <div className="flex flex-wrap items-center gap-3">
+              <span 
+                className="rounded-full px-5 py-2 text-sm font-normal"
+                style={{
+                  background: `${brandColor}20`,
+                  color: brandColor,
+                  fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif'
+                }}
+              >
+                {brandName} Product
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Right: 3D Abstract Medical Graphic */}
@@ -69,10 +94,10 @@ export function DrugIdentity({ drugData }: DrugIdentityProps) {
           <div 
             className="absolute inset-0"
             style={{
-              background: `linear-gradient(135deg, ${drugData.brand.color} 0%, ${drugData.brand.color}dd 50%, ${drugData.brand.color}aa 100%)`,
+              background: `linear-gradient(135deg, ${brandColor} 0%, ${brandColor}dd 50%, ${brandColor}aa 100%)`,
               borderRadius: '40% 60% 70% 30% / 40% 50% 60% 50%',
               boxShadow: `
-                0 0 80px ${drugData.brand.color}40,
+                0 0 80px ${brandColor}40,
                 inset 0 0 60px rgba(255, 255, 255, 0.3)
               `,
               animation: 'morphBlob 8s ease-in-out infinite, rotate3D 20s linear infinite',
