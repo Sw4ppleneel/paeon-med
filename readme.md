@@ -1,11 +1,11 @@
-# Indegene DMR: The Intelligent Commercial Cockpit
+# Paeon AI: The Intelligent Commercial Cockpit
 
 > **Track:** 2 (Digital Medical Representative)
 > **Team:** Paeon AI
 
 ### **Overview**
 
-The **Indegene Digital Medical Representative (DMR)** is a high-performance, voice-controlled sales cockpit designed for the pharmaceutical "Last Mile."
+The **Paeon AI** is a high-performance, voice-controlled sales cockpit designed for the pharmaceutical "Last Mile."
 
 Unlike traditional chatbots that simply retrieve information, the DMR acts as an **Agentic Sales Partner**. It equips field representatives with real-time, regulator-verified clinical arguments (CDSCO/FDA) and automated administrative tools (Insurance/Pricing) to close prescriptions instantly and compliantly.
 
