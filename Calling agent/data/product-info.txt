@@ -1,4 +1,1256 @@
 ================================================================
+PRODUCT: ATORVASTATIN CALCIUM — Oral Tablet, 10 mg / 20 mg / 40 mg / 80 mg
+Marketed by: Multiple Manufacturers (e.g., Pfizer Inc. for Lipitor®)
+APPROVED INDICATION
+Atorvastatin calcium is indicated as an adjunct to diet and lifestyle modification for:
+• Reduction of elevated total cholesterol, LDL-cholesterol (LDL-C), apolipoprotein B, and triglycerides in adults with primary hyperlipidemia, mixed dyslipidemia, or familial hypercholesterolemia.
+• Reduction of elevated triglycerides in patients with hypertriglyceridemia.
+• Treatment of dysbetalipoproteinemia (Fredrickson Type III).
+• Reduction of the risk of myocardial infarction, stroke, angina, and coronary revascularization procedures in adults with established cardiovascular disease or multiple cardiovascular risk factors.
+MECHANISM OF ACTION
+Atorvastatin is a selective, competitive inhibitor of 3-hydroxy-3-methylglutaryl-coenzyme A (HMG-CoA) reductase, the rate-limiting enzyme in hepatic cholesterol biosynthesis. Inhibition of this enzyme results in decreased intrahepatic cholesterol synthesis and increased expression of LDL receptors on hepatocytes, thereby enhancing clearance of circulating LDL-C. Atorvastatin also reduces VLDL production and modestly increases HDL-C levels.
+DOSAGE AND ADMINISTRATION
+• Initial dose: 10 mg or 20 mg orally once daily.
+• Recommended starting dose for patients requiring >45% LDL-C reduction: 40 mg once daily.
+• Maximum dose: 80 mg once daily.
+• May be administered at any time of day, with or without food.
+• Lipid levels should be assessed 2–4 weeks after initiation or dose adjustment.
+• Dosage should be individualized based on baseline LDL-C, treatment goals, and patient response.
+CLINICAL TRIAL DATA
+Across multiple randomized, double-blind, placebo-controlled trials:
+• LDL-C reduction ranged from approximately 39% (10 mg) to 60% (80 mg).
+• Triglycerides were reduced by 19–37%.
+• HDL-C increased by 5–9%.
+In cardiovascular outcomes trials, atorvastatin significantly reduced the incidence of major adverse cardiovascular events (MACE), including myocardial infarction and stroke, compared to placebo or standard therapy.
+DIFFERENTIATION vs OTHER THERAPIES
+• Greater LDL-C lowering potency compared to simvastatin and pravastatin at equivalent doses.
+• Proven cardiovascular outcomes data across both primary and secondary prevention populations.
+• Flexible dosing without regard to time of administration.
+• Extensive real-world safety and efficacy data.
+SAFETY — IMPORTANT WARNINGS
+• Myopathy and rhabdomyolysis: Risk increases with higher doses and concomitant use of strong CYP3A4 inhibitors. Discontinue if markedly elevated creatine kinase (CK) or suspected myopathy occurs.
+• Hepatic dysfunction: Persistent elevations in serum transaminases have been reported. Liver function tests should be performed before initiation and as clinically indicated thereafter.
+• Diabetes mellitus: Small increased risk of new-onset diabetes has been reported with statin therapy.
+• Use in pregnancy: Statins may cause fetal harm when administered to pregnant patients.
+COMMON ADVERSE REACTIONS (≥ 2%)
+Myalgia, arthralgia, diarrhea, nausea, dyspepsia, nasopharyngitis, elevated liver enzymes.
+CONTRAINDICATIONS
+• Active liver disease or unexplained persistent elevations in hepatic transaminases.
+• Pregnancy and breastfeeding.
+• Known hypersensitivity to atorvastatin or any component of the formulation.
+DRUG INTERACTIONS
+• Strong CYP3A4 inhibitors (e.g., clarithromycin, itraconazole): increase atorvastatin exposure.
+• Grapefruit juice (>1 quart/day) may increase plasma concentrations.
+• Concomitant use with fibrates increases risk of myopathy.
+• Warfarin: may modestly increase INR; monitor closely.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+Protect from excessive moisture and heat.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial and government health plans.
+• Generic atorvastatin typically listed as Tier 1 or Tier 2.
+• Brand Lipitor® may be Tier 3 or non-preferred.
+PRIOR AUTHORIZATION
+• Generally not required for generic formulations.
+• May be required for brand-name Lipitor® depending on payer.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic atorvastatin: approximately $10–$40 per month.
+• Brand Lipitor®: approximately $500+ per month (without insurance).
+PATIENT SUPPORT
+• Manufacturer-sponsored savings programs available for branded formulations.
+• Discount pharmacy programs widely available.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+Original NDA Holder: Pfizer Inc.
+This material is intended for US healthcare professionals only.
+
+================================================================
+PRODUCT: LEVOTHYROXINE SODIUM — Oral Tablet, 25 mcg / 50 mcg / 75 mcg / 88 mcg / 100 mcg / 112 mcg / 125 mcg / 137 mcg / 150 mcg / 175 mcg / 200 mcg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Levothyroxine sodium is indicated for:
+• Replacement or supplemental therapy in patients with hypothyroidism of any etiology, except transient hypothyroidism of the recovery phase of subacute thyroiditis.
+• Suppression of thyroid-stimulating hormone (TSH) in the management of differentiated thyroid cancer.
+• Treatment of congenital or acquired hypothyroidism in pediatric and adult populations.
+MECHANISM OF ACTION
+Levothyroxine sodium is a synthetic form of thyroxine (T4), a naturally occurring thyroid hormone. Following oral administration, levothyroxine is converted in peripheral tissues to triiodothyronine (T3), the biologically active hormone. Thyroid hormones regulate gene expression involved in cellular metabolism, oxygen consumption, protein synthesis, and normal growth and development.
+DOSAGE AND ADMINISTRATION
+• Dosage is individualized based on age, body weight, cardiovascular status, and serum TSH levels.
+• Typical full replacement dose in otherwise healthy adults: approximately 1.6 mcg/kg/day.
+• Lower initial doses (12.5–25 mcg/day) are recommended in elderly patients or those with cardiovascular disease.
+• Administer orally once daily on an empty stomach, preferably 30–60 minutes before breakfast.
+• TSH levels should be monitored every 6–8 weeks after initiation or dosage adjustment.
+• Lifelong therapy is generally required.
+CLINICAL TRIAL DATA
+Clinical studies and long-term observational data demonstrate:
+• Normalisation of serum TSH and free T4 levels in the majority of patients.
+• Improvement in hypothyroid symptoms including fatigue, cold intolerance, weight gain, and cognitive slowing.
+• Effective suppression of TSH in thyroid cancer patients, reducing recurrence risk when appropriately dosed.
+DIFFERENTIATION vs OTHER THERAPIES
+• Considered the standard of care for thyroid hormone replacement.
+• Predictable pharmacokinetics with consistent daily dosing.
+• Preferred to combination T3/T4 therapy in most patients due to stable serum hormone levels.
+• Extensive clinical experience across all age groups, including pregnancy.
+SAFETY — IMPORTANT WARNINGS
+• Not indicated for the treatment of obesity or weight loss; doses within the normal hormonal range are ineffective for this purpose, and higher doses may cause serious toxicity.
+• Over-replacement may precipitate angina, arrhythmias, myocardial infarction, or osteoporosis.
+• Use caution in patients with coronary artery disease, heart failure, or arrhythmias.
+• In pediatric patients, excessive dosing may result in premature epiphyseal closure and impaired growth.
+COMMON ADVERSE REACTIONS
+Adverse reactions are typically due to overdosage and may include palpitations, tachycardia, nervousness, insomnia, tremor, increased appetite, heat intolerance, diarrhea, and weight loss.
+CONTRAINDICATIONS
+• Uncorrected adrenal insufficiency.
+• Acute myocardial infarction.
+• Thyrotoxicosis.
+• Known hypersensitivity to levothyroxine sodium or formulation excipients.
+DRUG INTERACTIONS
+• Calcium carbonate, iron salts, bile acid sequestrants, and proton pump inhibitors may reduce absorption.
+• Estrogen therapy may increase levothyroxine requirements.
+• Anticoagulants (e.g., warfarin): enhanced anticoagulant effect; monitor INR.
+• Antidiabetic agents: dose adjustments may be required due to altered glucose metabolism.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+Protect from light, moisture, and excessive heat.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Broadly covered by commercial insurance plans, Medicare, and Medicaid.
+• Generic levothyroxine typically classified as Tier 1.
+PRIOR AUTHORIZATION
+• Not typically required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic levothyroxine: approximately $5–$30 per month depending on dose and manufacturer.
+PATIENT SUPPORT
+• Patient education emphasizes strict adherence, consistent timing, and avoidance of interfering substances.
+• Dose stability is manufacturer-dependent; consistent brand or generic source is recommended.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labelling.
+This material is intended for US healthcare professionals only.
+
+================================================================
+PRODUCT: METFORMIN HYDROCHLORIDE — Oral Tablet, 500 mg / 850 mg / 1000 mg
+(Also available as Extended-Release Tablets, 500 mg / 750 mg / 1000 mg)
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Metformin hydrochloride is indicated as an adjunct to diet and exercise to improve glycemic control in adults and pediatric patients (≥10 years) with type 2 diabetes mellitus. Metformin may be used as monotherapy or in combination with other antidiabetic agents, including insulin.
+MECHANISM OF ACTION
+Metformin is a biguanide antihyperglycemic agent that improves glucose tolerance in patients with type 2 diabetes mellitus. Its primary mechanisms include:
+• Decreased hepatic glucose production (gluconeogenesis).
+ • Decreased intestinal absorption of glucose.
+ • Improved peripheral glucose uptake and utilization by increasing insulin sensitivity.
+Metformin does not stimulate insulin secretion and therefore does not cause hypoglycemia when used alone.
+DOSAGE AND ADMINISTRATION
+Immediate-Release Tablets:
+ • Initial dose: 500 mg orally twice daily or 850 mg once daily, administered with meals.
+ • Dose titration: Increase by 500 mg weekly or 850 mg every 2 weeks as tolerated.
+ • Maximum dose: 2,550 mg/day in divided doses.
+Extended-Release Tablets:
+ • Initial dose: 500 mg once daily with the evening meal.
+ • Maximum dose: 2,000 mg once daily.
+Additional Administration Considerations:
+ • Take with food to reduce gastrointestinal side effects.
+ • Renal function should be assessed prior to initiation and periodically thereafter.
+ • Discontinue temporarily in patients undergoing iodinated contrast imaging procedures.
+CLINICAL TRIAL DATA
+Clinical trials in patients with type 2 diabetes demonstrate:
+• Mean HbA1c reduction of approximately 1.0–1.5%.
+ • Significant reductions in fasting plasma glucose.
+ • Neutral to modest weight loss compared with insulin secretagogues.
+In long-term studies, metformin therapy has been associated with reduced diabetes-related complications and improved cardiovascular outcomes in overweight patients.
+DIFFERENTIATION vs OTHER THERAPIES
+• First-line pharmacologic therapy for type 2 diabetes per major clinical guidelines.
+ • Minimal risk of hypoglycemia when used as monotherapy.
+ • Favorable effects on body weight compared to sulfonylureas and insulin.
+ • Extensive long-term safety and efficacy data.
+SAFETY — IMPORTANT WARNINGS
+• Lactic acidosis: Rare but serious complication characterized by elevated blood lactate, decreased blood pH, and increased anion gap. Risk factors include renal impairment, hepatic disease, hypoxic states, and excessive alcohol intake.
+ • Renal impairment: Contraindicated in patients with estimated glomerular filtration rate (eGFR) <30 mL/min/1.73 m². Initiation not recommended if eGFR is between 30–45 mL/min/1.73 m².
+ • Vitamin B12 deficiency: Long-term use may decrease vitamin B12 absorption; periodic monitoring is recommended.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Diarrhea, nausea, vomiting, abdominal discomfort, flatulence, metallic taste, decreased appetite.
+CONTRAINDICATIONS
+• Severe renal impairment (eGFR <30 mL/min/1.73 m²).
+ • Acute or chronic metabolic acidosis, including diabetic ketoacidosis.
+ • Hypersensitivity to metformin hydrochloride.
+DRUG INTERACTIONS
+• Iodinated contrast media: Increased risk of lactic acidosis; temporarily discontinue metformin.
+ • Alcohol: Excessive intake increases lactic acidosis risk.
+ • Carbonic anhydrase inhibitors (e.g., topiramate): Increased risk of metabolic acidosis.
+ • Insulin or insulin secretagogues: Increased risk of hypoglycemia when combined.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect from moisture.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Universally covered by commercial insurance plans, Medicare, and Medicaid.
+ • Classified as Tier 1 generic on most formularies.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic metformin: approximately $5–$25 per month depending on formulation and dose.
+PATIENT SUPPORT
+• Widely available through low-cost pharmacy programs.
+ • Patient counseling focuses on adherence, GI tolerance, and renal monitoring.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+PRODUCT: LISINOPRIL — Oral Tablet, 2.5 mg / 5 mg / 10 mg / 20 mg / 40 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Lisinopril is indicated for:
+• Treatment of hypertension in adults and pediatric patients ≥6 years of age to lower blood pressure.
+ • Treatment of heart failure as adjunctive therapy to diuretics and digitalis.
+ • Improvement of survival in patients with acute myocardial infarction (within 24 hours) who are hemodynamically stable.
+MECHANISM OF ACTION
+Lisinopril is an angiotensin-converting enzyme (ACE) inhibitor that blocks the conversion of angiotensin I to angiotensin II, a potent vasoconstrictor. This results in decreased vasoconstriction, reduced aldosterone secretion, increased plasma renin activity, and decreased blood pressure. Inhibition of ACE also decreases degradation of bradykinin, contributing to vasodilatory effects.
+DOSAGE AND ADMINISTRATION
+Hypertension:
+ • Initial dose: 10 mg orally once daily (5 mg if on diuretics).
+ • Maintenance dose: 20–40 mg once daily.
+ • Maximum dose: 40 mg/day.
+Heart Failure:
+ • Initial dose: 2.5–5 mg once daily.
+ • Target dose: 20 mg once daily as tolerated.
+Acute Myocardial Infarction:
+ • Initial dose: 5 mg within 24 hours of symptom onset.
+ • Subsequent doses: 5 mg after 24 hours, then 10 mg daily.
+• May be administered with or without food.
+ • Renal function and potassium should be monitored periodically.
+CLINICAL TRIAL DATA
+• Demonstrated significant reductions in systolic and diastolic blood pressure across multiple randomized trials.
+ • In heart failure studies, lisinopril reduced mortality and hospitalization rates.
+ • Post-MI trials showed improved survival and reduced progression to heart failure.
+DIFFERENTIATION vs OTHER THERAPIES
+• Proven mortality benefit in heart failure and post-MI populations.
+ • Renoprotective effects in patients with diabetes and proteinuric kidney disease.
+ • Once-daily dosing improves adherence.
+SAFETY — IMPORTANT WARNINGS
+• Angioedema: May occur at any time during treatment; discontinue immediately if suspected.
+ • Hypotension: Particularly in volume-depleted patients.
+ • Renal impairment: Monitor renal function; acute renal failure may occur in susceptible individuals.
+ • Hyperkalemia: Risk increased in patients with renal dysfunction or those taking potassium-sparing agents.
+ • Fetal toxicity: Discontinue as soon as pregnancy is detected.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Cough, dizziness, headache, fatigue, hypotension.
+CONTRAINDICATIONS
+• History of angioedema related to previous ACE inhibitor therapy.
+ • Concomitant use with aliskiren in patients with diabetes.
+ • Pregnancy.
+DRUG INTERACTIONS
+• Potassium supplements or potassium-sparing diuretics increase hyperkalemia risk.
+ • NSAIDs may reduce antihypertensive effect and increase renal risk.
+ • Lithium toxicity may be increased.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance, Medicare, and Medicaid plans.
+ • Classified as Tier 1 generic.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic lisinopril: approximately $4–$20 per month.
+PATIENT SUPPORT
+• Low-cost availability through generic drug programs.
+ • Patient education includes blood pressure monitoring and cough awareness.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+
+================================================================
+PRODUCT: AMLODIPINE BESYLATE (NORVASC®) — Oral Tablet, 2.5 mg / 5 mg / 10 mg
+Marketed by: Pfizer Inc.
+APPROVED INDICATION
+Amlodipine besylate is indicated for:
+• Treatment of hypertension in adults and pediatric patients ≥6 years of age, either as monotherapy or in combination with other antihypertensive agents.
+• Treatment of chronic stable angina.
+• Treatment of confirmed or suspected vasospastic (Prinzmetal’s) angina.
+• Reduction of risk of hospitalization for angina and coronary revascularization procedures in patients with documented coronary artery disease.
+MECHANISM OF ACTION
+Amlodipine is a dihydropyridine calcium channel blocker that inhibits the transmembrane influx of calcium ions into vascular smooth muscle and cardiac muscle. This inhibition results in peripheral arterial vasodilation, reduced systemic vascular resistance, and decreased blood pressure. In angina, amlodipine reduces myocardial oxygen demand and increases oxygen delivery by dilating coronary arteries.
+DOSAGE AND ADMINISTRATION
+Hypertension:
+• Initial dose: 5 mg orally once daily.
+• Maximum dose: 10 mg once daily.
+• Pediatric dose (6–17 years): 2.5–5 mg once daily.
+Angina:
+• Usual dose: 5–10 mg once daily.
+• May be administered with or without food.
+• Dose adjustments should be based on clinical response and tolerability.
+• Elderly or debilitated patients may require lower initial doses.
+CLINICAL TRIAL DATA
+• Demonstrated significant reductions in systolic and diastolic blood pressure in placebo-controlled trials.
+• Reduced frequency of anginal attacks and nitroglycerin use in patients with chronic stable angina.
+• In patients with coronary artery disease, amlodipine reduced cardiovascular hospitalizations.
+DIFFERENTIATION vs OTHER THERAPIES
+• Long elimination half-life (30–50 hours) supports once-daily dosing.
+• Minimal negative inotropic effects compared to non-dihydropyridine calcium channel blockers.
+• Effective in diverse populations, including elderly and Black patients.
+SAFETY — IMPORTANT WARNINGS
+• Hypotension: Symptomatic hypotension is uncommon but may occur, particularly in severe aortic stenosis.
+• Worsening angina or myocardial infarction: Rarely reported upon initiation or dose escalation.
+• Peripheral edema: Dose-related and common due to arteriolar dilation.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Peripheral edema, dizziness, flushing, palpitations, fatigue, nausea.
+CONTRAINDICATIONS
+• Known hypersensitivity to amlodipine or dihydropyridine derivatives.
+DRUG INTERACTIONS
+• Strong CYP3A4 inhibitors (e.g., ketoconazole, clarithromycin) may increase amlodipine exposure.
+• Simvastatin: Limit simvastatin dose to 20 mg daily when used concomitantly.
+• Additive hypotensive effects with other antihypertensive agents.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+Protect from moisture.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Generic amlodipine widely covered (Tier 1).
+• Brand Norvasc® may be Tier 3 or non-preferred.
+PRIOR AUTHORIZATION
+• Not typically required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic amlodipine: approximately $5–$30 per month.
+• Brand Norvasc®: approximately $300+ per month without insurance.
+PATIENT SUPPORT
+• Generic formulations available through low-cost pharmacy programs.
+• Patient counseling includes edema monitoring and adherence.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+
+================================================================
+PRODUCT: METOPROLOL TARTRATE / METOPROLOL SUCCINATE — Oral Tablet, 25 mg / 50 mg / 100 mg / 200 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Metoprolol is indicated for:
+• Treatment of hypertension, alone or in combination with other antihypertensive agents.
+ • Management of chronic stable angina pectoris.
+ • Reduction of cardiovascular mortality in patients following myocardial infarction.
+ • Treatment of heart failure (metoprolol succinate extended-release only).
+MECHANISM OF ACTION
+Metoprolol is a β1-selective adrenergic receptor blocker that reduces heart rate, myocardial contractility, and cardiac output. This results in decreased myocardial oxygen demand and lowered blood pressure. At higher doses, β1 selectivity may be diminished.
+DOSAGE AND ADMINISTRATION
+Metoprolol Tartrate (Immediate-Release):
+ • Hypertension: 50–100 mg daily in single or divided doses.
+ • Angina: 100–400 mg/day in divided doses.
+ • Post-MI: Initial IV dosing followed by 50 mg orally every 6 hours.
+Metoprolol Succinate (Extended-Release):
+ • Hypertension or angina: 25–100 mg once daily.
+ • Heart failure: Start 12.5–25 mg once daily; target dose 200 mg once daily.
+• Administer with or immediately following meals.
+ • Do not abruptly discontinue; taper gradually over 1–2 weeks.
+CLINICAL TRIAL DATA
+• Demonstrated significant reductions in blood pressure and anginal episodes.
+ • Post-MI trials showed reduced reinfarction and mortality.
+ • In heart failure (MERIT-HF trial), metoprolol succinate significantly reduced mortality and hospitalizations.
+DIFFERENTIATION vs OTHER THERAPIES
+• Cardioselective β1-blocker with reduced pulmonary effects compared to nonselective agents.
+ • Extended-release formulation allows once-daily dosing in heart failure.
+ • Proven mortality benefit in heart failure and post-MI populations.
+SAFETY — IMPORTANT WARNINGS
+• Bradycardia and heart block: Monitor heart rate and ECG in at-risk patients.
+ • Abrupt withdrawal: May exacerbate angina or precipitate myocardial infarction.
+ • Heart failure: May worsen during initiation; adjust dose carefully.
+ • Masking of hypoglycemia symptoms in diabetic patients.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Fatigue, dizziness, bradycardia, hypotension, depression, shortness of breath.
+CONTRAINDICATIONS
+• Severe bradycardia.
+ • Second- or third-degree AV block without pacemaker.
+ • Cardiogenic shock.
+ • Decompensated heart failure.
+DRUG INTERACTIONS
+• Calcium channel blockers (verapamil, diltiazem): Increased risk of bradycardia and heart block.
+ • CYP2D6 inhibitors may increase metoprolol exposure.
+ • Clonidine: Risk of rebound hypertension upon withdrawal.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Generic formulations widely covered (Tier 1).
+ • Extended-release formulations may be Tier 2 depending on payer.
+PRIOR AUTHORIZATION
+• Generally not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic metoprolol: approximately $5–$40 per month.
+PATIENT SUPPORT
+• Widely available through discount generic programs.
+ • Patient counseling includes adherence and gradual discontinuation warnings.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: ALBUTEROL SULFATE (ASTHALIN®) — Inhalation Aerosol, 90 mcg/actuation
+(Also available as nebulization solution and oral formulations)
+Marketed by: Cipla Ltd.
+APPROVED INDICATION
+Albuterol sulfate is indicated for:
+• Relief and prevention of bronchospasm in patients with reversible obstructive airway disease, including asthma.
+ • Prevention of exercise-induced bronchospasm.
+ • Adjunctive treatment in chronic obstructive pulmonary disease (COPD) with a reversible component.
+MECHANISM OF ACTION
+Albuterol is a short-acting β2-adrenergic receptor agonist (SABA). Stimulation of β2 receptors in bronchial smooth muscle leads to activation of adenyl cyclase, increased intracellular cyclic AMP, and subsequent relaxation of bronchial smooth muscle. This results in rapid bronchodilation and improved airflow.
+DOSAGE AND ADMINISTRATION
+Inhalation Aerosol (MDI):
+ • Adults and children ≥4 years: 2 inhalations every 4–6 hours as needed.
+ • For exercise-induced bronchospasm: 2 inhalations 15–30 minutes before exercise.
+Nebulization Solution:
+ • Typical dose: 2.5 mg administered 3–4 times daily via nebulizer.
+Administration Considerations:
+ • Prime inhaler before first use and when not used for >2 weeks.
+ • Rinse mouth after inhalation to reduce local side effects.
+ • Excessive use may indicate worsening asthma control and requires medical reassessment.
+CLINICAL TRIAL DATA
+• Onset of bronchodilation within 5 minutes of inhalation.
+ • Peak effect observed within 30–60 minutes.
+ • Significant improvement in FEV₁ and peak expiratory flow rates compared to placebo.
+ • Effective prevention of exercise-induced bronchoconstriction.
+DIFFERENTIATION vs OTHER THERAPIES
+• Rapid onset makes albuterol the preferred rescue medication in acute bronchospasm.
+ • Short duration of action suitable for as-needed use rather than maintenance therapy.
+ • Widely used as standard of care for acute asthma symptom relief.
+SAFETY — IMPORTANT WARNINGS
+• Paradoxical bronchospasm: May occur; discontinue immediately if bronchospasm worsens.
+ • Cardiovascular effects: May cause tachycardia, palpitations, and QT prolongation.
+ • Hypokalemia: β-agonists may transiently lower serum potassium levels.
+ • Overuse may mask worsening asthma and increase risk of severe exacerbations.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Tremor, nervousness, headache, tachycardia, palpitations, throat irritation, cough.
+CONTRAINDICATIONS
+• Known hypersensitivity to albuterol sulfate or any component of the formulation.
+DRUG INTERACTIONS
+• Nonselective beta-blockers may reduce bronchodilatory effect.
+ • Diuretics may potentiate hypokalemia.
+ • MAO inhibitors or tricyclic antidepressants may potentiate cardiovascular effects.
+STORAGE
+Store below 30°C (86°F).
+ Protect from direct sunlight and heat.
+ Do not puncture or incinerate aerosol canister.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance and government programs.
+ • Often included as Tier 1 or Tier 2 medication.
+PRIOR AUTHORIZATION
+• Not typically required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Metered-dose inhaler: approximately $25–$60 per inhaler.
+PATIENT SUPPORT
+• Patient education emphasizes correct inhaler technique and adherence.
+ • Asthma action plans recommended for all patients.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: OMEPRAZOLE — Delayed-Release Capsule, 10 mg / 20 mg / 40 mg
+(Also available as delayed-release tablets and oral suspension)
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Omeprazole is indicated for:
+• Treatment of gastroesophageal reflux disease (GERD).
+ • Healing and maintenance of healing of erosive esophagitis.
+ • Treatment of active duodenal and gastric ulcers.
+ • Eradication of Helicobacter pylori infection when used in combination with antibiotics.
+ • Management of pathological hypersecretory conditions, including Zollinger–Ellison syndrome.
+MECHANISM OF ACTION
+Omeprazole is a proton pump inhibitor (PPI) that irreversibly inhibits the hydrogen-potassium ATPase enzyme system (the proton pump) in gastric parietal cells. This results in profound and sustained suppression of both basal and stimulated gastric acid secretion, regardless of the stimulus.
+DOSAGE AND ADMINISTRATION
+GERD / Erosive Esophagitis:
+ • 20–40 mg orally once daily for 4–8 weeks.
+Maintenance Therapy:
+ • 20 mg once daily.
+H. pylori Eradication (Triple Therapy):
+ • Omeprazole 20 mg twice daily plus clarithromycin and amoxicillin for 10–14 days.
+Zollinger–Ellison Syndrome:
+ • Initial dose: 60 mg once daily.
+ • Doses up to 120 mg/day may be required.
+Administration Considerations:
+ • Administer before meals, preferably in the morning.
+ • Capsules may be opened and mixed with applesauce if swallowing is difficult.
+CLINICAL TRIAL DATA
+• Healing rates for erosive esophagitis exceed 85% after 8 weeks of therapy.
+ • Significant symptom relief in GERD within 1–2 weeks of initiation.
+ • High eradication rates of H. pylori when used in combination regimens.
+DIFFERENTIATION vs OTHER THERAPIES
+• More potent and longer-lasting acid suppression compared to H₂-receptor antagonists.
+ • Irreversible enzyme inhibition allows once-daily dosing in most patients.
+ • Extensive clinical experience in both short- and long-term use.
+SAFETY — IMPORTANT WARNINGS
+• Long-term use may be associated with increased risk of osteoporosis-related fractures, hypomagnesemia, vitamin B₁₂ deficiency, and Clostridioides difficile–associated diarrhea.
+ • Acute interstitial nephritis has been reported.
+ • Cutaneous and systemic lupus erythematosus may occur.
+ • Masking of gastric malignancy symptoms; evaluate patients with alarm features.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Headache, abdominal pain, nausea, diarrhea, flatulence, constipation.
+CONTRAINDICATIONS
+• Known hypersensitivity to omeprazole or substituted benzimidazoles.
+DRUG INTERACTIONS
+• Clopidogrel: Reduced antiplatelet effect due to CYP2C19 inhibition.
+ • Warfarin: Increased INR; monitor closely.
+ • Drugs requiring acidic pH for absorption may have reduced bioavailability.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect from moisture.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial and government health plans.
+ • Generic formulations typically Tier 1 or OTC.
+PRIOR AUTHORIZATION
+• Not required for standard indications.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic omeprazole: approximately $10–$40 per month.
+PATIENT SUPPORT
+• OTC availability improves access.
+ • Patient counseling includes appropriate duration of therapy.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: LOSARTAN POTASSIUM — Oral Tablet, 25 mg / 50 mg / 100 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Losartan potassium is indicated for:
+• Treatment of hypertension in adults and pediatric patients ≥6 years of age, alone or in combination with other antihypertensive agents.
+ • Reduction of the risk of stroke in patients with hypertension and left ventricular hypertrophy (LVH).
+ • Treatment of diabetic nephropathy in patients with type 2 diabetes mellitus and hypertension, with elevated serum creatinine and proteinuria.
+MECHANISM OF ACTION
+Losartan is an angiotensin II receptor blocker (ARB) that selectively inhibits the binding of angiotensin II to the AT₁ receptor in vascular smooth muscle and adrenal gland tissues. This blockade prevents vasoconstriction and aldosterone secretion, leading to decreased blood pressure, reduced sodium and water retention, and improved renal hemodynamics. Unlike ACE inhibitors, losartan does not inhibit bradykinin breakdown.
+DOSAGE AND ADMINISTRATION
+Hypertension:
+ • Initial dose: 50 mg orally once daily.
+ • Maximum dose: 100 mg daily, administered once or in divided doses.
+ • Lower starting dose (25 mg) recommended for patients with volume depletion or hepatic impairment.
+Diabetic Nephropathy:
+ • Typical dose: 50 mg once daily, titrated to 100 mg once daily as tolerated.
+Stroke Risk Reduction:
+ • Start 50 mg once daily; may increase to 100 mg once daily based on blood pressure response.
+• May be administered with or without food.
+ • Blood pressure and renal function should be monitored periodically.
+CLINICAL TRIAL DATA
+• Demonstrated significant reductions in systolic and diastolic blood pressure compared to placebo.
+ • In patients with diabetic nephropathy, losartan reduced progression to end-stage renal disease and decreased proteinuria.
+ • Reduced incidence of stroke in hypertensive patients with left ventricular hypertrophy.
+DIFFERENTIATION vs OTHER THERAPIES
+• Comparable antihypertensive efficacy to ACE inhibitors with lower incidence of cough and angioedema.
+ • Renoprotective benefits in diabetic patients independent of blood pressure reduction.
+ • Well tolerated with once-daily dosing.
+SAFETY — IMPORTANT WARNINGS
+• Fetal toxicity: Use during pregnancy can cause injury and death to the developing fetus; discontinue immediately if pregnancy is detected.
+ • Hypotension: May occur in volume- or salt-depleted patients.
+ • Renal impairment: Monitor renal function, especially in patients with renal artery stenosis.
+ • Hyperkalemia: Risk increased in patients with renal impairment or those taking potassium supplements.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Dizziness, upper respiratory infection, diarrhea, nasal congestion, back pain.
+CONTRAINDICATIONS
+• Pregnancy.
+ • Known hypersensitivity to losartan potassium.
+DRUG INTERACTIONS
+• Potassium-sparing diuretics or supplements increase hyperkalemia risk.
+ • NSAIDs may reduce antihypertensive effect and increase renal risk.
+ • Lithium: Increased serum lithium concentrations reported.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect from moisture.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance, Medicare, and Medicaid.
+ • Generic losartan typically Tier 1.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic losartan: approximately $5–$30 per month depending on dose.
+PATIENT SUPPORT
+• Broad availability through low-cost generic programs.
+ • Patient counseling includes blood pressure monitoring and pregnancy warning.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: GABAPENTIN (NEURONTIN®) — Oral Capsule/Tablets/Solution,
+100 mg / 300 mg / 400 mg / 600 mg / 800 mg
+Marketed by: Pfizer Inc. (Neurontin®); Generic Manufacturers
+APPROVED INDICATION
+Gabapentin is indicated for:
+• Adjunctive therapy in the treatment of partial-onset seizures with and without secondary generalization in adults and pediatric patients ≥3 years of age.
+ • Management of postherpetic neuralgia (PHN) in adults.
+(Note: Gabapentin is widely used off-label for neuropathic pain, fibromyalgia, and other chronic pain syndromes.)
+MECHANISM OF ACTION
+Gabapentin is a structural analogue of gamma-aminobutyric acid (GABA); however, it does not bind directly to GABA receptors. Gabapentin binds with high affinity to the α₂δ subunit of voltage-gated calcium channels in the central nervous system, reducing calcium influx and decreasing the release of excitatory neurotransmitters such as glutamate, norepinephrine, and substance P. This results in anticonvulsant and analgesic effects.
+DOSAGE AND ADMINISTRATION
+Postherpetic Neuralgia:
+ • Day 1: 300 mg once daily
+ • Day 2: 300 mg twice daily
+ • Day 3: 300 mg three times daily
+ • Maintenance dose: 900–1,800 mg/day in divided doses
+ • Maximum dose: 3,600 mg/day
+Partial Seizures:
+ • Initial dose: 300 mg three times daily
+ • Maintenance dose: 900–1,800 mg/day in divided doses
+Administration Considerations:
+ • Adjust dose in patients with renal impairment.
+ • Do not abruptly discontinue; taper gradually over at least 1 week.
+ • May be administered with or without food.
+CLINICAL TRIAL DATA
+• In postherpetic neuralgia trials, gabapentin significantly reduced pain scores compared with placebo.
+ • In epilepsy studies, gabapentin reduced seizure frequency when used as adjunctive therapy.
+ • Dose-response relationship observed up to 3,600 mg/day.
+DIFFERENTIATION vs OTHER THERAPIES
+• Non-opioid option for neuropathic pain.
+ • Minimal drug–drug interactions due to lack of hepatic metabolism.
+ • Favorable safety profile compared with older antiepileptic drugs.
+ • Pregabalin (Lyrica®) offers more predictable pharmacokinetics but at higher cost.
+SAFETY — IMPORTANT WARNINGS
+• CNS depression: May cause dizziness, somnolence, and impaired coordination.
+ • Suicidal behavior and ideation: Antiepileptic drugs increase risk; monitor patients closely.
+ • Respiratory depression: Risk increased when used with opioids or in patients with respiratory compromise.
+ • Withdrawal seizures: Abrupt discontinuation may increase seizure frequency.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Dizziness, somnolence, peripheral edema, fatigue, ataxia, nystagmus.
+CONTRAINDICATIONS
+• Known hypersensitivity to gabapentin.
+DRUG INTERACTIONS
+• Opioids: Increased risk of respiratory depression and sedation.
+ • Antacids containing aluminum or magnesium reduce gabapentin absorption.
+ • Minimal CYP450 interactions.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Oral solution should be refrigerated.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance and government programs.
+ • Generic gabapentin typically Tier 1.
+PRIOR AUTHORIZATION
+• Not usually required for labeled indications.
+ • May be required for high-dose or off-label pain indications.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic gabapentin: approximately $10–$50 per month depending on dose.
+PATIENT SUPPORT
+• Widely available through discount generic programs.
+ • Patient counseling includes sedation risk and tapering guidance.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: HYDROCHLOROTHIAZIDE — Oral Tablet, 12.5 mg / 25 mg / 50 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Hydrochlorothiazide is indicated for:
+• Treatment of hypertension, either as monotherapy or in combination with other antihypertensive agents.
+ • Management of edema associated with heart failure, hepatic cirrhosis, renal dysfunction, and corticosteroid or estrogen therapy.
+ • Treatment of nephrogenic diabetes insipidus.
+ • Prevention of calcium-containing kidney stones in patients with hypercalciuria.
+MECHANISM OF ACTION
+Hydrochlorothiazide is a thiazide diuretic that acts in the distal convoluted tubule of the nephron to inhibit sodium and chloride reabsorption. This results in increased excretion of sodium, chloride, and water, with secondary potassium loss. Chronic antihypertensive effects are attributed to reduced peripheral vascular resistance.
+DOSAGE AND ADMINISTRATION
+Hypertension:
+ • Initial dose: 12.5–25 mg orally once daily.
+ • Maximum dose: 50 mg once daily (higher doses provide minimal added benefit).
+Edema:
+ • Typical dose: 25–100 mg daily in single or divided doses.
+Nephrogenic Diabetes Insipidus:
+ • 50–100 mg daily in divided doses.
+• Administer in the morning to minimize nocturia.
+ • Monitor electrolytes periodically during therapy.
+CLINICAL TRIAL DATA
+• Demonstrated effective blood pressure reduction in mild-to-moderate hypertension.
+ • Shown to reduce cardiovascular morbidity when used in antihypertensive regimens.
+ • Effective in reducing urinary calcium excretion and kidney stone recurrence.
+DIFFERENTIATION vs OTHER THERAPIES
+• Long-standing first-line therapy for uncomplicated hypertension.
+ • Cost-effective with extensive clinical experience.
+ • Synergistic blood pressure reduction when combined with ACE inhibitors or ARBs.
+SAFETY — IMPORTANT WARNINGS
+• Electrolyte imbalance: Hypokalemia, hyponatremia, hypomagnesemia, and hypercalcemia may occur.
+ • Hyperuricemia: May precipitate gout attacks.
+ • Glucose intolerance: May worsen glycemic control in diabetic patients.
+ • Photosensitivity reactions reported.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Hypokalemia, dizziness, headache, polyuria, nausea, weakness.
+CONTRAINDICATIONS
+• Anuria.
+ • Hypersensitivity to sulfonamide-derived drugs.
+DRUG INTERACTIONS
+• Lithium: Reduced lithium clearance and increased toxicity.
+ • NSAIDs: Reduced diuretic and antihypertensive effect.
+ • Corticosteroids: Increased risk of hypokalemia.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect from moisture and light.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by all major insurance plans.
+ • Typically Tier 1 generic.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic hydrochlorothiazide: approximately $4–$15 per month.
+PATIENT SUPPORT
+• Broad availability via low-cost pharmacy programs.
+ • Patient counseling includes electrolyte monitoring and sun protection.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: SERTRALINE HYDROCHLORIDE (ZOLOFT®) — Oral Tablet, 25 mg / 50 mg / 100 mg
+(Also available as oral concentrate)
+Marketed by: Pfizer Inc.
+APPROVED INDICATION
+Sertraline hydrochloride is indicated for the treatment of:
+• Major Depressive Disorder (MDD) in adults.
+ • Obsessive-Compulsive Disorder (OCD) in adults and pediatric patients (ages 6–17 years).
+ • Panic Disorder, with or without agoraphobia.
+ • Post-Traumatic Stress Disorder (PTSD).
+ • Social Anxiety Disorder (Social Phobia).
+ • Premenstrual Dysphoric Disorder (PMDD).
+MECHANISM OF ACTION
+Sertraline is a selective serotonin reuptake inhibitor (SSRI). It inhibits the presynaptic reuptake of serotonin (5-HT) in the central nervous system, leading to increased synaptic availability of serotonin. Enhanced serotonergic activity in the CNS is associated with improvement in mood, anxiety regulation, and affective symptoms. Sertraline has minimal effects on norepinephrine and dopamine reuptake.
+DOSAGE AND ADMINISTRATION
+Major Depressive Disorder / OCD / PTSD / Social Anxiety Disorder:
+ • Initial dose: 50 mg orally once daily.
+ • Dose range: 50–200 mg once daily.
+ • Dose adjustments: Increase at intervals of at least 1 week based on response and tolerability.
+Panic Disorder / PMDD:
+ • Initial dose: 25 mg once daily for 1 week, then increase to 50 mg daily.
+ • Maximum dose: 200 mg once daily.
+Administration Considerations:
+ • May be administered with or without food.
+ • Oral concentrate must be diluted prior to administration.
+ • Full therapeutic response may take 4–6 weeks.
+CLINICAL TRIAL DATA
+• Demonstrated statistically significant improvements in depressive symptom scores compared to placebo in MDD trials.
+ • Reduced frequency and severity of panic attacks in panic disorder studies.
+ • Significant reductions in OCD symptom severity as measured by Y-BOCS.
+ • Effective symptom control in PTSD and social anxiety disorder.
+DIFFERENTIATION vs OTHER THERAPIES
+• Broad range of approved psychiatric indications.
+ • Favorable tolerability profile compared to tricyclic antidepressants.
+ • Lower potential for drug interactions compared to some other SSRIs.
+ • Suitable for long-term maintenance therapy.
+SAFETY — IMPORTANT WARNINGS
+• Suicidal thoughts and behaviors: Increased risk in children, adolescents, and young adults, particularly during initiation or dose changes.
+ • Serotonin syndrome: Risk increased with concomitant serotonergic agents.
+ • Discontinuation syndrome: Abrupt cessation may cause withdrawal symptoms; taper gradually.
+ • Hyponatremia: Particularly in elderly patients or those taking diuretics.
+ • Activation of mania/hypomania in patients with bipolar disorder.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Nausea, diarrhea, insomnia, dry mouth, dizziness, fatigue, sexual dysfunction, increased sweating.
+CONTRAINDICATIONS
+• Concomitant use with monoamine oxidase inhibitors (MAOIs).
+ • Concomitant use with pimozide.
+ • Known hypersensitivity to sertraline hydrochloride.
+DRUG INTERACTIONS
+• MAOIs and other serotonergic drugs increase risk of serotonin syndrome.
+ • NSAIDs and anticoagulants: Increased bleeding risk.
+ • CYP2D6 substrates may have altered plasma concentrations.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect oral concentrate from light.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance, Medicare, and Medicaid.
+ • Generic sertraline typically Tier 1.
+PRIOR AUTHORIZATION
+• Not generally required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic sertraline: approximately $10–$40 per month depending on dose.
+ • Brand Zoloft®: approximately $350+ per month without insurance.
+PATIENT SUPPORT
+• Generic availability improves access and adherence.
+ • Patient counseling includes delayed onset of action and adherence importance.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: SIMVASTATIN — Oral Tablet, 5 mg / 10 mg / 20 mg / 40 mg / 80 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Simvastatin is indicated as an adjunct to diet and lifestyle modification for:
+• Reduction of elevated total cholesterol, LDL-cholesterol (LDL-C), apolipoprotein B, and triglycerides in adults with primary hyperlipidemia or mixed dyslipidemia.
+ • Treatment of homozygous familial hypercholesterolemia as adjunctive therapy.
+ • Reduction of the risk of coronary heart disease events, including myocardial infarction and stroke, in patients at high cardiovascular risk.
+MECHANISM OF ACTION
+Simvastatin is a lipid-lowering agent that inhibits HMG-CoA reductase, the enzyme responsible for conversion of HMG-CoA to mevalonate, a precursor of cholesterol. This results in reduced hepatic cholesterol synthesis, increased LDL receptor expression, and enhanced clearance of circulating LDL-C.
+DOSAGE AND ADMINISTRATION
+• Initial dose: 10–20 mg orally once daily in the evening.
+ • Usual maintenance dose: 10–40 mg once daily.
+ • Maximum recommended dose: 40 mg once daily.
+ • The 80 mg dose is restricted to patients who have been taking simvastatin long-term (≥12 months) without evidence of muscle toxicity.
+ • Lipid levels should be evaluated after 4 weeks and dose adjusted accordingly.
+CLINICAL TRIAL DATA
+• LDL-C reduction: approximately 27–47% depending on dose.
+ • Triglyceride reduction: 10–35%.
+ • Large outcome trials demonstrated reduced risk of major coronary events and mortality.
+DIFFERENTIATION vs OTHER THERAPIES
+• Long history of cardiovascular outcomes data.
+ • Effective LDL-C reduction at low to moderate doses.
+ • Greater drug–drug interaction potential compared to newer statins.
+SAFETY — IMPORTANT WARNINGS
+• Myopathy and rhabdomyolysis: Risk is dose-related and increased with interacting medications.
+ • Hepatic dysfunction: Persistent elevations in transaminases reported.
+ • Restricted use of high-dose (80 mg) due to increased muscle toxicity risk.
+COMMON ADVERSE REACTIONS (≥ 2%)
+Myalgia, constipation, abdominal pain, nausea, headache, elevated liver enzymes.
+CONTRAINDICATIONS
+• Active liver disease.
+ • Pregnancy and breastfeeding.
+ • Concomitant use with strong CYP3A4 inhibitors.
+DRUG INTERACTIONS
+• Strong CYP3A4 inhibitors (e.g., clarithromycin, itraconazole) contraindicated.
+ • Amlodipine: Limit simvastatin dose to 20 mg daily.
+ • Grapefruit juice increases plasma concentrations.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial and government insurance plans.
+ • Typically Tier 1 generic.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic simvastatin: approximately $5–$25 per month.
+PATIENT SUPPORT
+• Available through most low-cost pharmacy programs.
+ • Patient counseling includes muscle symptom monitoring.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: MONTELUKAST SODIUM (MONTAIR®) — Oral Tablet, 10 mg
+(Also available as chewable tablets and oral granules)
+Marketed by: Cipla Ltd.
+APPROVED INDICATION
+Montelukast sodium is indicated for:
+• Prophylaxis and chronic treatment of asthma in adults and pediatric patients ≥1 year of age.
+ • Prevention of exercise-induced bronchoconstriction in patients ≥6 years of age.
+ • Relief of symptoms of seasonal allergic rhinitis in patients ≥2 years of age.
+ • Relief of symptoms of perennial allergic rhinitis in patients ≥6 months of age.
+MECHANISM OF ACTION
+Montelukast is a selective leukotriene receptor antagonist that inhibits the cysteinyl leukotriene type 1 (CysLT₁) receptor. Leukotrienes (LTC₄, LTD₄, LTE₄) are inflammatory mediators released from mast cells and eosinophils that contribute to airway edema, smooth muscle contraction, and inflammation. By blocking leukotriene activity, montelukast reduces bronchoconstriction and airway inflammation.
+DOSAGE AND ADMINISTRATION
+Asthma and Allergic Rhinitis (Adults and Adolescents ≥15 years):
+ • 10 mg orally once daily in the evening.
+Exercise-Induced Bronchoconstriction:
+ • 10 mg orally at least 2 hours before exercise.
+Administration Considerations:
+ • May be administered with or without food.
+ • Not indicated for relief of acute asthma attacks.
+ • Patients should continue rescue inhaler use as prescribed.
+CLINICAL TRIAL DATA
+• Demonstrated significant improvement in asthma symptom scores and lung function compared to placebo.
+ • Reduced frequency of exercise-induced bronchospasm episodes.
+ • Improved daytime and nighttime symptoms of allergic rhinitis.
+ • Reduced use of rescue β₂-agonists in asthma patients.
+DIFFERENTIATION vs OTHER THERAPIES
+• Oral, once-daily non-steroidal option for asthma control.
+ • Useful in patients with concomitant allergic rhinitis and asthma.
+ • Less effective than inhaled corticosteroids for asthma control but favorable tolerability.
+SAFETY — IMPORTANT WARNINGS
+• Neuropsychiatric events: Serious behavior and mood-related changes, including agitation, depression, sleep disturbances, and suicidal ideation, have been reported. Prescribers should weigh risks and benefits, particularly for allergic rhinitis.
+ • Eosinophilic conditions: Rare cases of systemic eosinophilia and vasculitis consistent with Churg-Strauss syndrome reported.
+ • Not for acute asthma exacerbations.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Upper respiratory infection, headache, abdominal pain, cough, fever.
+CONTRAINDICATIONS
+• Known hypersensitivity to montelukast sodium.
+DRUG INTERACTIONS
+• Phenobarbital and rifampin may reduce montelukast plasma concentrations.
+ • No clinically significant interactions with theophylline, prednisone, or oral contraceptives.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Protect from moisture and light.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely covered by commercial insurance, Medicare, and Medicaid plans.
+ • Generic montelukast typically Tier 1.
+PRIOR AUTHORIZATION
+• Not typically required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic montelukast: approximately $10–$40 per month.
+PATIENT SUPPORT
+• Patient counseling includes mental health symptom monitoring.
+ • Appropriate for patients preferring oral asthma therapy.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: AMOXICILLIN — Oral Capsule / Tablet / Suspension,
+250 mg / 500 mg / 875 mg
+Marketed by: Multiple Manufacturers
+APPROVED INDICATION
+Amoxicillin is indicated for the treatment of infections caused by susceptible strains of designated microorganisms in the following conditions:
+• Ear, nose, and throat infections (e.g., otitis media, sinusitis, pharyngitis).
+ • Lower respiratory tract infections.
+ • Genitourinary tract infections.
+ • Skin and skin structure infections.
+ • Helicobacter pylori eradication when used in combination with other agents.
+MECHANISM OF ACTION
+Amoxicillin is a semisynthetic aminopenicillin antibiotic that inhibits bacterial cell wall synthesis by binding to penicillin-binding proteins (PBPs). This action results in inhibition of cell wall biosynthesis and leads to bacterial cell lysis and death. Amoxicillin is bactericidal against susceptible organisms.
+DOSAGE AND ADMINISTRATION
+Adults:
+ • Mild to moderate infections: 250–500 mg every 8 hours.
+ • Severe infections: 500–875 mg every 12 hours.
+H. pylori Eradication:
+ • 1,000 mg twice daily in combination with a proton pump inhibitor and clarithromycin for 10–14 days.
+Administration Considerations:
+ • May be administered with or without food.
+ • Dose adjustment required in patients with severe renal impairment.
+ • Complete full course of therapy to prevent resistance.
+CLINICAL TRIAL DATA
+• Demonstrated high clinical and microbiological cure rates in respiratory and ENT infections.
+ • Effective eradication of H. pylori when used in combination regimens.
+ • Comparable efficacy to other beta-lactam antibiotics with improved gastrointestinal tolerability.
+DIFFERENTIATION vs OTHER THERAPIES
+• Broad-spectrum penicillin with favorable safety profile.
+ • Better oral absorption than ampicillin.
+ • Widely used first-line agent for common bacterial infections.
+SAFETY — IMPORTANT WARNINGS
+• Hypersensitivity reactions: Serious and occasionally fatal anaphylactic reactions reported.
+ • Clostridioides difficile–associated diarrhea may occur.
+ • Rash may occur, particularly in patients with infectious mononucleosis.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Diarrhea, nausea, vomiting, rash.
+CONTRAINDICATIONS
+• Known hypersensitivity to penicillin-class antibiotics.
+DRUG INTERACTIONS
+• Probenecid increases amoxicillin plasma concentrations.
+ • Oral contraceptives: Reduced efficacy reported; advise backup contraception.
+ • Allopurinol: Increased risk of rash.
+STORAGE
+Store capsules and tablets at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+ Reconstituted oral suspension should be refrigerated and discarded after 14 days.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Universally covered by commercial and government insurance plans.
+ • Classified as Tier 1 generic.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Generic amoxicillin: approximately $5–$25 per treatment course.
+PATIENT SUPPORT
+• Widely available via low-cost pharmacy programs.
+ • Patient counseling emphasizes adherence and allergy awareness.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: DOLO 650 (PARACETAMOL / ACETAMINOPHEN) — Oral Tablet, 650 mg
+Marketed by: Micro Labs Ltd.
+APPROVED INDICATION
+Paracetamol (acetaminophen) is indicated for:
+• Relief of mild to moderate pain, including headache, musculoskeletal pain, dental pain, dysmenorrhea, and postoperative pain.
+ • Reduction of fever (antipyretic) in adults and pediatric patients.
+ • Adjunctive therapy for pain management when opioid-sparing strategies are desired.
+MECHANISM OF ACTION
+Paracetamol exerts analgesic and antipyretic effects primarily through central inhibition of prostaglandin synthesis via cyclooxygenase (COX) pathways in the brain. Unlike nonsteroidal anti-inflammatory drugs (NSAIDs), paracetamol has minimal peripheral anti-inflammatory activity and does not significantly inhibit platelet function or cause gastrointestinal mucosal injury at therapeutic doses.
+DOSAGE AND ADMINISTRATION
+Adults:
+ • Typical dose: 500–1,000 mg every 4–6 hours as needed.
+ • Maximum daily dose: 4,000 mg/day (lower maximums recommended in chronic use).
+Special Populations:
+ • Elderly or patients with hepatic impairment: Do not exceed 2,000–3,000 mg/day.
+ • Pediatric dosing based on weight.
+Administration Considerations:
+ • May be administered with or without food.
+ • Avoid concurrent use of multiple acetaminophen-containing products.
+CLINICAL TRIAL DATA
+• Demonstrated effective pain relief comparable to NSAIDs for mild-to-moderate pain without associated GI toxicity.
+ • Proven antipyretic efficacy across a wide range of febrile illnesses.
+ • Favorable safety profile when used within recommended dosing limits.
+DIFFERENTIATION vs OTHER THERAPIES
+• Preferred first-line analgesic in patients with gastrointestinal risk or contraindications to NSAIDs.
+ • Minimal effects on platelet aggregation and renal function at therapeutic doses.
+ • Safe for use in pregnancy when used appropriately.
+SAFETY — IMPORTANT WARNINGS
+• Hepatotoxicity: Acute liver failure may occur with overdose or chronic excessive dosing.
+ • Alcohol use: Chronic alcohol consumption increases risk of liver injury.
+ • Severe skin reactions: Rare cases of Stevens–Johnson syndrome and toxic epidermal necrolysis reported.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Generally well tolerated at therapeutic doses; adverse effects are uncommon.
+CONTRAINDICATIONS
+• Severe hepatic impairment or active liver disease.
+ • Known hypersensitivity to paracetamol.
+DRUG INTERACTIONS
+• Chronic alcohol use increases hepatotoxic risk.
+ • Warfarin: Prolonged use may enhance anticoagulant effect.
+ • Enzyme-inducing drugs may increase toxic metabolite formation.
+STORAGE
+Store at room temperature below 30°C (86°F).
+ Protect from moisture.
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Widely available as an over-the-counter medication.
+ • Covered by insurance when prescribed.
+PRIOR AUTHORIZATION
+• Not required.
+AVERAGE WHOLESALE PRICE (AWP)
+• Approximately $1–$5 per treatment course.
+PATIENT SUPPORT
+• Patient education emphasizes maximum daily dose and avoidance of combination products.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via approved labeling.
+This material is intended for healthcare professionals only.
+================================================================
+PRODUCT: ELIQUIS® (APIXABAN) — Oral Tablet, 2.5 mg / 5 mg
+Marketed by: Bristol Myers Squibb Company and Pfizer Inc.
+APPROVED INDICATION
+Apixaban is indicated for:
+• Reduction of the risk of stroke and systemic embolism in patients with nonvalvular atrial fibrillation.
+ • Treatment of deep vein thrombosis (DVT).
+ • Treatment of pulmonary embolism (PE).
+ • Reduction in the risk of recurrent DVT and PE following initial therapy.
+ • Prophylaxis of DVT, which may lead to PE, in patients who have undergone hip or knee replacement surgery.
+MECHANISM OF ACTION
+Apixaban is a selective, reversible, direct inhibitor of factor Xa. By inhibiting factor Xa, apixaban decreases thrombin generation and thrombus development. Apixaban inhibits free and clot-bound factor Xa and does not require antithrombin III for antithrombotic activity.
+DOSAGE AND ADMINISTRATION
+Nonvalvular Atrial Fibrillation:
+ • Recommended dose: 5 mg orally twice daily.
+ • Reduce dose to 2.5 mg twice daily in patients with at least two of the following: age ≥80 years, body weight ≤60 kg, or serum creatinine ≥1.5 mg/dL.
+Treatment of DVT and PE:
+ • Initial dose: 10 mg orally twice daily for 7 days.
+ • Maintenance dose: 5 mg orally twice daily.
+Reduction of Recurrent DVT/PE:
+ • 2.5 mg orally twice daily following at least 6 months of treatment.
+Postoperative DVT Prophylaxis:
+ • 2.5 mg orally twice daily.
+ • Duration: 12 days (knee replacement) or 35 days (hip replacement).
+Administration Considerations:
+ • May be administered with or without food.
+ • Tablets may be crushed and suspended in water or administered via nasogastric tube if needed.
+CLINICAL TRIAL DATA
+• In atrial fibrillation trials, apixaban significantly reduced the risk of stroke and systemic embolism compared to warfarin, with a lower rate of major bleeding.
+ • In DVT and PE studies, apixaban demonstrated noninferior efficacy to conventional anticoagulation with reduced bleeding risk.
+ • Lower rates of intracranial hemorrhage compared to vitamin K antagonists.
+DIFFERENTIATION vs OTHER THERAPIES
+• Predictable anticoagulant effect without routine INR monitoring.
+ • Lower major bleeding and intracranial hemorrhage risk compared to warfarin.
+ • Fixed dosing with minimal dietary restrictions.
+ • Fewer drug–food interactions than vitamin K antagonists.
+SAFETY — IMPORTANT WARNINGS
+• Bleeding risk: Increased risk of serious and potentially fatal bleeding.
+ • Premature discontinuation increases risk of thrombotic events.
+ • Spinal/epidural hematoma: Risk in patients undergoing neuraxial anesthesia or spinal puncture.
+ • No established reversal agent in all settings; andexanet alfa may be used where available.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Bleeding, bruising, anemia, nausea.
+CONTRAINDICATIONS
+• Active pathological bleeding.
+ • Severe hypersensitivity reaction to apixaban.
+DRUG INTERACTIONS
+• Strong dual inhibitors of CYP3A4 and P-gp (e.g., ketoconazole) increase apixaban exposure.
+ • Strong inducers of CYP3A4 and P-gp (e.g., rifampin) decrease effectiveness.
+ • Concomitant anticoagulants increase bleeding risk.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Covered by most commercial insurance plans.
+ • Typically Tier 3 or specialty tier.
+ • Covered under Medicare Part D.
+PRIOR AUTHORIZATION
+• Often required; criteria typically include documented indication and risk stratification.
+AVERAGE WHOLESALE PRICE (AWP)
+• Approximately $550–$600 per month without insurance.
+PATIENT SUPPORT
+• Manufacturer co-pay assistance programs available for eligible patients.
+ • Patient education emphasizes adherence and bleeding risk monitoring.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+================================================================
+PRODUCT: XARELTO® (RIVAROXABAN) — Oral Tablet, 2.5 mg / 10 mg / 15 mg / 20 mg
+Marketed by: Janssen Pharmaceuticals, Inc.
+APPROVED INDICATION
+Rivaroxaban is indicated for:
+• Reduction of the risk of stroke and systemic embolism in patients with nonvalvular atrial fibrillation.
+ • Treatment of deep vein thrombosis (DVT).
+ • Treatment of pulmonary embolism (PE).
+ • Reduction in the risk of recurrent DVT and PE following initial anticoagulation therapy.
+ • Prophylaxis of DVT, which may lead to PE, in patients undergoing hip or knee replacement surgery.
+ • Reduction of major cardiovascular events in patients with chronic coronary artery disease (CAD) or peripheral artery disease (PAD), in combination with aspirin.
+MECHANISM OF ACTION
+Rivaroxaban is a selective, direct factor Xa inhibitor that interrupts both intrinsic and extrinsic pathways of the coagulation cascade. By inhibiting factor Xa, rivaroxaban decreases thrombin generation and clot formation without requiring a cofactor such as antithrombin III.
+DOSAGE AND ADMINISTRATION
+Nonvalvular Atrial Fibrillation:
+ • 20 mg orally once daily with the evening meal.
+ • Reduce to 15 mg once daily in patients with CrCl 15–50 mL/min.
+Treatment of DVT and PE:
+ • Initial dose: 15 mg orally twice daily with food for 21 days.
+ • Maintenance dose: 20 mg orally once daily with food.
+Reduction of Recurrent DVT/PE:
+ • 10 mg orally once daily after at least 6 months of standard anticoagulation.
+Postoperative DVT Prophylaxis:
+ • 10 mg orally once daily.
+ • Duration: 12 days (knee replacement) or 35 days (hip replacement).
+CAD/PAD Risk Reduction:
+ • 2.5 mg orally twice daily in combination with aspirin 75–100 mg once daily.
+Administration Considerations:
+ • Doses ≥15 mg must be taken with food to ensure adequate absorption.
+ • Tablets may be crushed and administered via feeding tube if necessary.
+CLINICAL TRIAL DATA
+• In atrial fibrillation trials, rivaroxaban demonstrated noninferior efficacy to warfarin for stroke prevention.
+ • In VTE studies, rivaroxaban was effective as a single-drug approach without initial parenteral anticoagulation.
+ • Reduced risk of major adverse cardiovascular events in CAD/PAD populations when combined with aspirin.
+DIFFERENTIATION vs OTHER THERAPIES
+• Once-daily dosing for several indications.
+ • No routine coagulation monitoring required.
+ • Broader indication set including CAD/PAD risk reduction.
+ • Food-dependent absorption at higher doses.
+SAFETY — IMPORTANT WARNINGS
+• Increased risk of bleeding, including fatal bleeding.
+ • Premature discontinuation increases thrombotic risk.
+ • Spinal/epidural hematoma risk with neuraxial anesthesia.
+ • Limited reversibility; andexanet alfa may be used where available.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Bleeding, anemia, nausea, dizziness.
+CONTRAINDICATIONS
+• Active pathological bleeding.
+ • Severe hypersensitivity to rivaroxaban.
+DRUG INTERACTIONS
+• Strong CYP3A4 and P-gp inhibitors increase exposure.
+ • Strong inducers decrease efficacy.
+ • Concomitant anticoagulants increase bleeding risk.
+STORAGE
+Store at controlled room temperature, 20°C to 25°C (68°F to 77°F).
+================================================================
+INSURANCE & REIMBURSEMENT INFORMATION
+COVERAGE STATUS
+• Covered by most commercial plans and Medicare Part D.
+ • Typically Tier 3 or specialty tier.
+PRIOR AUTHORIZATION
+• Frequently required depending on indication.
+AVERAGE WHOLESALE PRICE (AWP)
+• Approximately $500–$600 per month without insurance.
+PATIENT SUPPORT
+• Manufacturer assistance and co-pay programs available.
+================================================================
+PRESCRIBING INFORMATION REFERENCE
+Full prescribing information available via FDA-approved labeling.
+This material is intended for US healthcare professionals only.
+
+================================================================
+PRODUCT: LIPITOR® (ATORVASTATIN CALCIUM) — Oral Tablet, 10 mg / 20 mg / 40 mg / 80 mg
+Marketed by: Pfizer Inc.
+APPROVED INDICATION
+Lipitor® is indicated as an adjunct to diet for reduction of elevated total cholesterol, LDL-C, apolipoprotein B, and triglycerides in patients with hyperlipidemia and for reduction of cardiovascular risk in high-risk patients.
+MECHANISM OF ACTION
+Atorvastatin inhibits HMG-CoA reductase, reducing hepatic cholesterol synthesis and increasing LDL receptor–mediated clearance of LDL-C.
+DOSAGE AND ADMINISTRATION
+• Initial dose: 10–20 mg once daily.
+ • Maximum dose: 80 mg once daily.
+ • May be taken with or without food.
+CLINICAL TRIAL DATA
+• LDL-C reduction up to 60%.
+ • Significant reduction in myocardial infarction and stroke risk.
+DIFFERENTIATION vs OTHER THERAPIES
+• Extensive cardiovascular outcomes data.
+ • High-potency statin with flexible dosing.
+SAFETY — IMPORTANT WARNINGS
+• Myopathy and rhabdomyolysis risk.
+ • Hepatic enzyme elevations.
+COMMON ADVERSE REACTIONS
+Myalgia, diarrhea, nausea.
+CONTRAINDICATIONS
+• Active liver disease.
+ • Pregnancy and breastfeeding.
+DRUG INTERACTIONS
+• Strong CYP3A4 inhibitors increase exposure.
+STORAGE
+Room temperature.
+================================================================
+
+================================================================
+PRODUCT: AZEE® (AZITHROMYCIN) — Oral Tablet, 250 mg / 500 mg
+Marketed by: Cipla Ltd.
+APPROVED INDICATION
+Azithromycin is indicated for treatment of mild to moderate infections caused by susceptible organisms, including respiratory tract, skin, and sexually transmitted infections.
+MECHANISM OF ACTION
+Macrolide antibiotic inhibiting bacterial protein synthesis by binding to the 50S ribosomal subunit.
+DOSAGE AND ADMINISTRATION
+• Typical dose: 500 mg on Day 1, followed by 250 mg once daily on Days 2–5.
+CLINICAL TRIAL DATA
+• High clinical cure rates with short-course therapy.
+DIFFERENTIATION vs OTHER THERAPIES
+• Long tissue half-life allows once-daily dosing.
+SAFETY — IMPORTANT WARNINGS
+• QT prolongation risk.
+ • Hepatotoxicity reported.
+COMMON ADVERSE REACTIONS
+Diarrhea, nausea, abdominal pain.
+CONTRAINDICATIONS
+• Hypersensitivity to macrolides.
+DRUG INTERACTIONS
+• QT-prolonging agents increase arrhythmia risk.
+STORAGE
+Room temperature.
+================================================================
+
+================================================================
+PRODUCT: XANAX® (ALPRAZOLAM) — Oral Tablet, 0.25 mg / 0.5 mg / 1 mg / 2 mg
+Marketed by: Pfizer Inc.
+APPROVED INDICATION
+Alprazolam is indicated for:
+• Management of anxiety disorders.
+ • Short-term relief of anxiety symptoms.
+ • Treatment of panic disorder with or without agoraphobia.
+MECHANISM OF ACTION
+Alprazolam is a benzodiazepine that enhances the inhibitory effect of gamma-aminobutyric acid (GABA) at the GABA-A receptor, producing anxiolytic, sedative, and muscle-relaxant effects.
+DOSAGE AND ADMINISTRATION
+• Initial dose: 0.25–0.5 mg three times daily.
+ • Maximum dose: up to 4 mg/day in divided doses.
+ • Taper gradually to discontinue.
+CLINICAL TRIAL DATA
+• Demonstrated significant reduction in anxiety and panic symptoms versus placebo.
+DIFFERENTIATION vs OTHER THERAPIES
+• Rapid onset of anxiolytic action.
+ • Suitable for short-term or acute symptom control.
+SAFETY — IMPORTANT WARNINGS
+• Risk of dependence, abuse, and withdrawal.
+ • CNS depression and respiratory depression.
+ • Increased risk when combined with opioids.
+COMMON ADVERSE REACTIONS (≥ 5%)
+Drowsiness, dizziness, fatigue, impaired coordination.
+CONTRAINDICATIONS
+• Acute narrow-angle glaucoma.
+ • Concomitant use with strong CYP3A inhibitors.
+DRUG INTERACTIONS
+• CNS depressants increase sedation.
+ • CYP3A inhibitors increase alprazolam levels.
+STORAGE
+Store at controlled room temperature.
+================================================================
+================================================================
 PRODUCT: NEXAVIR (azetromycin phosphate) — Injection, 50 mg/mL
 Marketed by: Zenith BioTherapeutics, Inc.
 ================================================================
