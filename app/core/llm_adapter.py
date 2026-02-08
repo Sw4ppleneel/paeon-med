@@ -30,7 +30,13 @@ from typing import Optional
 
 from dotenv import load_dotenv
 
-from app.core.schemas import DrugDisplaySlot, MechanismSlot
+from app.core.schemas import (
+    ComparisonDisplaySlot,
+    ComparisonRowSlot,
+    ComplianceDisplaySlot,
+    DrugDisplaySlot,
+    MechanismSlot,
+)
 
 load_dotenv()
 
@@ -421,5 +427,219 @@ def _extract_mechanism_text_fallback(drug_name: str, text: str) -> Optional[str]
     for compound, mech_text in mechanisms.items():
         if compound in text_lower:
             return mech_text
+
+    return None
+
+
+# ─── Enrichment: Comparison Display ─────────────────────────────────────────
+
+_COMPARISON_SYSTEM = (
+    "Return ONLY a valid JSON object. No explanations, no markdown fences, no extra text.\n"
+    "The JSON must have this exact structure:\n"
+    '{"competitor": "drug name", "rows": [\n'
+    '  {"metric": "Metric Name", "value": "value for queried drug", '
+    '"competitor_value": "value for competitor", "winner": true}\n'
+    "]}\n\n"
+    "Rules:\n"
+    "- Include exactly 5 rows with clinically relevant metrics\n"
+    "- Metrics should include: Efficacy, Onset of Action, Half-Life, "
+    "Side Effect Profile, Route of Administration\n"
+    "- Use specific numeric values where possible\n"
+    "- winner=true means the QUERIED drug is better for that metric\n"
+    "- Choose the most commonly compared competitor in clinical practice\n"
+    "- Keep values SHORT (under 15 words each)\n"
+    "- Output ONLY the JSON object, nothing else"
+)
+
+_COMPARISON_GROUNDED_SYSTEM = (
+    "Return ONLY a valid JSON object. No explanations, no markdown fences, no extra text.\n"
+    "Use the provided text and your pharmacological knowledge.\n"
+    "The JSON must have this exact structure:\n"
+    '{"competitor": "drug name", "rows": [\n'
+    '  {"metric": "Metric Name", "value": "val", "competitor_value": "val", "winner": true}\n'
+    "]}\n"
+    "Include exactly 5 rows. Keep values SHORT. Output ONLY JSON."
+)
+
+
+def enrich_comparison_display(
+    drug_name: str,
+    sections_text: str,
+) -> Optional[ComparisonDisplaySlot]:
+    """Generate a competitor comparison table via Gemini.
+
+    Returns None if LLM is unavailable or fails.
+    """
+    is_unknown = not sections_text.strip()
+
+    system = _COMPARISON_SYSTEM if is_unknown else _COMPARISON_GROUNDED_SYSTEM
+    user = (
+        f"Drug: {drug_name}"
+        if is_unknown
+        else f"Drug: {drug_name}\nText: {sections_text}"
+    )
+
+    raw = _call_llm(system, user, max_tokens=1024)
+    if raw:
+        parsed = _extract_json(raw)
+        if parsed and "rows" in parsed:
+            rows = []
+            for r in parsed["rows"]:
+                if isinstance(r, dict) and "metric" in r:
+                    rows.append(ComparisonRowSlot(
+                        metric=r.get("metric", ""),
+                        value=str(r.get("value", "")),
+                        competitor_value=str(r.get("competitor_value", "")),
+                        winner=bool(r.get("winner", False)),
+                    ))
+            if rows:
+                return ComparisonDisplaySlot(
+                    competitor=parsed.get("competitor"),
+                    rows=rows,
+                )
+            log.debug("Comparison rows empty after parsing.")
+        else:
+            log.debug("Comparison JSON parse failed, raw: %.80s…", raw)
+
+    return None
+
+
+# ─── Enrichment: Compliance Display ─────────────────────────────────────────
+
+_COMPLIANCE_SYSTEM = (
+    "Return ONLY a valid JSON object. No explanations, no markdown fences, no extra text.\n"
+    "The JSON must have exactly these keys:\n"
+    '  "regulatory_status": "Approved or Conditional or Under Review or Not Approved",\n'
+    '  "regulatory_authority": "FDA, CDSCO, EMA, etc.",\n'
+    '  "pregnancy_category": "Category A/B/C/D/X or N/A",\n'
+    '  "boxed_warning": "None or a brief one-sentence description",\n'
+    '  "citations": ["2-3 short regulatory source names"]\n\n'
+    "Rules:\n"
+    "- Be factually accurate\n"
+    "- Keep boxed_warning under 30 words\n"
+    "- Keep citation strings short (just source names)\n"
+    "- Output ONLY the JSON object, nothing else"
+)
+
+_COMPLIANCE_GROUNDED_SYSTEM = (
+    "Return ONLY a valid JSON object. No explanations, no markdown fences.\n"
+    "Keys: regulatory_status, regulatory_authority, pregnancy_category, boxed_warning, citations.\n"
+    "Use the provided text and your regulatory knowledge. Keep values concise.\n"
+    "Output ONLY JSON."
+)
+
+
+def enrich_compliance_display(
+    drug_name: str,
+    sections_text: str,
+) -> Optional[ComplianceDisplaySlot]:
+    """Generate regulatory & safety compliance data via Gemini.
+
+    Returns None if LLM is unavailable or fails.
+    """
+    is_unknown = not sections_text.strip()
+
+    system = _COMPLIANCE_SYSTEM if is_unknown else _COMPLIANCE_GROUNDED_SYSTEM
+    user = (
+        f"Drug: {drug_name}"
+        if is_unknown
+        else f"Drug: {drug_name}\nText: {sections_text}"
+    )
+
+    raw = _call_llm(system, user, max_tokens=600)
+    if raw:
+        parsed = _extract_json(raw)
+        if parsed:
+            citations = parsed.get("citations", [])
+            if isinstance(citations, str):
+                citations = [citations]
+            return ComplianceDisplaySlot(
+                regulatory_status=parsed.get("regulatory_status"),
+                regulatory_authority=parsed.get("regulatory_authority"),
+                pregnancy_category=parsed.get("pregnancy_category"),
+                boxed_warning=parsed.get("boxed_warning"),
+                citations=citations if isinstance(citations, list) else [],
+            )
+        log.debug("Compliance JSON parse failed, raw: %.80s…", raw)
+
+    return None
+
+
+# ─── Enrichment: Company Inference ──────────────────────────────────────────
+
+_COMPANY_SYSTEM = (
+    "Return ONLY a valid JSON object. No explanations, no markdown fences.\n"
+    "The JSON must have exactly these keys:\n"
+    '  "company_name": "Company name (e.g. Cipla, Pfizer, GSK)",\n'
+    '  "color": "Brand hex color (e.g. #EE1C25)",\n'
+    '  "accent": "Complementary accent hex color"\n'
+    "Use the original/most prominent manufacturer. Output ONLY JSON."
+)
+
+
+def infer_company_name(drug_name: str) -> Optional[dict]:
+    """Ask Gemini to identify the manufacturer and brand colors for a drug.
+
+    Returns a dict with 'company_name', 'color', 'accent' or None.
+    """
+    raw = _call_llm(
+        _COMPANY_SYSTEM,
+        f"Drug: {drug_name}",
+        max_tokens=200,
+    )
+    if raw:
+        parsed = _extract_json(raw)
+        if parsed and "company_name" in parsed:
+            return {
+                "company_name": parsed["company_name"],
+                "color": parsed.get("color", "#1976D2"),
+                "accent": parsed.get("accent", "#42A5F5"),
+            }
+        log.debug("Company inference JSON parse failed, raw: %.80s…", raw)
+
+    return None
+
+
+# ─── Spelling Correction ────────────────────────────────────────────────────
+
+_SPELLING_SYSTEM = (
+    "You are a pharmaceutical drug-name spell-checker. "
+    "Given a user-typed drug name, decide if it is misspelled. "
+    "Return ONLY a valid JSON object with exactly these keys:\n"
+    '  "corrected": "<the correct drug name with proper capitalization>",\n'
+    '  "is_corrected": true/false\n\n'
+    "Rules:\n"
+    "- If the spelling is already correct (even if capitalization differs), "
+    "set is_corrected to false and return the properly capitalised form in corrected.\n"
+    "- Only set is_corrected to true when the actual LETTERS are wrong — "
+    "missing letters, extra letters, swapped letters, phonetic misspellings.\n"
+    "- Capitalization differences alone are NOT a spelling error.\n"
+    "- Only correct to REAL drug names (brand names or generic names). "
+    "Do NOT invent drugs.\n"
+    "- Do NOT correct a brand name to its generic name or vice versa. "
+    "Ciplactin is NOT a misspelling. Ciplar is NOT a misspelling.\n"
+    "- Return ONLY valid JSON. No explanations, no markdown fences, no extra text."
+)
+
+
+def correct_drug_spelling(drug_name: str) -> Optional[dict]:
+    """Ask Gemini whether the drug name is misspelled.
+
+    Returns a dict with 'corrected' (str) and 'is_corrected' (bool),
+    or None if the LLM is unavailable.
+    """
+    raw = _call_llm(
+        _SPELLING_SYSTEM,
+        f"Drug name typed by user: {drug_name}",
+        max_tokens=100,
+    )
+    if raw:
+        parsed = _extract_json(raw)
+        if parsed and "corrected" in parsed and "is_corrected" in parsed:
+            return {
+                "corrected": str(parsed["corrected"]),
+                "is_corrected": bool(parsed["is_corrected"]),
+            }
+        log.debug("Spelling correction JSON parse failed, raw: %.80s…", raw)
 
     return None

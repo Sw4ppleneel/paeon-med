@@ -18,7 +18,7 @@ export function ComparisonTable({ comparisonData, brandColor }: ComparisonTableP
   if (!comparisonData) return null;
 
   return (
-    <div id="comparison" className="scroll-mt-32">
+    <div className="">
       {/* Section Header */}
       <div className="mb-8">
         <h3 

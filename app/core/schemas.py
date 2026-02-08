@@ -241,3 +241,7 @@ class DrugProfileResponse(BaseModel):
     # ── Metadata ──
     enrichment_status: Dict[str, str] = Field(default_factory=dict)
     """Per-slot status: 'available', 'awaiting_human_input', or 'awaiting_llm'."""
+
+    # ── Spelling correction ──
+    suggested_name: Optional[str] = None
+    """If the LLM detected a misspelling, contains the corrected drug name."""
