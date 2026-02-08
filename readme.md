@@ -1,4 +1,4 @@
-# Paeon AI: The Intelligent Commercial Cockpit
+# Paeon AI: The Intelligent Commercial Representative
 
 > **Track:** 2 (Digital Medical Representative)
 > **Team:** Paeon AI

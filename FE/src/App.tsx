@@ -7,28 +7,73 @@ import { CoverageStatus } from './components/CoverageStatus';
 import { ComparisonTable } from './components/ComparisonTable';
 import { ComplianceCard } from './components/ComplianceCard';
 import { AccessPanel } from './components/AccessPanel';
-import { CommandCenter } from './components/CommandCenter';
+import { SearchBar } from './components/SearchBar';
+import { TalkMore } from './components/TalkMore';
+import { CompanyOverview } from './components/CompanyOverview';
 import { Footer } from './components/Footer';
 import { FloatingCallButton } from './components/FloatingCallButton';
 import { useDrugProfile } from './hooks/useDrugProfile';
+import { fetchCompanyProfile } from './api/companyProfile';
+import type { SearchMode } from './components/SearchBar';
+import type { CompanyOverviewCard } from './types/api';
+
+type ViewMode = 'empty' | 'drug' | 'company';
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeChapter, setActiveChapter] = useState('identity');
   const [isNearBottom, setIsNearBottom] = useState(false);
   const [reimbLoading, setReimbLoading] = useState(false);
+  const [searchMode, setSearchMode] = useState<SearchMode>('drug');
+  const [viewMode, setViewMode] = useState<ViewMode>('empty');
+
+  // Company state
+  const [companyData, setCompanyData] = useState<CompanyOverviewCard | null>(null);
+  const [companyLoading, setCompanyLoading] = useState(false);
+  const [companyError, setCompanyError] = useState<string | null>(null);
 
   const { data: profile, loading, error, fetch: fetchProfile } = useDrugProfile();
 
-  const hasGeneratedContent = profile !== null;
+  const hasGeneratedContent = viewMode === 'drug' && profile !== null;
+  const hasCompanyContent = viewMode === 'company' && companyData !== null;
 
-  const handleSearch = (query: string) => {
+  // ── Drug Search Handler (uses full /api/drug-profile for enriched view) ───
+  const handleDrugSearch = (query: string) => {
     if (query.trim()) {
       setSearchQuery(query);
+      setViewMode('drug');
+      setCompanyData(null);
+      setCompanyError(null);
       setActiveChapter('identity');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       fetchProfile({ drug_name: query.trim() });
     }
+  };
+
+  // ── Company Search Handler (uses /api/company-profile, deterministic) ─────
+  const handleCompanySearch = async (query: string) => {
+    if (!query.trim()) return;
+    setSearchQuery(query);
+    setViewMode('company');
+    setCompanyLoading(true);
+    setCompanyError(null);
+    setCompanyData(null);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    try {
+      const result = await fetchCompanyProfile({ company_name: query.trim() });
+      setCompanyData(result);
+    } catch (err) {
+      setCompanyError(err instanceof Error ? err.message : 'Failed to fetch company profile');
+    } finally {
+      setCompanyLoading(false);
+    }
+  };
+
+  // ── Hero product click: company → drug transition ─────────────────────────
+  const handleHeroDrugSelect = (drugName: string) => {
+    setSearchMode('drug');
+    handleDrugSearch(drugName);
   };
 
   const handleReimbursement = async (data: { insurance_type: string; diagnosis: string; claim_amount: number }) => {
@@ -41,7 +86,6 @@ export default function App() {
         diagnosis: data.diagnosis,
         claim_amount: data.claim_amount,
       });
-      // Scroll to access section after results load
       setTimeout(() => {
         const el = document.getElementById('access');
         if (el) {
@@ -58,14 +102,10 @@ export default function App() {
   const handleChapterClick = (chapterId: string) => {
     const element = document.getElementById(chapterId);
     if (element) {
-      const offset = 150; // Account for sticky header
+      const offset = 150;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
     }
   };
 
@@ -85,12 +125,10 @@ export default function App() {
         }
       }
 
-      // Check if near bottom (within 600px of document bottom)
       const scrollHeight = document.documentElement.scrollHeight;
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
       const clientHeight = window.innerHeight;
       const distanceFromBottom = scrollHeight - (scrollTop + clientHeight);
-      
       setIsNearBottom(distanceFromBottom < 600);
     };
 
@@ -98,34 +136,60 @@ export default function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasGeneratedContent]);
 
+  const isAnyLoading = loading || companyLoading;
+  const isAnyError = (error && viewMode === 'drug') || (companyError && viewMode === 'company');
+  const errorMessage = viewMode === 'drug' ? error : companyError;
+
+  // ── Company-specific background gradient orb colors ────────────────────
+  const companyGradientMap: Record<string, [string, string, string]> = {
+    "dr. reddy's":              ['#F06292', '#EC407A', '#E91E63'],   // pink
+    "dr. reddy's laboratories": ['#F06292', '#EC407A', '#E91E63'],
+    emcure:                     ['#B388FF', '#9C27B0', '#7C4DFF'],   // purple
+    "emcure pharmaceuticals":   ['#B388FF', '#9C27B0', '#7C4DFF'],
+    "sun pharma":               ['#FFD54F', '#FFB300', '#FFA000'],   // amber / yellowish
+    lupin:                      ['#4DB6AC', '#26A69A', '#009688'],   // teal
+    astrazeneca:                ['#FF8A65', '#EF6C00', '#FF5722'],   // warm sunset orange
+    cipla:                      ['#00AEEF', '#26A69A', '#1976D2'],   // default blue/teal
+    pfizer:                     ['#42A5F5', '#1E88E5', '#1565C0'],   // deeper blue
+    "johnson & johnson":        ['#00AEEF', '#26A69A', '#1976D2'],   // default
+  };
+
+  const normalizedCompany = searchQuery.trim().toLowerCase();
+  const orbColors = (viewMode === 'company' && companyGradientMap[normalizedCompany])
+    ? companyGradientMap[normalizedCompany]
+    : ['#00AEEF', '#26A69A', '#1976D2']; // default orb colors
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#F5F5F7]">
-      {/* Animated Gradient Orbs (Northern Lights) */}
+      {/* Animated Gradient Orbs (Northern Lights) — color-matched to active company */}
       <div className="fixed inset-0 -z-10">
         <div 
           className="absolute left-[20%] top-[10%] h-[600px] w-[600px] rounded-full opacity-30 blur-[120px]"
           style={{
-            background: 'radial-gradient(circle, #00AEEF 0%, transparent 70%)',
+            background: `radial-gradient(circle, ${orbColors[0]} 0%, transparent 70%)`,
             animation: 'float 20s ease-in-out infinite',
+            transition: 'background 1s ease',
           }}
         />
         <div 
           className="absolute right-[15%] top-[30%] h-[500px] w-[500px] rounded-full opacity-25 blur-[100px]"
           style={{
-            background: 'radial-gradient(circle, #26A69A 0%, transparent 70%)',
+            background: `radial-gradient(circle, ${orbColors[1]} 0%, transparent 70%)`,
             animation: 'float 25s ease-in-out infinite reverse',
+            transition: 'background 1s ease',
           }}
         />
         <div 
           className="absolute bottom-[10%] left-[40%] h-[550px] w-[550px] rounded-full opacity-20 blur-[110px]"
           style={{
-            background: 'radial-gradient(circle, #1976D2 0%, transparent 70%)',
+            background: `radial-gradient(circle, ${orbColors[2]} 0%, transparent 70%)`,
             animation: 'float 30s ease-in-out infinite',
+            transition: 'background 1s ease',
           }}
         />
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translate(0, 0) scale(1); }
           33% { transform: translate(30px, -30px) scale(1.1); }
@@ -134,30 +198,32 @@ export default function App() {
       `}</style>
 
       {/* Loading State */}
-      {loading && (
+      {isAnyLoading && (
         <div className="flex min-h-screen items-center justify-center">
           <div className="text-center">
             <div
-              className="mx-auto mb-6 h-12 w-12 animate-spin rounded-full border-4 border-black/10 border-t-[#1976D2]"
+              className="mx-auto mb-6 h-12 w-12 animate-spin rounded-full border-4 border-black/10"
+              style={{ borderTopColor: orbColors[2] }}
             />
             <h2
               className="mb-2 text-2xl font-bold tracking-tight text-black/50"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              Generating Insights
+              {viewMode === 'company' ? 'Finding Company' : 'Generating Insights'}
             </h2>
             <p
               className="text-base font-semibold text-black/30"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              Fetching profile for <span className="text-black/50">{searchQuery}</span>…
+              {viewMode === 'company' ? 'Loading profile for' : 'Fetching profile for'}{' '}
+              <span className="text-black/50">{searchQuery}</span>…
             </p>
           </div>
         </div>
       )}
 
       {/* Error State */}
-      {error && !loading && (
+      {isAnyError && !isAnyLoading && (
         <div className="flex min-h-screen items-center justify-center">
           <div className="mx-auto max-w-md text-center">
             <div
@@ -180,10 +246,10 @@ export default function App() {
               className="mb-6 text-sm font-semibold text-black/40"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              {error}
+              {errorMessage}
             </p>
             <button
-              onClick={() => handleSearch(searchQuery)}
+              onClick={() => viewMode === 'drug' ? handleDrugSearch(searchQuery) : handleCompanySearch(searchQuery)}
               className="rounded-full px-6 py-2.5 text-sm font-bold text-white transition-all hover:scale-105"
               style={{
                 background: 'linear-gradient(135deg, #1976D2 0%, #42A5F5 100%)',
@@ -196,6 +262,22 @@ export default function App() {
         </div>
       )}
 
+      {/* ═══════════════════ COMPANY VIEW ═══════════════════ */}
+      {hasCompanyContent && !companyLoading && companyData && (
+        <>
+          <CompanyOverview data={companyData} onDrugSelect={handleHeroDrugSelect} />
+
+          {/* Spacer between company overview and Talk More */}
+          <div className="h-24" />
+
+          {/* Talk More for company context */}
+          <TalkMore drugContext={companyData.hero_product.drug_name || companyData.company_name} />
+
+          <Footer />
+        </>
+      )}
+
+      {/* ═══════════════════ DRUG VIEW ═══════════════════ */}
       {hasGeneratedContent && !loading && (
         <>
           {/* Spelling Correction Banner */}
@@ -327,35 +409,32 @@ export default function App() {
             </div>
           </div>
 
-          {/* Expanded Command Center at bottom of page */}
+          {/* Talk More — ONLY calls /api/ask, never triggers search */}
           {isNearBottom && (
-            <CommandCenter 
-              onSearch={handleSearch} 
-              isActive={hasGeneratedContent} 
-              currentDrug={searchQuery}
-              isExpanded={true}
-            />
+            <TalkMore drugContext={profile?.drug_display?.name || searchQuery} />
           )}
 
-          {/* Footer */}
           <Footer />
         </>
       )}
-      {/* Empty State Message */}
-      {!hasGeneratedContent && !loading && !error && (
-        <div className="flex min-h-screen items-center justify-center">
+
+      {/* ═══════════════════ EMPTY STATE ═══════════════════ */}
+      {viewMode === 'empty' && !isAnyLoading && !isAnyError && (
+        <div className="flex min-h-screen items-center justify-center pb-28">
           <div className="text-center">
             <h2 
               className="mb-4 text-4xl font-bold tracking-tight text-black/40"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              Ask about any medication
+              {searchMode === 'drug' ? 'Ask about any medication' : 'Search for a company'}
             </h2>
             <p 
               className="mb-8 text-lg font-semibold text-black/30"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              Type a drug name to generate intelligent insights
+              {searchMode === 'drug'
+                ? 'Type a drug name to generate intelligent insights'
+                : 'Enter a company name to view their profile & hero product'}
             </p>
 
             {/* Quick Examples */}
@@ -366,35 +445,55 @@ export default function App() {
               >
                 Try:
               </span>
-              {['Ciplactin', 'Ciplar', 'Tremfya', 'Dolo 650', 'Xeljanz'].map((drug) => (
-                <button
-                  key={drug}
-                  onClick={() => handleSearch(drug)}
-                  className="rounded-full px-4 py-2 text-sm font-normal transition-all hover:scale-105"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.6)',
-                    backdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(0, 0, 0, 0.1)',
-                    color: 'rgba(0, 0, 0, 0.6)',
-                    fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif'
-                  }}
-                >
-                  {drug}
-                </button>
-              ))}
+              {searchMode === 'drug' ? (
+                ['Ciplactin', 'Ciplar', 'Tremfya', 'Dolo 650', 'Xeljanz'].map((drug) => (
+                  <button
+                    key={drug}
+                    onClick={() => handleDrugSearch(drug)}
+                    className="rounded-full px-4 py-2 text-sm font-normal transition-all hover:scale-105"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.6)',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(0, 0, 0, 0.1)',
+                      color: 'rgba(0, 0, 0, 0.6)',
+                      fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif'
+                    }}
+                  >
+                    {drug}
+                  </button>
+                ))
+              ) : (
+                ['Cipla', 'Pfizer', 'Sun Pharma', 'AstraZeneca', 'Lupin'].map((company) => (
+                  <button
+                    key={company}
+                    onClick={() => handleCompanySearch(company)}
+                    className="rounded-full px-4 py-2 text-sm font-normal transition-all hover:scale-105"
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.6)',
+                      backdropFilter: 'blur(20px)',
+                      border: '1px solid rgba(38, 166, 154, 0.15)',
+                      color: 'rgba(0, 0, 0, 0.6)',
+                      fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif'
+                    }}
+                  >
+                    {company}
+                  </button>
+                ))
+              )}
             </div>
           </div>
         </div>
       )}
 
-      {/* Floating Input Bar - hide when expanded version is visible */}
-      {!isNearBottom && (
-        <CommandCenter 
-          onSearch={handleSearch} 
-          isActive={hasGeneratedContent} 
-          currentDrug={searchQuery} 
-        />
-      )}
+      {/* ═══════════ SEARCH BAR (always visible, bottom) ═══════════ */}
+      <SearchBar
+        onDrugSearch={handleDrugSearch}
+        onCompanySearch={handleCompanySearch}
+        isActive={hasGeneratedContent || hasCompanyContent}
+        currentQuery={searchQuery}
+        mode={searchMode}
+        onModeChange={setSearchMode}
+      />
 
       {/* Floating Call Button */}
       <FloatingCallButton />

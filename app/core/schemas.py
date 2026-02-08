@@ -245,3 +245,74 @@ class DrugProfileResponse(BaseModel):
     # ── Spelling correction ──
     suggested_name: Optional[str] = None
     """If the LLM detected a misspelling, contains the corrected drug name."""
+
+
+# ─── Company Overview (Additive — company-first entry) ───────────────────────
+
+
+class CompanyProfileRequest(BaseModel):
+    """Request for the company overview endpoint."""
+    company_name: str
+
+
+class HeroProductSlot(BaseModel):
+    """Hero product highlight for a company overview card."""
+    drug_name: str
+    rationale: str
+
+
+class CompanyOverviewCard(BaseModel):
+    """Structured company overview returned by POST /api/company-profile.
+
+    This is an informational primer only. It does NOT trigger drug intelligence.
+    The frontend uses hero_product.drug_name to offer a transition into the
+    existing drug-first flow via /api/drug-profile.
+    """
+    company_name: str
+    logo_url: str
+    tagline: str
+    company_description: str
+    mission_statement: str
+    hero_product: HeroProductSlot
+    supported_specialties: List[str]
+    status: str = Field(
+        description="Resolution status: 'available' or 'unknown_company'."
+    )
+
+
+# ─── Drug Search (lightweight, no LLM) ──────────────────────────────────────
+
+
+class DrugSearchRequest(BaseModel):
+    """Request for the lightweight drug search endpoint."""
+    drug_name: str
+
+
+class DrugSearchResult(BaseModel):
+    """Lightweight drug search result — no LLM, instant response."""
+    drug_name: str
+    found: bool
+    sections: List[dict] = Field(default_factory=list)
+    source_ids: List[str] = Field(default_factory=list)
+    brand: Optional[BrandMetadataSlot] = None
+    company: Optional[CompanyMetadataSlot] = None
+    suggested_name: Optional[str] = None
+
+
+# ─── Ask / General Q&A (LLM-powered) ────────────────────────────────────────
+
+
+class AskRequest(BaseModel):
+    """Request for the general LLM Q&A endpoint."""
+    question: str
+    drug_context: Optional[str] = None  # Optional: current drug being viewed
+
+
+class AskResponse(BaseModel):
+    """LLM-generated answer for general pharma questions."""
+    question: str
+    answer: str
+    drug_context: Optional[str] = None
+    status: str = Field(
+        description="'answered', 'refused', or 'error'."
+    )

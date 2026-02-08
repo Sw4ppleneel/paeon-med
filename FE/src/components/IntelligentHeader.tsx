@@ -3,12 +3,24 @@ import { Sparkles, Building2 } from 'lucide-react';
 import ciplaLogo from '../assets/Cipla.png';
 import jjLogo from '../assets/jnj.png';
 import pfizerLogo from '../assets/pfizer.png';
+import emcureLogo from '../assets/Emcure.png';
+import sunpharmaLogo from '../assets/sunpharma.svg';
+import drreddyLogo from '../assets/drreddy.png';
+import lupinLogo from '../assets/lupinlogo.svg';
+import astrazenecaLogo from '../assets/astrazeneca.png';
 
 /** Map company name → local logo asset */
 const LOGO_MAP: Record<string, string> = {
   'Cipla': ciplaLogo,
   'Pfizer': pfizerLogo,
   'Johnson & Johnson': jjLogo,
+  'Emcure Pharmaceuticals': emcureLogo,
+  'Emcure': emcureLogo,
+  'Sun Pharma': sunpharmaLogo,
+  "Dr. Reddy's Laboratories": drreddyLogo,
+  "Dr. Reddy's": drreddyLogo,
+  'Lupin': lupinLogo,
+  'AstraZeneca': astrazenecaLogo,
 };
 
 /** Map backend background_gradient token → CSS gradient color */
@@ -16,6 +28,11 @@ const GRADIENT_COLOR_MAP: Record<string, string> = {
   'light_blue': '#00AEEF',
   'deep_blue': '#0033A0',
   'orange': '#D51900',
+  'purple': '#7C4DFF',
+  'amber': '#FFB300',
+  'pink': '#E91E63',
+  'teal': '#009688',
+  'sunset': '#FF7043',
 };
 
 interface IntelligentHeaderProps {
@@ -88,17 +105,44 @@ export function IntelligentHeader({ brand, company, drugName }: IntelligentHeade
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           {logoSrc ? (
-            <img 
-              src={logoSrc} 
-              alt={`${effectiveBrand.name} Logo`} 
-              className="mb-6"
-              style={{
-                height: '100px',
-                width: 'auto',
-                filter: 'brightness(0) invert(1)',
-                opacity: 1,
-              }}
-            />
+            (() => {
+              // Determine if the logo is an SVG (embedded via Vite as data URI or path)
+              const isSvg = logoSrc.includes('.svg') || logoSrc.startsWith('data:image/svg');
+              return isSvg ? (
+                <div
+                  className="mb-8 flex items-center justify-center rounded-3xl px-8 py-5"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.95)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.12)',
+                  }}
+                >
+                  <img
+                    src={logoSrc}
+                    alt={`${effectiveBrand.name} Logo`}
+                    style={{
+                      height: '70px',
+                      width: 'auto',
+                      maxWidth: '220px',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </div>
+              ) : (
+                <img
+                  src={logoSrc}
+                  alt={`${effectiveBrand.name} Logo`}
+                  className="mb-6"
+                  style={{
+                    height: '100px',
+                    width: 'auto',
+                    maxWidth: '280px',
+                    objectFit: 'contain',
+                    filter: 'brightness(0) invert(1)',
+                    opacity: 0.95,
+                  }}
+                />
+              );
+            })()
           ) : (
             <h1 
               className="mb-6 text-7xl font-bold tracking-tight text-white"
