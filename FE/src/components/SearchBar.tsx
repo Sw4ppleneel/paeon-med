@@ -55,9 +55,9 @@ export function SearchBar({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-col items-center pb-6 pt-3"
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-col items-center pb-[12vh] pt-3"
         style={{
-          background: 'linear-gradient(to top, rgba(245,245,247,0.95) 60%, rgba(245,245,247,0) 100%)',
+          background: 'linear-gradient(to top, rgba(245,245,247,0.95) 40%, rgba(245,245,247,0) 100%)',
           pointerEvents: 'none',
         }}
       >

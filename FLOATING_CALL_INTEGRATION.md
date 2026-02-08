@@ -14,11 +14,11 @@ npm install  # (if not already done)
 npm start
 ```
 
-The server should start on port 3000:
+The server should start on port 3001:
 ```
 ╔══════════════════════════════════════════════════════════╗
 ║  Voice AI Medical Rep — PRODUCTION SERVER                ║
-║  Port: 3000                                              ║
+║  Port: 3001                                              ║
 ║  ...                                                     ║
 ╚══════════════════════════════════════════════════════════╝
 ```
@@ -33,50 +33,55 @@ npm install  # (if not already done)
 npm run dev
 ```
 
+Frontend runs on port 3000 (Vite dev server).
+
 ### 3. **Use the FloatingCallButton**
 
 - Click the **blue phone button** in the bottom-right corner of the app
-- A call modal will appear
+- An inline call panel will expand
 - Click **"Start Call"** to begin a voice conversation with the AI medical representative
+- The AI will greet you first — your mic is suppressed during the greeting
+- Once the greeting finishes (or after 8s fallback), your mic activates automatically
 - Use the **mic button** to toggle your microphone on/off
 - Click **"End Call"** to disconnect
 
 ## How It Works
 
-### Components
+### Architecture
 
 1. **FloatingCallButton.tsx** - The blue button in the bottom-right corner
-   - Triggers the call modal when clicked
-   - Always visible on the page
+   - Expands into an inline call panel (no separate modal)
+   - Shows call status, mic toggle, start/end buttons
+   - Displays real-time connection status and error messages
 
-2. **CallModal.tsx** - The call interface modal
-   - Shows call status (Idle, Connected, In Call)
-   - Displays Start Call / Mic Toggle / End Call buttons
-   - Shows real-time connection status
-   - Displays error messages if something goes wrong
+2. **useCallAgent.ts** - Hook managing the full voice pipeline
+   - Twilio-style WebSocket handshake (connected → start events)
+   - Mulaw codec (linearToMulaw / mulawToLinear) matching Twilio's PCMU
+   - Resampling (browser sample rate → 8000Hz and back)
+   - Noise gate (RMS threshold 0.008) to filter ambient noise
+   - Playback queue with drain mechanism for smooth AI audio
+   - Mark echoing AFTER audio playback completes (correct timing)
+   - Mic suppression during AI greeting with 8s timeout fallback
+   - ScriptProcessorNode for raw PCM mic capture
 
-3. **useCallAgent.ts** - Hook managing the WebSocket connection
-   - Handles connection to the calling agent server
-   - Manages microphone access and audio capture
-   - Sends/receives audio data via WebSocket
-   - Manages call state (active, connected, muted)
+3. **CallModal.tsx** - Alternative modal-based call interface (available but not currently used)
 
 ### Data Flow
 
 ```
-FloatingCallButton
-       ↓
-   [Click]
-       ↓
-   CallModal Opens
+FloatingCallButton (click → expand panel)
        ↓
   useCallAgent Hook
        ↓
    WebSocket Connection
-   ws://localhost:3000/media-stream
+   ws://localhost:3001/media-stream
+       ↓
+   Twilio-style Handshake
+   (connected → start events with streamSid)
        ↓
    Bidirectional Audio Stream
-   (Your mic → Server → AI → Response Audio → Your speakers)
+   Mic → Resample → Noise Gate → Mulaw Encode → WS → Server
+   Server → WS → Mulaw Decode → Resample → Playback Queue → Speaker
 ```
 
 ## Configuration
@@ -85,17 +90,25 @@ FloatingCallButton
 
 The default WebSocket URL is:
 ```
-ws://localhost:3000/media-stream
+ws://localhost:3001/media-stream
 ```
 
-If your calling agent is on a different machine or port, update the `serverUrl` in `CallModal.tsx`:
+If your calling agent is on a different machine or port, update the `serverUrl` in the `useCallAgent` hook call (in `FloatingCallButton.tsx`):
 
 ```tsx
 const { state, startCall, endCall, toggleMic } = useCallAgent({
-  serverUrl: `ws://YOUR_SERVER_IP:3000/media-stream`,
+  serverUrl: `ws://YOUR_SERVER_IP:3001/media-stream`,
   // ... rest of config
 });
 ```
+
+### Port Assignment
+
+| Service         | Port |
+|-----------------|------|
+| Frontend (Vite) | 3000 |
+| Calling Agent   | 3001 |
+| Backend (FastAPI)| 8000 |
 
 ### Environment Setup
 
@@ -104,9 +117,7 @@ Make sure your calling agent `.env` file is properly configured:
 ```
 GOOGLE_PROJECT_ID=your-gcp-project
 GOOGLE_APPLICATION_CREDENTIALS=/path/to/service-account-key.json
-TWILIO_ACCOUNT_SID=your-twilio-sid
-TWILIO_AUTH_TOKEN=your-twilio-token
-PORT=3000
+PORT=3001
 ```
 
 See `Calling agent/.env.example` for a complete template.
