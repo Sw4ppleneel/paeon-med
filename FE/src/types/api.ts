@@ -98,3 +98,55 @@ export interface DrugProfileRequest {
   patient_age?: number;
   prior_treatments?: string[];
 }
+
+// ─── Drug Search (lightweight, fast) ────────────────────────────────────────
+
+export interface DrugSearchRequest {
+  drug_name: string;
+}
+
+export interface DrugSearchResponse {
+  drug_name: string;
+  found: boolean;
+  sections: Record<string, any>[];
+  source_ids: string[];
+  brand: BrandMetadata | null;
+  company: CompanyMetadata | null;
+  suggested_name: string | null;
+}
+
+// ─── Company Profile ────────────────────────────────────────────────────────
+
+export interface CompanyProfileRequest {
+  company_name: string;
+}
+
+export interface HeroProduct {
+  drug_name: string;
+  rationale: string;
+}
+
+export interface CompanyOverviewCard {
+  company_name: string;
+  logo_url: string;
+  tagline: string;
+  company_description: string;
+  mission_statement: string;
+  hero_product: HeroProduct;
+  supported_specialties: string[];
+  status: 'available' | 'unknown_company';
+}
+
+// ─── Ask / General Q&A ─────────────────────────────────────────────────────
+
+export interface AskRequest {
+  question: string;
+  drug_context?: string;
+}
+
+export interface AskResponse {
+  question: string;
+  answer: string;
+  drug_context: string | null;
+  status: 'answered' | 'refused' | 'error';
+}

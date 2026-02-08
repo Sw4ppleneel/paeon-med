@@ -22,6 +22,9 @@ from app.routes.policy import router as policy_router
 from app.routes.guardrail import router as guardrail_router
 from app.routes.health import router as health_router
 from app.routes.profile import router as profile_router
+from app.routes.company import router as company_router
+from app.routes.drug_search import router as drug_search_router
+from app.routes.ask import router as ask_router
 
 app = FastAPI(
     title="Paeon DMR Backend",
@@ -54,3 +57,6 @@ app.include_router(rag_router)
 app.include_router(policy_router)
 app.include_router(guardrail_router)
 app.include_router(profile_router)
+app.include_router(company_router)
+app.include_router(drug_search_router)
+app.include_router(ask_router)

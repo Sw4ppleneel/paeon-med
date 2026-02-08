@@ -1,0 +1,167 @@
+{
+  "_schema_version": "1.0",
+  "_description": "Authoritative company metadata for CompanyOverviewCard. All values are human-configured. Do not auto-generate.",
+
+  "companies": {
+    "cipla": {
+      "company_name": "Cipla",
+      "logo_url": "Cipla.png",
+      "tagline": "Caring for Life",
+      "company_description": "Cipla is a global pharmaceutical company focused on providing high-quality, affordable medicines across respiratory, cardiology, infectious diseases, and oncology. It has a strong presence in emerging markets and a legacy of improving access to essential medicines.",
+      "mission_statement": "To make healthcare more accessible and affordable while maintaining the highest standards of quality and innovation.",
+      "hero_product": {
+        "drug_name": "Levosalbutamol",
+        "rationale": "Flagship respiratory bronchodilator widely used in asthma and COPD management."
+      },
+      "supported_specialties": [
+        "Pulmonology",
+        "Internal Medicine",
+        "Pediatrics"
+      ]
+    },
+    "pfizer": {
+      "company_name": "Pfizer",
+      "logo_url": "pfizer.png",
+      "tagline": "Breakthroughs that change patients' lives",
+      "company_description": "Pfizer is a global biopharmaceutical leader known for innovative therapies across cardiology, vaccines, oncology, and immunology, with a strong emphasis on research-driven medicine.",
+      "mission_statement": "To discover, develop, and deliver breakthrough medicines that significantly improve patient outcomes.",
+      "hero_product": {
+        "drug_name": "Atorvastatin",
+        "rationale": "One of the most widely prescribed lipid-lowering agents globally."
+      },
+      "supported_specialties": [
+        "Cardiology",
+        "Internal Medicine",
+        "Endocrinology"
+      ]
+    },
+    "johnson & johnson": {
+      "company_name": "Johnson & Johnson",
+      "logo_url": "jnj.png",
+      "tagline": "For all you love",
+      "company_description": "Johnson & Johnson is a diversified healthcare company with leadership in pharmaceuticals, medical devices, and consumer health, serving complex therapeutic areas including oncology and cardiovascular medicine.",
+      "mission_statement": "Our mission is to profoundly change the trajectory of health for humanity.",
+      "hero_product": {
+        "drug_name": "Rivaroxaban",
+        "rationale": "A leading oral anticoagulant used across thromboembolic conditions."
+      },
+      "supported_specialties": [
+        "Cardiology",
+        "Hematology",
+        "Internal Medicine"
+      ]
+    },
+    "emcure": {
+      "company_name": "Emcure Pharmaceuticals",
+      "logo_url": "Emcure.png",
+      "tagline": "Driven by innovation. Powered by science.",
+      "company_description": "Emcure Pharmaceuticals is an Indian pharmaceutical company with a strong presence in oncology, gynecology, critical care, and biologics, focusing on complex and specialty therapies.",
+      "mission_statement": "To develop and deliver affordable, high-quality medicines through innovation, science, and patient-centric research.",
+      "hero_product": {
+        "drug_name": "Enoxaparin",
+        "rationale": "A widely used anticoagulant in oncology and critical care settings."
+      },
+      "supported_specialties": [
+        "Oncology",
+        "Critical Care",
+        "Gynecology"
+      ]
+    },
+    "emcure pharmaceuticals": {
+      "company_name": "Emcure Pharmaceuticals",
+      "logo_url": "Emcure.png",
+      "tagline": "Driven by innovation. Powered by science.",
+      "company_description": "Emcure Pharmaceuticals is an Indian pharmaceutical company with a strong presence in oncology, gynecology, critical care, and biologics, focusing on complex and specialty therapies.",
+      "mission_statement": "To develop and deliver affordable, high-quality medicines through innovation, science, and patient-centric research.",
+      "hero_product": {
+        "drug_name": "Enoxaparin",
+        "rationale": "A widely used anticoagulant in oncology and critical care settings."
+      },
+      "supported_specialties": [
+        "Oncology",
+        "Critical Care",
+        "Gynecology"
+      ]
+    },
+    "sun pharma": {
+      "company_name": "Sun Pharma",
+      "logo_url": "sunpharma.svg",
+      "tagline": "Reaching People. Touching Lives.",
+      "company_description": "Sun Pharma is India's largest pharmaceutical company with leadership in chronic therapies including dermatology, cardiology, psychiatry, and gastroenterology.",
+      "mission_statement": "To provide high-quality, affordable medicines trusted by patients and healthcare professionals worldwide.",
+      "hero_product": {
+        "drug_name": "Rosuvastatin",
+        "rationale": "High-efficacy statin widely prescribed for cardiovascular risk management."
+      },
+      "supported_specialties": [
+        "Cardiology",
+        "Dermatology",
+        "Psychiatry"
+      ]
+    },
+    "dr. reddy's laboratories": {
+      "company_name": "Dr. Reddy's Laboratories",
+      "logo_url": "drreddy.png",
+      "tagline": "Good Health Can't Wait",
+      "company_description": "Dr. Reddy's Laboratories is a global pharmaceutical company focused on generics, biosimilars, and specialty medicines across key therapeutic areas.",
+      "mission_statement": "To provide affordable and innovative medicines that improve health outcomes globally.",
+      "hero_product": {
+        "drug_name": "Metformin",
+        "rationale": "Foundational therapy in type 2 diabetes management worldwide."
+      },
+      "supported_specialties": [
+        "Endocrinology",
+        "Diabetology",
+        "Internal Medicine"
+      ]
+    },
+    "dr. reddy's": {
+      "company_name": "Dr. Reddy's Laboratories",
+      "logo_url": "drreddy.png",
+      "tagline": "Good Health Can't Wait",
+      "company_description": "Dr. Reddy's Laboratories is a global pharmaceutical company focused on generics, biosimilars, and specialty medicines across key therapeutic areas.",
+      "mission_statement": "To provide affordable and innovative medicines that improve health outcomes globally.",
+      "hero_product": {
+        "drug_name": "Metformin",
+        "rationale": "Foundational therapy in type 2 diabetes management worldwide."
+      },
+      "supported_specialties": [
+        "Endocrinology",
+        "Diabetology",
+        "Internal Medicine"
+      ]
+    },
+    "lupin": {
+      "company_name": "Lupin",
+      "logo_url": "lupinlogo.svg",
+      "tagline": "Caring for Health",
+      "company_description": "Lupin is a global pharmaceutical company with strong capabilities in respiratory, cardiovascular, anti-infective, and diabetes therapies.",
+      "mission_statement": "To enhance patient health outcomes by delivering high-quality, affordable medicines globally.",
+      "hero_product": {
+        "drug_name": "Montelukast",
+        "rationale": "Commonly prescribed leukotriene receptor antagonist in asthma and allergic rhinitis."
+      },
+      "supported_specialties": [
+        "Pulmonology",
+        "Pediatrics",
+        "Internal Medicine"
+      ]
+    },
+    "astrazeneca": {
+      "company_name": "AstraZeneca",
+      "logo_url": "astrazeneca.png",
+      "tagline": "Science that transforms lives",
+      "company_description": "AstraZeneca is a global biopharmaceutical company focused on oncology, cardiovascular, renal, respiratory, and immunology therapies.",
+      "mission_statement": "To push the boundaries of science to deliver life-changing medicines.",
+      "hero_product": {
+        "drug_name": "Osimertinib",
+        "rationale": "Targeted therapy widely used in EGFR-mutated lung cancer."
+      },
+      "supported_specialties": [
+        "Oncology",
+        "Pulmonology",
+        "Internal Medicine"
+      ]
+    }
+  }
+}
