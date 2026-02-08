@@ -16,9 +16,18 @@ from fastapi import APIRouter
 from app.core.audit import log_event
 from app.core.brand_loader import resolve_brand, resolve_company
 from app.core.coverage_enrichment import enrich_coverage_display
-from app.core.llm_adapter import enrich_drug_display, enrich_mechanism_summary
+from app.core.llm_adapter import (
+    enrich_drug_display,
+    enrich_mechanism_summary,
+    enrich_comparison_display,
+    enrich_compliance_display,
+    infer_company_name,
+    correct_drug_spelling,
+)
 from app.core.query_understanding import extract_drug_names
 from app.core.schemas import (
+    BrandMetadataSlot,
+    CompanyMetadataSlot,
     DrugProfileRequest,
     DrugProfileResponse,
 )
@@ -44,6 +53,21 @@ async def drug_profile(req: DrugProfileRequest):
     Phase 2: drug_display, mechanism, and coverage_display are enriched.
     """
     enrichment_status: dict[str, str] = {}
+
+    # ── 0. Spelling Correction ───────────────────────────────────────────────
+    suggested_name: str | None = None
+    spelling_result = correct_drug_spelling(req.drug_name)
+    if (
+        spelling_result
+        and spelling_result["is_corrected"]
+        and spelling_result["corrected"].strip().lower() != req.drug_name.strip().lower()
+    ):
+        suggested_name = spelling_result["corrected"]
+        # Use the corrected name for all downstream processing
+        req.drug_name = suggested_name
+        enrichment_status["spelling_correction"] = "corrected"
+    else:
+        enrichment_status["spelling_correction"] = "ok"
 
     # ── 1. Product Intelligence: Identity Card ───────────────────────────────
     identity_result = pi_engine.flashcard(req.drug_name)
@@ -114,16 +138,35 @@ async def drug_profile(req: DrugProfileRequest):
 
     # ── 7. Brand & Company metadata from brands.json ─────────────────────────
     brand = resolve_brand(req.drug_name)
-    if brand is not None:
-        enrichment_status["brand"] = "available"
-    else:
-        enrichment_status["brand"] = "missing_metadata"
-
     company = resolve_company(req.drug_name)
-    if company is not None:
-        enrichment_status["company"] = "available"
+
+    # If brand is unknown, ask Gemini to infer the manufacturer + brand color
+    if brand is None:
+        inferred = infer_company_name(req.drug_name)
+        if inferred:
+            brand = BrandMetadataSlot(
+                name=inferred["company_name"],
+                color=inferred["color"],
+                accent=inferred["accent"],
+                tagline=None,
+                logo_url=None,
+                division=None,
+                background_gradient=None,
+            )
+            company = CompanyMetadataSlot(
+                overview=f"{inferred['company_name']} — manufacturer of {req.drug_name}.",
+                specialties=None,
+                stats=None,
+                mission=None,
+            )
+            enrichment_status["brand"] = "inferred_by_llm"
+            enrichment_status["company"] = "inferred_by_llm"
+        else:
+            enrichment_status["brand"] = "missing_metadata"
+            enrichment_status["company"] = "missing_metadata"
     else:
-        enrichment_status["company"] = "missing_metadata"
+        enrichment_status["brand"] = "available"
+        enrichment_status["company"] = "available" if company else "missing_metadata"
 
     # ── 8. Coverage Display — deterministic mapping ──────────────────────────
     coverage_display = enrich_coverage_display(reimbursement, req.insurance_type)
@@ -134,11 +177,21 @@ async def drug_profile(req: DrugProfileRequest):
     else:
         enrichment_status["coverage_display"] = "no_data"
 
-    # ── 9. Comparison Display — placeholder (LOCKED: no LLM) ────────────────
-    enrichment_status["comparison_display"] = "placeholder"
+    # ── 9. Comparison Display — LLM enrichment ────────────────────────────────
+    comparison_display = enrich_comparison_display(req.drug_name, sections_text)
+    if comparison_display is not None:
+        enrichment_status["comparison_display"] = "available"
+    else:
+        enrichment_status["comparison_display"] = "no_data"
 
-    # ── 10. Remaining enrichment slots — explicitly null ─────────────────────
-    enrichment_status["compliance_display"] = "awaiting_human_input"
+    # ── 10. Compliance Display — LLM enrichment ─────────────────────────────
+    compliance_display = enrich_compliance_display(req.drug_name, sections_text)
+    if compliance_display is not None:
+        enrichment_status["compliance_display"] = "available"
+    else:
+        enrichment_status["compliance_display"] = "no_data"
+
+    # ── 11. Pricing — placeholder ────────────────────────────────────────────
     enrichment_status["pricing"] = "awaiting_human_input"
 
     # ── Audit ────────────────────────────────────────────────────────────────
@@ -160,9 +213,10 @@ async def drug_profile(req: DrugProfileRequest):
         brand=brand,
         company=company,
         mechanism=mechanism,
-        comparison_display=None,
+        comparison_display=comparison_display,
         coverage_display=coverage_display,
-        compliance_display=None,
+        compliance_display=compliance_display,
         pricing=None,
         enrichment_status=enrichment_status,
+        suggested_name=suggested_name,
     )

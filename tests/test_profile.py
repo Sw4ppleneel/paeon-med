@@ -61,9 +61,7 @@ async def test_drug_profile_known_drug(client):
     assert data["mechanism"]["title"] is not None
     assert data["mechanism"]["text"] is not None
 
-    # Still null: comparison_display, compliance_display, pricing
-    assert data["comparison_display"] is None
-    assert data["compliance_display"] is None
+    # Still null: pricing (compliance/comparison now LLM-enriched)
     assert data["pricing"] is None
 
     # Coverage not requested (no insurance_type)
@@ -76,22 +74,21 @@ async def test_drug_profile_known_drug(client):
     assert status["company"] == "available"
     assert status["drug_display"] == "available"
     assert status["mechanism"] == "available"
-    assert status["comparison_display"] == "placeholder"
+    assert status["comparison_display"] in ("available", "no_data")
     assert status["pricing"] == "awaiting_human_input"
 
 
 async def test_drug_profile_unknown_drug(client):
-    """Unknown drug returns no identity_card, brand/company null with missing_metadata."""
+    """Unknown drug returns no identity_card, brand/company null or inferred."""
     resp = await client.post("/api/drug-profile", json={"drug_name": "UnknownDrug123"})
     assert resp.status_code == 200
     data = resp.json()
 
     assert data["identity_card"] is None
     assert data["enrichment_status"]["identity_card"] == "no_data"
-    assert data["brand"] is None
-    assert data["enrichment_status"]["brand"] == "missing_metadata"
-    assert data["company"] is None
-    assert data["enrichment_status"]["company"] == "missing_metadata"
+    # Brand/company may be inferred by LLM or remain missing
+    assert data["enrichment_status"]["brand"] in ("missing_metadata", "inferred_by_llm")
+    assert data["enrichment_status"]["company"] in ("missing_metadata", "inferred_by_llm")
 
 
 async def test_drug_profile_with_comparison(client):
@@ -106,9 +103,8 @@ async def test_drug_profile_with_comparison(client):
     assert data["comparison_matrix"] is not None
     assert len(data["comparison_matrix"]["drugs"]) == 2
     assert data["enrichment_status"]["comparison_matrix"] == "available"
-    # comparison_display is still null (placeholder — no LLM allowed)
-    assert data["comparison_display"] is None
-    assert data["enrichment_status"]["comparison_display"] == "placeholder"
+    # comparison_display populated by LLM or null when LLM unavailable
+    assert data["enrichment_status"]["comparison_display"] in ("available", "no_data")
 
 
 async def test_drug_profile_with_reimbursement(client):
@@ -437,15 +433,14 @@ async def test_coverage_null_when_not_requested(client):
 
 
 async def test_comparison_display_placeholder(client):
-    """Comparison display is always null with 'placeholder' status."""
+    """Comparison display is LLM-enriched or null when Gemini unavailable."""
     resp = await client.post("/api/drug-profile", json={
         "drug_name": "Ciplar",
         "compare_with": "Ciplactin",
     })
     data = resp.json()
 
-    assert data["comparison_display"] is None
-    assert data["enrichment_status"]["comparison_display"] == "placeholder"
+    assert data["enrichment_status"]["comparison_display"] in ("available", "no_data")
 
 
 # ─── Phase 2: Background gradient test ──────────────────────────────────────

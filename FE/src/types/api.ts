@@ -44,6 +44,26 @@ export interface CoverageDisplay {
   private: CoverageScheme | null;
 }
 
+export interface ComparisonRow {
+  metric: string;
+  value: string;
+  competitor_value: string;
+  winner: boolean;
+}
+
+export interface ComparisonDisplay {
+  competitor: string | null;
+  rows: ComparisonRow[];
+}
+
+export interface ComplianceDisplay {
+  regulatory_status: string | null;
+  regulatory_authority: string | null;
+  pregnancy_category: string | null;
+  boxed_warning: string | null;
+  citations: string[];
+}
+
 export interface DrugProfileResponse {
   // Backend-supplied
   identity_card: Record<string, any> | null;
@@ -57,13 +77,16 @@ export interface DrugProfileResponse {
   company: CompanyMetadata | null;
   drug_display: DrugDisplay | null;
   mechanism: MechanismData | null;
-  comparison_display: any | null;
+  comparison_display: ComparisonDisplay | null;
   coverage_display: CoverageDisplay | null;
-  compliance_display: any | null;
+  compliance_display: ComplianceDisplay | null;
   pricing: any | null;
 
   // Metadata
   enrichment_status: Record<string, string>;
+
+  // Spelling correction
+  suggested_name: string | null;
 }
 
 export interface DrugProfileRequest {

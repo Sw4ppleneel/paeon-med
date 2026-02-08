@@ -58,7 +58,7 @@ export function ComplianceCard({ complianceData }: ComplianceCardProps) {
   ];
 
   return (
-    <div id="compliance" className="scroll-mt-32">
+    <div className="">
       {/* Section Header */}
       <div className="mb-8">
         <h3 
