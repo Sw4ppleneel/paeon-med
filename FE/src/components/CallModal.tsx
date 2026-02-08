@@ -9,7 +9,7 @@ interface CallModalProps {
 
 export function CallModal({ isOpen, onClose }: CallModalProps) {
   const { state, startCall, endCall, toggleMic } = useCallAgent({
-    serverUrl: `ws://${window.location.hostname}:3000/media-stream`,
+    serverUrl: `ws://${window.location.hostname}:3001/media-stream`,
     onStatusChange: (status) => {
       console.log('[Call Status]', status);
     },
@@ -185,7 +185,7 @@ export function CallModal({ isOpen, onClose }: CallModalProps) {
                   className="text-xs text-black/40"
                   style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
                 >
-                  Make sure the calling agent server is running on port 3000
+                  Make sure the calling agent server is running on port 3001
                 </p>
               </div>
             </div>

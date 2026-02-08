@@ -643,3 +643,66 @@ def correct_drug_spelling(drug_name: str) -> Optional[dict]:
         log.debug("Spelling correction JSON parse failed, raw: %.80s…", raw)
 
     return None
+
+
+# ─── Enrichment: Full Company Overview Inference ────────────────────────────
+
+_COMPANY_OVERVIEW_SYSTEM = (
+    "You are a pharmaceutical company knowledge assistant. "
+    "Given a company name, return comprehensive company information. "
+    "Return ONLY a valid JSON object. No explanations, no markdown fences.\n"
+    "The JSON must have exactly these keys:\n"
+    '  "company_name": "Official company name with proper capitalization",\n'
+    '  "tagline": "The company\'s real official tagline or slogan",\n'
+    '  "company_description": "2-3 sentence factual description of the company, '
+    'its focus areas, and market position",\n'
+    '  "mission_statement": "The company\'s actual mission statement or a faithful '
+    'paraphrase of their stated mission",\n'
+    '  "hero_product": {"drug_name": "Their most well-known drug (generic name)", '
+    '"rationale": "Why this drug is significant"},\n'
+    '  "supported_specialties": ["specialty1", "specialty2", "specialty3"]\n\n'
+    "Rules:\n"
+    "- Use REAL, factual information only.\n"
+    "- The hero_product drug_name must be a real drug made by this company.\n"
+    "- supported_specialties should be 3-5 therapeutic areas the company focuses on.\n"
+    "- If the name is not a real pharmaceutical company, return ONLY: "
+    '{"status": "unknown"}\n'
+    "- Output ONLY valid JSON."
+)
+
+
+def infer_company_overview(company_name: str) -> Optional[dict]:
+    """Ask Gemini to generate a full company overview for an unknown company.
+
+    Returns a dict matching the CompanyOverviewCard structure, or None.
+    """
+    raw = _call_llm(
+        _COMPANY_OVERVIEW_SYSTEM,
+        f"Company: {company_name}",
+        max_tokens=600,
+    )
+    if raw:
+        parsed = _extract_json(raw)
+        if parsed:
+            # Check if Gemini says it's unknown
+            if parsed.get("status") == "unknown":
+                return None
+            # Validate required fields
+            if "company_name" in parsed and "hero_product" in parsed:
+                hero = parsed.get("hero_product", {})
+                return {
+                    "company_name": str(parsed["company_name"]),
+                    "tagline": str(parsed.get("tagline", "")),
+                    "company_description": str(parsed.get("company_description", "")),
+                    "mission_statement": str(parsed.get("mission_statement", "")),
+                    "hero_product": {
+                        "drug_name": str(hero.get("drug_name", "")),
+                        "rationale": str(hero.get("rationale", "")),
+                    },
+                    "supported_specialties": [
+                        str(s) for s in parsed.get("supported_specialties", [])
+                    ],
+                }
+        log.debug("Company overview inference JSON parse failed, raw: %.80s…", raw)
+
+    return None

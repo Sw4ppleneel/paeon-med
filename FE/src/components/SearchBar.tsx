@@ -56,10 +56,16 @@ export function SearchBar({
 
   return (
     <form onSubmit={handleSubmit}>
+<<<<<<< HEAD
       <div
         className="fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center pb-12 pt-6"
         style={{
           background: 'linear-gradient(to top, rgba(245,245,247,0.98) 70%, rgba(245,245,247,0) 100%)',
+=======
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-col items-center pb-[12vh] pt-3"
+        style={{
+          background: 'linear-gradient(to top, rgba(245,245,247,0.95) 40%, rgba(245,245,247,0) 100%)',
+>>>>>>> 74fc2625c535ba4f254a723aa2f01bd97f0e9d10
           pointerEvents: 'none',
         }}
       >

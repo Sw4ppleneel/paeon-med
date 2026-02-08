@@ -7,7 +7,7 @@ import emcureLogo from '../assets/Emcure.png';
 import sunpharmaLogo from '../assets/sunpharma.svg';
 import drreddyLogo from '../assets/drreddy.png';
 import lupinLogo from '../assets/lupinlogo.svg';
-import astrazenecaLogo from '../assets/astrazeneca.png';
+import astrazenecaLogo from '../assets/astrazeneca.svg';
 
 /** Map company name → local logo asset */
 const LOGO_MAP: Record<string, string> = {

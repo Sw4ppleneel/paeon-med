@@ -65,7 +65,7 @@ export function TalkMore({ drugContext }: TalkMoreProps) {
 
   return (
     <motion.div
-      className="relative mx-auto max-w-[900px] px-8 pb-16"
+      className="relative mx-auto mt-6 max-w-[900px] px-8 pb-16"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}

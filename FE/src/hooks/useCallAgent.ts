@@ -1,32 +1,15 @@
-import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-
-export interface CallAgentState {
-  isConnected: boolean;
-  isActive: boolean;
-  isMicEnabled: boolean;
-  status: string;
-  error: string | null;
-}
-
-interface CallAgentConfig {
-  serverUrl?: string;
-  onStatusChange?: (status: string) => void;
-  onError?: (error: string) => void;
-  onAudioData?: (data: Float32Array) => void;
-}
+import { useState, useRef, useEffect, useCallback } from 'react';
 
 // ── Mulaw codec (matches Twilio's PCMU) ────────────────────
 const MULAW_BIAS = 33;
 const MULAW_MAX = 32635;
-const INPUT_SAMPLE_RATE = 8000; // Server sends 8kHz mulaw
-const OUTPUT_SAMPLE_RATE = 48000; // Browser playback rate (high quality)
-const NOISE_GATE = 0.008;
 
 function linearToMulaw(sample: number): number {
   sample = Math.max(-32768, Math.min(32767, sample));
   const sign = sample < 0 ? 0x80 : 0;
   if (sample < 0) sample = -sample;
   sample = Math.min(sample + MULAW_BIAS, MULAW_MAX);
+
   const exp = [0, 1, 2, 3, 4, 5, 6, 7].find((e) => sample < 0x84 << e) ?? 7;
   const mantissa = (sample >> (exp + 3)) & 0x0f;
   return ~(sign | (exp << 4) | mantissa) & 0xff;
@@ -42,37 +25,7 @@ function mulawToLinear(byte: number): number {
   return sign ? -sample : sample;
 }
 
-// ── High-quality upsampler: 8kHz → 48kHz ──────────────────
-// Uses cubic interpolation for smoother playback
-function upsample8kTo48k(input: Float32Array): Float32Array {
-  const ratio = OUTPUT_SAMPLE_RATE / INPUT_SAMPLE_RATE; // 6x
-  const outLen = Math.floor(input.length * ratio);
-  const out = new Float32Array(outLen);
-  
-  for (let i = 0; i < outLen; i++) {
-    const srcPos = i / ratio;
-    const idx = Math.floor(srcPos);
-    const frac = srcPos - idx;
-    
-    // Cubic interpolation for smoother upsampling
-    const p0 = input[Math.max(0, idx - 1)] || 0;
-    const p1 = input[idx] || 0;
-    const p2 = input[Math.min(input.length - 1, idx + 1)] || 0;
-    const p3 = input[Math.min(input.length - 1, idx + 2)] || 0;
-    
-    // Catmull-Rom spline interpolation
-    const a = -0.5 * p0 + 1.5 * p1 - 1.5 * p2 + 0.5 * p3;
-    const b = p0 - 2.5 * p1 + 2 * p2 - 0.5 * p3;
-    const c = -0.5 * p0 + 0.5 * p2;
-    const d = p1;
-    
-    out[i] = a * frac * frac * frac + b * frac * frac + c * frac + d;
-  }
-  
-  return out;
-}
-
-// ── Downsampler: any rate → 8000 Hz (for mic capture) ──────
+// ── Resampler: browserRate → 8000 Hz (and back) ────────────
 function resample(input: Float32Array, fromRate: number, toRate: number): Float32Array {
   const ratio = fromRate / toRate;
   const len = Math.floor(input.length / ratio);
@@ -83,17 +36,36 @@ function resample(input: Float32Array, fromRate: number, toRate: number): Float3
     const frac = srcIdx - idx;
     const a = input[idx] || 0;
     const b = input[idx + 1] || 0;
-    out[i] = a + frac * (b - a);
+    out[i] = a + frac * (b - a); // linear interpolation
   }
   return out;
 }
 
+// ── Constants ───────────────────────────────────────────────
+const SAMPLE_RATE = 8000;
+const CHUNK_SIZE = 160; // 20ms at 8kHz — matches Twilio
+const NOISE_GATE = 0.008; // RMS threshold for noise gating
+
+export interface CallAgentState {
+  isConnected: boolean;
+  isActive: boolean;
+  isMicEnabled: boolean;
+  status: string;
+  error: string | null;
+}
+
+interface CallAgentConfig {
+  serverUrl?: string;
+  onStatusChange?: (status: string) => void;
+  onError?: (error: string) => void;
+}
+
 export function useCallAgent(config: CallAgentConfig = {}) {
-  // Memoize server URL to prevent re-renders
-  const serverUrl = useMemo(
-    () => config.serverUrl || `ws://${window.location.hostname}:3001/media-stream`,
-    [config.serverUrl]
-  );
+  const {
+    serverUrl = `ws://${window.location.hostname}:3001/media-stream`,
+    onStatusChange,
+    onError,
+  } = config;
 
   const [state, setState] = useState<CallAgentState>({
     isConnected: false,
@@ -103,257 +75,218 @@ export function useCallAgent(config: CallAgentConfig = {}) {
     error: null,
   });
 
-  // Use refs to avoid stale closures and prevent multiple connections
+  // Refs for mutable state that shouldn't trigger re-renders
   const wsRef = useRef<WebSocket | null>(null);
-  const audioContextRef = useRef<AudioContext | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
   const micStreamRef = useRef<MediaStream | null>(null);
   const scriptNodeRef = useRef<ScriptProcessorNode | null>(null);
   const streamSidRef = useRef<string>('');
-  const micEnabledRef = useRef<boolean>(false);
-  const micRateRef = useRef<number>(48000);
-  const isStartingRef = useRef<boolean>(false); // Guard against multiple starts
+  const activeRef = useRef(false);
+  const micEnabledRef = useRef(false);
 
-  // Playback state
+  // Playback queue refs
   const playbackQueueRef = useRef<Uint8Array[]>([]);
-  const isPlayingRef = useRef<boolean>(false);
+  const isPlayingRef = useRef(false);
   const pendingMarksRef = useRef<string[]>([]);
 
-  // Store callbacks in refs to avoid dependency issues
-  const onStatusChangeRef = useRef(config.onStatusChange);
-  const onErrorRef = useRef(config.onError);
-  useEffect(() => {
-    onStatusChangeRef.current = config.onStatusChange;
-    onErrorRef.current = config.onError;
-  }, [config.onStatusChange, config.onError]);
+  // Mic rate detected from the actual mic stream
+  const micRateRef = useRef(48000);
 
-  const updateState = useCallback((updates: Partial<CallAgentState>) => {
-    setState((prev) => {
-      const newState = { ...prev, ...updates };
-      if (updates.status && onStatusChangeRef.current) {
-        onStatusChangeRef.current(updates.status);
-      }
-      if (updates.isMicEnabled !== undefined) {
-        micEnabledRef.current = updates.isMicEnabled;
-      }
-      return newState;
-    });
-  }, []);
+  const updateState = useCallback(
+    (updates: Partial<CallAgentState>) => {
+      setState((prev) => {
+        const newState = { ...prev, ...updates };
+        if (updates.status) {
+          onStatusChange?.(updates.status);
+        }
+        return newState;
+      });
+    },
+    [onStatusChange],
+  );
 
   const handleError = useCallback(
     (error: string) => {
       updateState({ error, status: 'Error' });
-      if (onErrorRef.current) onErrorRef.current(error);
+      onError?.(error);
       console.error('[CallAgent Error]', error);
     },
-    [updateState]
+    [updateState, onError],
   );
 
-  // ── Playback: decode mulaw and queue for playing ─────────
-  // Accumulate chunks for smoother playback
-  const accumulatedAudioRef = useRef<Float32Array[]>([]);
-  const playbackScheduledRef = useRef<boolean>(false);
-  const CHUNK_ACCUMULATE_MS = 50; // Accumulate 50ms of audio before playing
-
-  const processAndPlayAudio = useCallback(() => {
-    if (accumulatedAudioRef.current.length === 0) {
-      playbackScheduledRef.current = false;
+  // ── Playback: mulaw → speaker ──────────────────────────────
+  const drainPlayback = useCallback(() => {
+    const audioCtx = audioCtxRef.current;
+    if (!audioCtx || playbackQueueRef.current.length === 0) {
+      isPlayingRef.current = false;
       return;
     }
+    isPlayingRef.current = true;
 
-    // Combine all accumulated chunks
-    const totalLength = accumulatedAudioRef.current.reduce((sum, arr) => sum + arr.length, 0);
-    const combined = new Float32Array(totalLength);
+    // Merge all queued chunks
+    let total = 0;
+    for (const c of playbackQueueRef.current) total += c.length;
+    const merged = new Uint8Array(total);
     let offset = 0;
-    for (const chunk of accumulatedAudioRef.current) {
-      combined.set(chunk, offset);
-      offset += chunk.length;
+    for (const c of playbackQueueRef.current) {
+      merged.set(c, offset);
+      offset += c.length;
     }
-    accumulatedAudioRef.current = [];
-    playbackScheduledRef.current = false;
+    playbackQueueRef.current = [];
 
-    if (!audioContextRef.current || combined.length === 0) return;
+    // Decode mulaw → float32 at 8kHz
+    const pcm = new Float32Array(merged.length);
+    for (let i = 0; i < merged.length; i++) {
+      pcm[i] = mulawToLinear(merged[i]) / 32768;
+    }
 
-    // Upsample 8kHz → 48kHz for high-quality playback
-    const upsampled = upsample8kTo48k(combined);
+    // Upsample 8kHz → audioCtx.sampleRate for playback
+    const playRate = audioCtx.sampleRate;
+    const upsampled = resample(pcm, SAMPLE_RATE, playRate);
 
-    // Create audio buffer at high sample rate
-    const buffer = audioContextRef.current.createBuffer(1, upsampled.length, OUTPUT_SAMPLE_RATE);
-    buffer.getChannelData(0).set(upsampled);
+    const buf = audioCtx.createBuffer(1, upsampled.length, playRate);
+    buf.getChannelData(0).set(upsampled);
 
-    const source = audioContextRef.current.createBufferSource();
-    source.buffer = buffer;
-    source.connect(audioContextRef.current.destination);
-    source.onended = () => {
-      // Check if more audio came in while playing
-      if (accumulatedAudioRef.current.length > 0) {
-        processAndPlayAudio();
+    const src = audioCtx.createBufferSource();
+    src.buffer = buf;
+    src.connect(audioCtx.destination);
+    src.start();
+    updateState({ status: '🔊 AI speaking...' });
+
+    src.onended = () => {
+      if (playbackQueueRef.current.length > 0) {
+        drainPlayback();
       } else {
         isPlayingRef.current = false;
-        // Process any pending marks now that audio is done
+        // Echo any pending marks — audio has actually played through the speaker
         while (pendingMarksRef.current.length > 0) {
-          const markName = pendingMarksRef.current.shift()!;
+          const name = pendingMarksRef.current.shift()!;
           if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-            wsRef.current.send(JSON.stringify({ event: 'mark', mark: { name: markName } }));
+            wsRef.current.send(JSON.stringify({ event: 'mark', streamSid: streamSidRef.current, mark: { name } }));
+            console.log(`[CallAgent] → echo mark: ${name}`);
           }
-          // Enable mic after greeting completes
+          // Enable mic after first mark playback (greeting done)
           if (!micEnabledRef.current) {
-            updateState({ isMicEnabled: true, status: '🎤 Listening...' });
+            micEnabledRef.current = true;
+            updateState({ isMicEnabled: true, status: '🎤 Listening... speak now' });
+            console.log('[CallAgent] Audio done — mic enabled');
           }
+        }
+        if (activeRef.current) {
+          updateState({ status: '🎤 Listening... speak now' });
         }
       }
     };
-    source.start();
   }, [updateState]);
 
-  const playNextChunk = useCallback(() => {
-    if (playbackQueueRef.current.length === 0) {
-      // If we have accumulated audio, play it
-      if (accumulatedAudioRef.current.length > 0 && !playbackScheduledRef.current) {
-        processAndPlayAudio();
-      } else if (accumulatedAudioRef.current.length === 0) {
-        isPlayingRef.current = false;
-        // Process any pending marks
-        while (pendingMarksRef.current.length > 0) {
-          const markName = pendingMarksRef.current.shift()!;
-          if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-            wsRef.current.send(JSON.stringify({ event: 'mark', mark: { name: markName } }));
-          }
-          if (!micEnabledRef.current) {
-            updateState({ isMicEnabled: true, status: '🎤 Listening...' });
-          }
-        }
-      }
-      return;
-    }
-
-    isPlayingRef.current = true;
-    const chunk = playbackQueueRef.current.shift()!;
-
-    if (!audioContextRef.current) return;
-
-    // Convert mulaw to linear PCM (normalized float)
-    const pcm = new Float32Array(chunk.length);
-    for (let i = 0; i < chunk.length; i++) {
-      pcm[i] = mulawToLinear(chunk[i]) / 32768;
-    }
-
-    // Accumulate chunks for smoother playback
-    accumulatedAudioRef.current.push(pcm);
-
-    // Schedule playback after accumulation period
-    if (!playbackScheduledRef.current) {
-      playbackScheduledRef.current = true;
-      setTimeout(() => {
-        processAndPlayAudio();
-        // Continue processing queue
-        if (playbackQueueRef.current.length > 0) {
-          playNextChunk();
-        }
-      }, CHUNK_ACCUMULATE_MS);
-    } else {
-      // Keep processing queue
-      if (playbackQueueRef.current.length > 0) {
-        playNextChunk();
-      }
-    }
-  }, [updateState, processAndPlayAudio]);
-
-  // Legacy playNextChunk for compatibility - redirect to new implementation
   const queuePlayback = useCallback(
-    (mulaw: Uint8Array) => {
-      playbackQueueRef.current.push(mulaw);
-      if (!isPlayingRef.current) {
-        isPlayingRef.current = true;
-        playNextChunk();
-      }
+    (mulawBytes: Uint8Array) => {
+      playbackQueueRef.current.push(mulawBytes);
+      if (!isPlayingRef.current) drainPlayback();
     },
-    [playNextChunk]
+    [drainPlayback],
   );
 
-  const endCall = useCallback(() => {
-    // Send stop event
-    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
-      wsRef.current.send(JSON.stringify({ event: 'stop', streamSid: streamSidRef.current }));
-      wsRef.current.close();
-    }
-    wsRef.current = null;
+  // ── Mic capture → mulaw → send ────────────────────────────
+  const startMicCapture = useCallback(
+    (audioCtx: AudioContext, micStream: MediaStream, micRate: number) => {
+      const source = audioCtx.createMediaStreamSource(micStream);
+      const bufSize = 4096;
+      const scriptNode = audioCtx.createScriptProcessor(bufSize, 1, 1);
+      scriptNodeRef.current = scriptNode;
 
-    // Stop microphone
-    if (micStreamRef.current) {
-      micStreamRef.current.getTracks().forEach((track) => track.stop());
-      micStreamRef.current = null;
-    }
+      scriptNode.onaudioprocess = (e: AudioProcessingEvent) => {
+        if (!activeRef.current || !wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
+        if (!micEnabledRef.current) return; // suppress until greeting finishes
 
-    // Stop audio processor
-    if (scriptNodeRef.current) {
-      scriptNodeRef.current.disconnect();
-      scriptNodeRef.current = null;
-    }
+        const input = e.inputBuffer.getChannelData(0);
 
-    // Close audio context
-    if (audioContextRef.current) {
-      audioContextRef.current.close();
-      audioContextRef.current = null;
-    }
+        // Noise gate: compute RMS energy, skip quiet frames
+        let sumSq = 0;
+        for (let i = 0; i < input.length; i++) sumSq += input[i] * input[i];
+        const rms = Math.sqrt(sumSq / input.length);
 
-    // Clear playback
-    playbackQueueRef.current = [];
-    isPlayingRef.current = false;
-    pendingMarksRef.current = [];
-    isStartingRef.current = false;
+        // Resample to 8kHz
+        const resampled = resample(input, micRate, SAMPLE_RATE);
 
-    updateState({
-      isConnected: false,
-      isActive: false,
-      isMicEnabled: false,
-      status: 'Idle',
-    });
-  }, [updateState]);
+        if (rms < NOISE_GATE) {
+          // Send silence frames (mulaw 0xFF = silence) to keep stream alive
+          const silenceChunk = new Uint8Array(CHUNK_SIZE).fill(0xff);
+          const b64 = btoa(String.fromCharCode(...silenceChunk));
+          wsRef.current!.send(
+            JSON.stringify({
+              event: 'media',
+              streamSid: streamSidRef.current,
+              media: { payload: b64 },
+            }),
+          );
+          return;
+        }
 
+        // Convert float → 16-bit PCM → mulaw, send in 160-byte chunks
+        const mulawBuf = new Uint8Array(resampled.length);
+        for (let i = 0; i < resampled.length; i++) {
+          const s16 = Math.max(-32768, Math.min(32767, Math.round(resampled[i] * 32767)));
+          mulawBuf[i] = linearToMulaw(s16);
+        }
+
+        // Send in 160-sample chunks (20ms at 8kHz), matching Twilio
+        for (let i = 0; i < mulawBuf.length; i += CHUNK_SIZE) {
+          const chunk = mulawBuf.slice(i, Math.min(i + CHUNK_SIZE, mulawBuf.length));
+          const b64 = btoa(String.fromCharCode(...chunk));
+          wsRef.current!.send(
+            JSON.stringify({
+              event: 'media',
+              streamSid: streamSidRef.current,
+              media: { payload: b64, timestamp: Date.now().toString(), chunk: String(i / CHUNK_SIZE) },
+            }),
+          );
+        }
+      };
+
+      source.connect(scriptNode);
+      scriptNode.connect(audioCtx.destination); // needed for onaudioprocess to fire
+    },
+    [],
+  );
+
+  // ── Start call ─────────────────────────────────────────────
   const startCall = useCallback(async () => {
-    // Prevent multiple simultaneous starts
-    if (isStartingRef.current || wsRef.current) {
-      console.warn('[CallAgent] Call already in progress or starting');
-      return;
-    }
-    isStartingRef.current = true;
-
     try {
       updateState({ status: 'Requesting microphone...', isActive: true, error: null });
 
-      // Get microphone
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true },
+      // Get mic
+      const micStream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, sampleRate: SAMPLE_RATE },
       });
-      micStreamRef.current = stream;
-      const micRate = stream.getAudioTracks()[0].getSettings().sampleRate || 48000;
+      micStreamRef.current = micStream;
+      const micRate = micStream.getAudioTracks()[0].getSettings().sampleRate || 48000;
       micRateRef.current = micRate;
+      console.log(`[CallAgent] Mic opened at ${micRate} Hz`);
 
-      // Create audio context at mic's native rate for capture
-      const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)({
-        sampleRate: micRate,
-      });
-      audioContextRef.current = audioContext;
+      // Audio context for mic capture + playback
+      const audioCtx = new AudioContext({ sampleRate: micRate });
+      audioCtxRef.current = audioCtx;
 
-      // Reset playback state
-      playbackQueueRef.current = [];
-      isPlayingRef.current = false;
-      pendingMarksRef.current = [];
+      // Generate unique stream ID
       streamSidRef.current = 'WEB_' + Math.random().toString(36).slice(2, 10);
+      activeRef.current = true;
+      micEnabledRef.current = false; // suppress mic until greeting finishes
 
-      updateState({ status: 'Connecting...' });
+      updateState({ status: 'Connecting...', isMicEnabled: false });
 
       // Connect WebSocket
       const ws = new WebSocket(serverUrl);
       wsRef.current = ws;
 
       ws.onopen = () => {
-        updateState({ isConnected: true, status: '🔊 AI greeting...' });
+        console.log('[CallAgent] WebSocket connected');
+        updateState({ isConnected: true, status: '🔊 AI greeting... please wait' });
 
-        // Send Twilio-style handshake
+        // Send Twilio-style handshake — connected event first
         ws.send(JSON.stringify({ event: 'connected', protocol: 'Call', version: '1.0.0' }));
 
-        // Send start event with proper format
+        // Send start event with full metadata
         ws.send(
           JSON.stringify({
             event: 'start',
@@ -364,134 +297,122 @@ export function useCallAgent(config: CallAgentConfig = {}) {
               customParameters: { callerNumber: '+0000000000' },
               mediaFormat: { encoding: 'audio/x-mulaw', sampleRate: '8000', channels: '1' },
             },
-          })
+          }),
         );
 
         // Start mic capture but suppress sending until greeting finishes
-        micEnabledRef.current = false;
+        startMicCapture(audioCtx, micStream, micRate);
 
-        // Set up mic capture
-        const source = audioContext.createMediaStreamSource(stream);
-        const bufSize = 4096;
-        const processor = audioContext.createScriptProcessor(bufSize, 1, 1);
-        scriptNodeRef.current = processor;
-
-        source.connect(processor);
-        processor.connect(audioContext.destination);
-
-        processor.onaudioprocess = (e) => {
-          if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) return;
-          if (!micEnabledRef.current) return;
-
-          const input = e.inputBuffer.getChannelData(0);
-
-          // Calculate RMS energy for noise gate
-          let sumSq = 0;
-          for (let i = 0; i < input.length; i++) sumSq += input[i] * input[i];
-          const rms = Math.sqrt(sumSq / input.length);
-
-          // Resample to 8kHz for server
-          const resampled = resample(input, micRateRef.current, INPUT_SAMPLE_RATE);
-
-          // Convert to mulaw
-          const mulaw = new Uint8Array(resampled.length);
-          if (rms < NOISE_GATE) {
-            // Send silence (mulaw silence byte is 0xFF)
-            mulaw.fill(0xff);
-          } else {
-            for (let i = 0; i < resampled.length; i++) {
-              const sample = Math.round(resampled[i] * 32767);
-              mulaw[i] = linearToMulaw(sample);
-            }
-          }
-
-          // Encode as base64 and send
-          let binary = '';
-          for (let i = 0; i < mulaw.length; i++) {
-            binary += String.fromCharCode(mulaw[i]);
-          }
-          const payload = btoa(binary);
-
-          wsRef.current.send(
-            JSON.stringify({
-              event: 'media',
-              streamSid: streamSidRef.current,
-              media: { payload },
-            })
-          );
-        };
-
-        // Safety: enable mic after 8s even if mark never arrives
+        // Safety: enable mic after 8s even if mark never arrives (e.g. TTS error)
         setTimeout(() => {
-          if (!micEnabledRef.current && wsRef.current) {
-            updateState({ isMicEnabled: true, status: '🎤 Listening...' });
+          if (!micEnabledRef.current && activeRef.current) {
+            micEnabledRef.current = true;
+            updateState({ isMicEnabled: true, status: '🎤 Listening... speak now' });
+            console.log('[CallAgent] Mic enabled (timeout fallback)');
           }
         }, 8000);
       };
 
-      ws.onmessage = (event) => {
+      ws.onmessage = (evt) => {
         try {
-          const data = JSON.parse(event.data);
+          const data = JSON.parse(evt.data);
 
           if (data.event === 'media' && data.media?.payload) {
-            // Decode base64 mulaw and queue for playback
+            // Decode base64 → mulaw bytes → queue for playback
             const raw = atob(data.media.payload);
             const mulaw = new Uint8Array(raw.length);
             for (let i = 0; i < raw.length; i++) mulaw[i] = raw.charCodeAt(i);
             queuePlayback(mulaw);
           } else if (data.event === 'mark') {
-            // Queue mark to echo after audio finishes playing
-            pendingMarksRef.current.push(data.mark?.name || 'unknown');
+            console.log(`[CallAgent] ← mark: ${data.mark?.name}`);
+            // Don't echo immediately — queue it for when audio actually finishes playing
+            pendingMarksRef.current.push(data.mark.name);
           } else if (data.event === 'clear') {
-            // AI was interrupted, clear playback queue
+            console.log('[CallAgent] ← clear (AI interrupted)');
             playbackQueueRef.current = [];
           }
         } catch (err) {
-          console.warn('[WebSocket Parse Error]', err);
+          console.warn('[CallAgent] WebSocket parse error:', err);
         }
       };
 
       ws.onerror = () => {
-        handleError('WebSocket connection failed');
-        isStartingRef.current = false;
+        handleError('WebSocket error — is the calling agent server running?');
       };
 
       ws.onclose = () => {
-        isStartingRef.current = false;
-        updateState({
-          isConnected: false,
-          isActive: false,
-          isMicEnabled: false,
-          status: 'Disconnected',
-        });
+        console.log('[CallAgent] WebSocket closed');
+        if (activeRef.current) {
+          // Server-initiated close
+          cleanupCall();
+          updateState({
+            isConnected: false,
+            isActive: false,
+            isMicEnabled: false,
+            status: 'Call ended',
+          });
+        }
       };
     } catch (err) {
-      isStartingRef.current = false;
       handleError(`Failed to start call: ${err instanceof Error ? err.message : String(err)}`);
     }
-  }, [serverUrl, updateState, handleError, queuePlayback]);
+  }, [serverUrl, updateState, handleError, startMicCapture, queuePlayback]);
 
+  // ── Cleanup helper (no state update) ───────────────────────
+  const cleanupCall = useCallback(() => {
+    activeRef.current = false;
+    micEnabledRef.current = false;
+
+    if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+      wsRef.current.send(
+        JSON.stringify({ event: 'stop', streamSid: streamSidRef.current, stop: { callSid: 'CA_browser' } }),
+      );
+      wsRef.current.close();
+    }
+    wsRef.current = null;
+
+    if (scriptNodeRef.current) {
+      scriptNodeRef.current.disconnect();
+      scriptNodeRef.current = null;
+    }
+    if (micStreamRef.current) {
+      micStreamRef.current.getTracks().forEach((t) => t.stop());
+      micStreamRef.current = null;
+    }
+    if (audioCtxRef.current) {
+      audioCtxRef.current.close();
+      audioCtxRef.current = null;
+    }
+
+    playbackQueueRef.current = [];
+    pendingMarksRef.current = [];
+    isPlayingRef.current = false;
+  }, []);
+
+  // ── End call ───────────────────────────────────────────────
+  const endCall = useCallback(() => {
+    cleanupCall();
+    updateState({
+      isConnected: false,
+      isActive: false,
+      isMicEnabled: false,
+      status: 'Idle',
+    });
+  }, [cleanupCall, updateState]);
+
+  // ── Toggle mic (manual mute/unmute) ────────────────────────
   const toggleMic = useCallback(() => {
-    if (!state.isConnected) return;
-    const newMicState = !micEnabledRef.current;
-    updateState({ isMicEnabled: newMicState, status: newMicState ? '🎤 Listening...' : '🔇 Muted' });
-  }, [state.isConnected, updateState]);
+    if (!activeRef.current) return;
+    micEnabledRef.current = !micEnabledRef.current;
+    updateState({ isMicEnabled: micEnabledRef.current });
+  }, [updateState]);
 
   // Cleanup on unmount
   useEffect(() => {
     return () => {
-      if (wsRef.current) {
-        wsRef.current.close();
-        wsRef.current = null;
-      }
-      if (micStreamRef.current) {
-        micStreamRef.current.getTracks().forEach((track) => track.stop());
-      }
-      if (audioContextRef.current) {
-        audioContextRef.current.close();
-      }
+      cleanupCall();
     };
-  }, []);
+  }, [cleanupCall]);
 
   return {
     state,
