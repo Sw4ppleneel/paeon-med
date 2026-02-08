@@ -1,50 +1,38 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState } from 'react';
 import { Phone, PhoneOff, Mic, MicOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useCallAgent } from '../hooks/useCallAgent';
 
 export function FloatingCallButton() {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { state, startCall, endCall, toggleMic } = useCallAgent({
+    serverUrl: `ws://${window.location.hostname}:3001/media-stream`,
+    onStatusChange: (status) => {
+      console.log('[Call Status]', status);
+    },
+    onError: (error) => {
+      console.error('[Call Error]', error);
+    },
+  });
 
-  // Memoize callbacks to prevent re-renders
-  const onStatusChange = useCallback((status: string) => {
-    console.log('[Call Status]', status);
-  }, []);
-
-  const onError = useCallback((error: string) => {
-    console.error('[Call Error]', error);
-  }, []);
-
-  // Memoize config to prevent hook re-initialization
-  const config = useMemo(
-    () => ({
-      serverUrl: `ws://${window.location.hostname}:3001/media-stream`,
-      onStatusChange,
-      onError,
-    }),
-    [onStatusChange, onError]
-  );
-
-  const { state, startCall, endCall, toggleMic } = useCallAgent(config);
-
-  const handleStartCall = useCallback(async () => {
+  const handleStartCall = async () => {
     try {
       await startCall();
     } catch (err) {
       console.error('Failed to start call:', err);
     }
-  }, [startCall]);
+  };
 
-  const handleEndCall = useCallback(() => {
+  const handleEndCall = () => {
     endCall();
     setIsExpanded(false);
-  }, [endCall]);
+  };
 
-  const handleToggleExpand = useCallback(() => {
+  const handleToggleExpand = () => {
     if (!isExpanded) {
       setIsExpanded(true);
     }
-  }, [isExpanded]);
+  };
 
   return (
     <AnimatePresence>
@@ -103,7 +91,12 @@ export function FloatingCallButton() {
         >
           {/* Close Button */}
           <button
-            onClick={() => setIsExpanded(false)}
+            onClick={() => {
+              if (state.isActive) {
+                endCall();
+              }
+              setIsExpanded(false);
+            }}
             className="absolute right-2 top-4 z-10 rounded-full p-2 text-gray-500 hover:bg-gray-100 transition-colors"
           >
             <span className="text-xl font-bold">×</span>
@@ -194,7 +187,7 @@ export function FloatingCallButton() {
               className="text-xs text-center text-black/40"
               style={{ fontFamily: 'Source Sans Pro, -apple-system, system-ui, sans-serif' }}
             >
-              Connect with our AI medical assistant for instant healthcare guidance
+              Calling agent server must be running on port 3001
             </p>
           </div>
         </motion.div>

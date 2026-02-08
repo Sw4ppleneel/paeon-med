@@ -19,18 +19,93 @@
     "pfizer": {
       "name": "Pfizer",
       "background_gradient": "deep_blue",
-      "overview": "",
-      "specialties": "",
-      "stats": {},
-      "mission": ""
+      "overview": "Pfizer Inc. is a global biopharmaceutical leader driven by science-based innovation. With a legacy spanning over 170 years, Pfizer develops breakthrough therapies, vaccines, and consumer healthcare products.",
+      "specialties": "Vaccines • Oncology • Cardiology • Immunology • Rare Diseases",
+      "stats": {
+        "founded": "1849",
+        "headquarters": "New York, USA",
+        "employees": "83,000+",
+        "revenue": "$58.5B (FY23)"
+      },
+      "mission": "Breakthroughs that change patients' lives — to discover, develop, and deliver innovative medicines and vaccines."
     },
     "jnj": {
       "name": "Johnson & Johnson",
       "background_gradient": "orange",
-      "overview": "",
-      "specialties": "",
-      "stats": {},
-      "mission": ""
+      "overview": "Johnson & Johnson is a diversified healthcare company and one of the world's largest, with operations in pharmaceuticals, medical devices, and consumer health across 60+ countries.",
+      "specialties": "Oncology • Immunology • Cardiovascular • Neuroscience • Medical Devices",
+      "stats": {
+        "founded": "1886",
+        "headquarters": "New Brunswick, NJ, USA",
+        "employees": "131,000+",
+        "revenue": "$85.2B (FY23)"
+      },
+      "mission": "To profoundly change the trajectory of health for humanity through bold innovation and compassionate care."
+    },
+    "emcure": {
+      "name": "Emcure Pharmaceuticals",
+      "background_gradient": "purple",
+      "overview": "Emcure Pharmaceuticals is a leading Indian pharmaceutical company with a strong focus on complex therapies including oncology, gynecology, critical care, and biologics.",
+      "specialties": "Oncology • Gynecology • Critical Care • Biologics • HIV/AIDS",
+      "stats": {
+        "founded": "1981",
+        "headquarters": "Pune, India",
+        "employees": "12,000+",
+        "revenue": "₹6,500 Cr (FY23)"
+      },
+      "mission": "To develop and deliver affordable, high-quality medicines through innovation, science, and patient-centric research."
+    },
+    "sunpharma": {
+      "name": "Sun Pharma",
+      "background_gradient": "amber",
+      "overview": "Sun Pharmaceutical Industries is India's largest and the world's fourth-largest specialty generic pharmaceutical company, with a presence in over 100 countries.",
+      "specialties": "Dermatology • Cardiology • Psychiatry • Gastroenterology • Ophthalmology",
+      "stats": {
+        "founded": "1983",
+        "headquarters": "Mumbai, India",
+        "employees": "40,000+",
+        "revenue": "₹44,800 Cr (FY23)"
+      },
+      "mission": "Reaching people, touching lives — providing high-quality, affordable medicines to patients worldwide."
+    },
+    "drreddy": {
+      "name": "Dr. Reddy's Laboratories",
+      "background_gradient": "pink",
+      "overview": "Dr. Reddy's Laboratories is a leading Indian multinational pharmaceutical company committed to generics, biosimilars, and innovative drug development across global markets.",
+      "specialties": "Endocrinology • Diabetology • Gastroenterology • Dermatology • Oncology",
+      "stats": {
+        "founded": "1984",
+        "headquarters": "Hyderabad, India",
+        "employees": "24,000+",
+        "revenue": "₹25,800 Cr (FY23)"
+      },
+      "mission": "Good Health Can't Wait — accelerating access to affordable and innovative medicines globally."
+    },
+    "lupin": {
+      "name": "Lupin",
+      "background_gradient": "teal",
+      "overview": "Lupin Limited is a global pharmaceutical company headquartered in Mumbai, India, with a strong focus on respiratory, cardiovascular, anti-infective, and diabetes therapies.",
+      "specialties": "Pulmonology • Cardiovascular • Anti-infectives • Diabetology • Pediatrics",
+      "stats": {
+        "founded": "1968",
+        "headquarters": "Mumbai, India",
+        "employees": "20,000+",
+        "revenue": "₹19,600 Cr (FY23)"
+      },
+      "mission": "Caring for health by delivering high-quality, affordable medicines globally through scientific innovation."
+    },
+    "astrazeneca": {
+      "name": "AstraZeneca",
+      "background_gradient": "sunset",
+      "overview": "AstraZeneca is a global, science-led biopharmaceutical company focused on the discovery, development, and commercialization of prescription medicines in oncology, respiratory, cardiovascular, and immunology.",
+      "specialties": "Oncology • Respiratory • Cardiovascular • Renal • Immunology",
+      "stats": {
+        "founded": "1999",
+        "headquarters": "Cambridge, UK",
+        "employees": "89,000+",
+        "revenue": "$45.8B (FY23)"
+      },
+      "mission": "Pushing the boundaries of science to deliver life-changing medicines that transform patient outcomes worldwide."
     }
   },
 
@@ -73,6 +148,86 @@
         "tagline": "Innovation for Good Health",
         "logo_url": "/assets/jnj-logo.png",
         "division": "Immunology Division"
+      }
+    },
+    "Levosalbutamol": {
+      "company_key": "cipla",
+      "brand": {
+        "color": "#00AEEF",
+        "accent": "#F58220",
+        "tagline": "Caring for Life",
+        "logo_url": "/assets/cipla-logo.png",
+        "division": "Respiratory Division"
+      }
+    },
+    "Atorvastatin": {
+      "company_key": "pfizer",
+      "brand": {
+        "color": "#0033A0",
+        "accent": "#42A5F5",
+        "tagline": "Breakthroughs that change patients' lives",
+        "logo_url": "/assets/pfizer-logo.png",
+        "division": "Cardiovascular Division"
+      }
+    },
+    "Rivaroxaban": {
+      "company_key": "jnj",
+      "brand": {
+        "color": "#D51900",
+        "accent": "#FFFFFF",
+        "tagline": "Innovation for Good Health",
+        "logo_url": "/assets/jnj-logo.png",
+        "division": "Cardiovascular Division"
+      }
+    },
+    "Enoxaparin": {
+      "company_key": "emcure",
+      "brand": {
+        "color": "#7C4DFF",
+        "accent": "#B388FF",
+        "tagline": "Driven by innovation. Powered by science.",
+        "logo_url": "/assets/emcure-logo.png",
+        "division": "Critical Care Division"
+      }
+    },
+    "Rosuvastatin": {
+      "company_key": "sunpharma",
+      "brand": {
+        "color": "#FFB300",
+        "accent": "#FFA000",
+        "tagline": "Reaching People. Touching Lives.",
+        "logo_url": "/assets/sunpharma-logo.png",
+        "division": "Cardiovascular Division"
+      }
+    },
+    "Metformin": {
+      "company_key": "drreddy",
+      "brand": {
+        "color": "#E91E63",
+        "accent": "#F48FB1",
+        "tagline": "Good Health Can't Wait",
+        "logo_url": "/assets/drreddy-logo.png",
+        "division": "Diabetology Division"
+      }
+    },
+    "Montelukast": {
+      "company_key": "lupin",
+      "brand": {
+        "color": "#009688",
+        "accent": "#4DB6AC",
+        "tagline": "Caring for Health",
+        "logo_url": "/assets/lupin-logo.png",
+        "division": "Respiratory Division"
+      }
+    },
+    "Osimertinib": {
+      "company_key": "astrazeneca",
+      "brand": {
+        "color": "#FF7043",
+        "accent": "#FF8A65",
+        "tagline": "Science that transforms lives",
+        "logo_url": "/assets/astrazeneca-logo.png",
+        "division": "Oncology Division"
       }
     }
   }

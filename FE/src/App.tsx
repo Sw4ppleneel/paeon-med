@@ -267,9 +267,6 @@ export default function App() {
         <>
           <CompanyOverview data={companyData} onDrugSelect={handleHeroDrugSelect} />
 
-          {/* Spacer between company overview and Talk More */}
-          <div className="h-24" />
-
           {/* Talk More for company context */}
           <TalkMore drugContext={companyData.hero_product.drug_name || companyData.company_name} />
 

@@ -23,7 +23,7 @@ for (const key of REQUIRED_ENV) {
   }
 }
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = parseInt(process.env.PORT, 10) || 3001;
 
 // ── Active call tracking ─────────────────────────────────────
 

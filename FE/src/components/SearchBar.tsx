@@ -56,10 +56,9 @@ export function SearchBar({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div
-        className="fixed bottom-0 left-0 right-0 z-40 flex flex-col items-center pb-12 pt-6"
+      <div className="fixed bottom-0 left-0 right-0 z-50 flex flex-col items-center pb-6 pt-3"
         style={{
-          background: 'linear-gradient(to top, rgba(245,245,247,0.98) 70%, rgba(245,245,247,0) 100%)',
+          background: 'linear-gradient(to top, rgba(245,245,247,0.95) 60%, rgba(245,245,247,0) 100%)',
           pointerEvents: 'none',
         }}
       >
@@ -151,9 +150,9 @@ export function SearchBar({
               }}
               transition={{
                 type: 'spring',
-                stiffness: 400,
+                stiffness: 300,
                 damping: 30,
-                mass: 0.8
+                mass: 0.9
               }}
             />
 

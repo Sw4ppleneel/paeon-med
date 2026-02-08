@@ -12,7 +12,7 @@ import emcureLogo from '../assets/Emcure.png';
 import sunpharmaLogo from '../assets/sunpharma.svg';
 import drreddyLogo from '../assets/drreddy.png';
 import lupinLogo from '../assets/lupinlogo.svg';
-import astrazenecaLogo from '../assets/astrazeneca.png';
+import astrazenecaLogo from '../assets/astrazeneca.svg';
 import type { CompanyOverviewCard } from '../types/api';
 
 const LOGO_MAP: Record<string, string> = {
@@ -23,7 +23,7 @@ const LOGO_MAP: Record<string, string> = {
   'sunpharma.svg': sunpharmaLogo,
   'drreddy.png': drreddyLogo,
   'lupinlogo.svg': lupinLogo,
-  'astrazeneca.png': astrazenecaLogo,
+  'astrazeneca.svg': astrazenecaLogo,
 };
 
 const GRADIENT_MAP: Record<string, string> = {
@@ -98,7 +98,7 @@ export function CompanyOverview({ data, onDrugSelect }: CompanyOverviewProps) {
           }}
         />
 
-        <div className="relative flex h-full min-h-[650px] flex-col items-center justify-center px-8 py-12">
+        <div className="relative flex h-full min-h-[650px] flex-col items-center justify-center px-8 py-12 pb-6">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -232,7 +232,7 @@ export function CompanyOverview({ data, onDrugSelect }: CompanyOverviewProps) {
 
             {/* Mission */}
             <div
-              className="mb-8 rounded-2xl p-4"
+              className="mb-5 rounded-2xl p-4"
               style={{
                 background: 'rgba(0, 0, 0, 0.03)',
                 border: '1px solid rgba(0, 0, 0, 0.08)',
@@ -312,7 +312,7 @@ export function CompanyOverview({ data, onDrugSelect }: CompanyOverviewProps) {
         </div>
 
         <div
-          className="absolute bottom-0 left-0 right-0 h-32"
+          className="absolute bottom-0 left-0 right-0 h-16"
           style={{
             background: 'linear-gradient(to bottom, transparent, #F5F5F7)',
           }}
