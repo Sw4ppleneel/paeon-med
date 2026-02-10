@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
-  "outputDirectory": ".",
+  "buildCommand": "pip install -r Paeon-Med/requirements.txt",
+  "outputDirectory": "Paeon-Med",
   "framework": "python",
   "runtime": "python@3.13"
 }
