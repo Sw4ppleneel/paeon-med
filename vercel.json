@@ -1,6 +1,6 @@
 {
   "buildCommand": "cd FE && npm install && npm run build",
-  "outputDirectory": "FE/dist",
+  "outputDirectory": "FE/build",
   "env": {
     "VITE_API_BASE_URL": "@vite_api_base_url"
   },
