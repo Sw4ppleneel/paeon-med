@@ -1,0 +1,9 @@
+{
+  "buildCommand": "pip install -r requirements.txt",
+  "outputDirectory": ".",
+  "framework": "python",
+  "runtime": "python@3.13",
+  "env": {
+    "FRONTEND_URL": "@frontend_url"
+  }
+}

@@ -1,0 +1,32 @@
+# Python backend files (we'll deploy separately to serverless functions)
+main.py
+app/
+tests/
+__pycache__/
+.venv/
+*.pyc
+requirements.txt
+pyproject.toml
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node modules (will be installed)
+node_modules/
+
+# Development files
+.env.local
+.env.*.local
+*.log

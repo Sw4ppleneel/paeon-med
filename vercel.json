@@ -1,0 +1,20 @@
+{
+  "buildCommand": "cd FE && npm install && npm run build",
+  "outputDirectory": "FE/dist",
+  "env": {
+    "VITE_API_BASE_URL": "@vite_api_base_url"
+  },
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://your-backend-url.vercel.app/api/:path*"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}
