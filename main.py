@@ -34,16 +34,24 @@ app = FastAPI(
 )
 
 # ─── CORS Middleware ─────────────────────────────────────────────────────────
-# Allows the Vite dev server (port 3000) and any localhost origin to reach the API.
-# In production, replace with explicit allowed origins.
+# Allows the Vite dev server (port 3000) and Vercel frontend origins.
+# Set FRONTEND_URL env var on your backend Vercel project to your FE URL.
+import os
+
+_cors_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+# Add production frontend URL(s) from env
+_frontend_url = os.getenv("FRONTEND_URL", "")
+if _frontend_url:
+    _cors_origins.extend([u.strip() for u in _frontend_url.split(",") if u.strip()])
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-    ],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
