@@ -1,10 +1,10 @@
-"""Vercel Serverless Function entry point for FastAPI backend.
+"""Vercel Serverless Function entry point for FastAPI backend."""
 
-This file serves as the ASGI handler for Vercel's Python Runtime.
-Vercel will automatically detect this file and create a serverless function.
-"""
+import sys
+from pathlib import Path
 
-from main import app
+# Add the project root (one level up from api/) to Python path
+# so that `main.py` and `app/` package can be found
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-# Vercel expects the ASGI app to be named 'app'
-# The FastAPI instance in main.py is already named 'app'
+from main import app  # noqa: E402
