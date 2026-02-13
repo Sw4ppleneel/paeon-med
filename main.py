@@ -16,9 +16,6 @@ load_dotenv()  # Load .env BEFORE any app imports that read os.environ
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.httpsredirect import HTTPSRedirectMiddleware
-from fastapi.middleware.gzip import GZipMiddleware
-import logging
 
 from app.routes.rag import router as rag_router
 from app.routes.policy import router as policy_router
@@ -41,42 +38,24 @@ app = FastAPI(
 # Set FRONTEND_URL env var on your backend Vercel project to your FE URL.
 import os
 
-# CORS: allow localhost dev origins and (optionally) production origins from env
 _cors_origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
-# Add production frontend URL(s) from env (comma-separated)
+# Add production frontend URL(s) from env
 _frontend_url = os.getenv("FRONTEND_URL", "")
 if _frontend_url:
     _cors_origins.extend([u.strip() for u in _frontend_url.split(",") if u.strip()])
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=_cors_origins or ["*"],
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# Security / performance middlewares
-# Redirect HTTP → HTTPS (Vercel already terminates TLS, but keep for local)
-app.add_middleware(HTTPSRedirectMiddleware)
-# GZip responses
-app.add_middleware(GZipMiddleware, minimum_size=500)
-
-# Load and register small internal middlewares from app.core.middleware if available
-try:
-    from app.core.middleware import RequestIDMiddleware, RateLimitMiddleware, SecurityHeadersMiddleware
-
-    app.add_middleware(RequestIDMiddleware)
-    app.add_middleware(RateLimitMiddleware)
-    app.add_middleware(SecurityHeadersMiddleware)
-except Exception:
-    # Don't fail startup if middleware module isn't present (safe fallback)
-    logging.getLogger(__name__).warning("Optional security middlewares not available; continuing without them")
 
 # TODO: Add rate limiting middleware
 # TODO: Add request ID middleware for tracing
